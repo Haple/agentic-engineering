@@ -73,7 +73,8 @@ Claude Code · Codex · Cursor · Copilot · Amp · any agent.<br>
 <a href="#lessons">All lessons</a> ·
 <a href="#your-agent-can-take-this-course-too">For your agent</a> ·
 <a href="{SITE}/sources/">Sources</a> ·
-<a href="{SITE}/llms.txt">llms.txt</a>
+<a href="{SITE}/llms.txt">llms.txt</a> ·
+<a href="{REPO}/releases/tag/videos-v1">MP4 downloads</a>
 </p>
 
 ---
@@ -91,7 +92,7 @@ It's built from the talks, interviews and essays of people like {", ".join(speak
 - **Quality, safety, teams** — agent-friendly codebases, evals, prompt injection and the lethal trifecta, team adoption
 - **The engineer you become** — which skills lose value, which compound, and what comes next
 
-Each lesson is a 3–5 minute animated video, a full transcript, a quiz, a hands-on "try it with your agent" prompt, and cited sources.
+Each lesson is a 3–5 minute animated video, a full transcript, a quiz, a hands-on "try it with your agent" prompt, and cited sources. Prefer files? All lessons are also on the [releases page]({REPO}/releases/tag/videos-v1) as 1080p MP4s.
 
 ## Your agent can take this course too
 
