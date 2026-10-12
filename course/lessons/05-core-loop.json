@@ -1,0 +1,152 @@
+{
+  "id": "05-core-loop",
+  "number": 5,
+  "slug": "explore-plan-implement-verify",
+  "module": "Working with one agent",
+  "title": "The core loop: explore, plan, implement, verify",
+  "short": "Explore, plan, implement, verify",
+  "summary": "The people who build coding agents rarely type a feature request and hit enter. They explore first, agree on a plan, implement in a fresh context, and verify. Here's that loop, why planning has the most leverage, and how to make plans that can actually be checked.",
+  "takeaways": [
+    "Don't jump straight to code. Explore, plan, implement, verify.",
+    "Mistakes are cheapest to fix upstream: a bad line of research can become thousands of bad lines of code.",
+    "Planning is about shared understanding. Let the agent interview you, one question at a time.",
+    "Ask for plans in thin vertical slices you can test, not horizontal layers that only work at the end.",
+    "Implement from the plan in a fresh session; skip planning only for tiny, obvious changes."
+  ],
+  "practices": [
+    "For non-trivial tasks, explore the relevant code and propose a plan (or two or three options) before editing anything.",
+    "When requirements are ambiguous, ask questions one at a time, each with a recommended answer.",
+    "Structure plans as thin vertical slices, each with a concrete verification step (test, command, or check).",
+    "Write the agreed plan to a file so implementation can start from a clean context."
+  ],
+  "sources": [
+    {"id": "IDSAMqip6ms", "t": 2610},
+    {"id": "julbw1JuAz0", "t": 2268},
+    {"id": "We7BZVKbCVw", "t": 4197},
+    {"id": "article-anthropic-claude-code-best-practices"},
+    {"id": "article-humanlayer-ace-fca"},
+    {"id": "6eBSHbLKuN0", "t": 402},
+    {"id": "gv0WHhKelSE", "t": 467},
+    {"id": "EJyuu6zlQCg", "t": 84},
+    {"id": "-QFHIoCo-Ko", "t": 1055},
+    {"id": "YwZR6tc7qYg", "t": 1066},
+    {"id": "-QFHIoCo-Ko", "t": 2578},
+    {"id": "BEKc4P87XKo", "t": 1005},
+    {"id": "Ib5GBkD555M", "t": 1020},
+    {"id": "IDSAMqip6ms", "t": 1073}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "The most common beginner move is to type a feature request and hit enter. The people who build these tools almost never do that. Here's what they do instead.",
+      "params": {"kicker": "Lesson 5", "module": "Module 2 · Working with one agent", "title": "The core loop: *explore, plan, implement, verify*", "subtitle": "The workflow every other technique builds on.", "bubble": "Plan first? Fine by me.", "mood": "happy"}
+    },
+    {
+      "template": "stat", "chapter": "Why plan",
+      "narration": "Boris Cherny says landing on a plan first can easily double or triple your success rate. And once there's a good plan, he says, the model will one-shot the implementation almost every time. Most of his tasks start in plan mode.",
+      "params": {"items": [
+        {"value": "2–3×", "label": "success rate when you land on the plan first", "tone": "agent", "at": "double"},
+        {"value": "~1 shot", "label": "to implement a good plan, almost every time", "tone": "good", "at": "one-shot"}
+      ], "src": "Boris Cherny, creator of Claude Code (Every, The Pragmatic Engineer)"}
+    },
+    {
+      "template": "loop", "chapter": "The loop",
+      "narration": "Here's the loop. Explore: let the agent read the relevant code and explain it before touching anything. Plan: agree on the approach and how you'll check it. Implement: let it write the code, in small steps. Verify: run the checks, read the result. Then around again for the next slice.",
+      "params": {"title": "The core loop", "sub": "Every non-trivial task.", "steps": [
+        {"label": "Explore", "sub": "read before writing", "icon": "search", "at": "Explore"},
+        {"label": "Plan", "sub": "agree on the approach", "icon": "plan", "at": "Plan"},
+        {"label": "Implement", "sub": "small steps", "icon": "code", "at": "Implement"},
+        {"label": "Verify", "sub": "run checks, read results", "icon": "check", "at": "Verify"}
+      ], "center": {"label": "you + agent", "agent": true, "at": "Here's the loop"}}
+    },
+    {
+      "template": "chart", "chapter": "Leverage",
+      "narration": "Why put so much effort up front? Dex Horthy explains. A bad line of code is just a bad line of code. A bad line of a plan can become hundreds of bad lines of code. And a bad line of research, a misunderstanding of how the system works, can become thousands. So your attention has the most leverage early.",
+      "params": {"title": "Lines of bad code one mistake can cause", "kind": "bar", "log": true, "data": [
+        {"x": "in the code", "y": 1, "label": "1", "at": "bad line of code"},
+        {"x": "in the plan", "y": 100, "label": "hundreds", "at": "plan"},
+        {"x": "in the research", "y": 1000, "label": "thousands", "hl": true, "at": "research"}
+      ], "src": "Dex Horthy, Advanced Context Engineering for Coding Agents"}
+    },
+    {
+      "template": "terminal", "chapter": "Explore",
+      "narration": "Exploring is just asking. Cal from the Claude Code team suggests a prompt like this: search around, figure out how we'd do it, report back with two or three options, and don't start working. You get the agent's understanding on the table before any code exists.",
+      "params": {"title": "~/app · explore first", "lines": [
+        {"k": "you", "text": "we need CSV export on the reports page. search around, figure out how"},
+        {"k": "you", "text": "we'd do it, and report back with 2-3 options. don't start working."},
+        {"k": "tool", "text": "Grep(\"export\", src/)", "at": "search around"},
+        {"k": "tool", "text": "Read(src/reports/ReportTable.tsx)"},
+        {"k": "tool", "text": "Read(src/api/reports.ts)"},
+        {"k": "agent", "text": "Option A: client-side CSV from the loaded rows (fast, max 500 rows)", "at": "two or three options"},
+        {"k": "agent", "text": "Option B: streaming endpoint /reports/:id.csv (handles any size)"},
+        {"k": "agent", "text": "Option C: background job + email link (overkill for now)"}
+      ]}
+    },
+    {
+      "template": "chat", "chapter": "Plan",
+      "narration": "Then plan. Plan mode is surprisingly simple; Boris says it's one sentence telling the model not to write code yet. Matt Pocock goes further with a prompt he calls grill me: interview me relentlessly about this plan until we reach a shared understanding, one question at a time, each with your recommended answer.",
+      "params": {"messages": [
+        {"from": "you", "text": "Interview me relentlessly about this plan until we reach a shared understanding. One question at a time, with your recommended answer.", "at": "grill me"},
+        {"from": "agent", "text": "Q1: Should the export include filtered rows only, or everything? **Recommended:** filtered only, since it matches what users see.", "at": "one question"},
+        {"from": "you", "text": "Filtered only. Next."}
+      ]}
+    },
+    {
+      "template": "quote", "chapter": "Plan",
+      "narration": "Pocock's insight is that the goal of planning isn't the document. It's alignment. As he puts it: I didn't need a plan, I needed to be on the same wavelength as my agent.",
+      "params": {"text": "I didn't need a plan, I needed to be on the *same wavelength* as my agent.", "who": "Matt Pocock", "role": "TypeScript educator", "src": "Full Walkthrough: Workflow for AI Coding · AI Engineer", "t": 1055}
+    },
+    {
+      "template": "compare", "chapter": "Vertical slices",
+      "narration": "One more planning trap. Ask a model for a plan, and it loves going layer by layer: the whole database, then all the services, then the API, then the front end. Nothing can be tested until the very end. Instead, ask for thin vertical slices, each one cutting through every layer and testable on its own.",
+      "params": {
+        "left": {"title": "Horizontal plan", "items": ["1. All the database tables", "2. All the services", "3. All the API endpoints", "4. The whole UI · first test here"], "at": "layer by layer"},
+        "right": {"title": "Vertical slices", "items": ["1. Export button → stub CSV · test", "2. Real data for one report · test", "3. Filters respected · test", "4. Large reports stream · test"], "at": "vertical slices"}
+      }
+    },
+    {
+      "template": "flow", "chapter": "Implement",
+      "narration": "Now implement. Save the plan to a file, start a fresh session, and give it only the plan, so the context is clean. Let it work through the slices, review each change, and commit as you go. Brendan O'Leary treats his local git history as a first pull request review of the agent's work.",
+      "params": {"nodes": [
+        {"label": "plan.md", "sub": "saved to a file", "kind": "doc", "at": "plan to a file"},
+        {"label": "Fresh session", "sub": "clean context", "kind": "agent", "at": "fresh session"},
+        {"label": "Slice by slice", "sub": "small diffs", "kind": "code", "at": "slices"},
+        {"label": "Review + commit", "sub": "after each slice", "kind": "check", "at": "commit"}
+      ]}
+    },
+    {
+      "template": "statement", "chapter": "Verify",
+      "narration": "And verify. Every slice in the plan should say how you'll know it works: a test, a command, a screenshot. If the plan can't say how to check it, it isn't finished yet. We'll go deep on verification in lesson eight.",
+      "params": {"text": "If the plan can't say how to *check it*, the plan isn't finished.", "sub": "Each slice: what changes, which files, and the command that proves it works.", "art": "check", "tone": "good", "sync": false}
+    },
+    {
+      "template": "list", "chapter": "When to skip it",
+      "narration": "Does every task need the full loop? No. Boris describes three modes. For a quick prototype, just let it build and throw it away. For small tasks it can one-shot, like a typo or a rename, auto-accept and move on. For anything harder, start in plan mode. Dex adds that thirty minutes of planning can save hours of review.",
+      "params": {"title": "Match the process to the task", "items": [
+        {"text": "Prototype", "sub": "let it build, learn, then throw it away", "at": "prototype"},
+        {"text": "Tiny, obvious change", "sub": "a typo, a rename: just do it", "at": "typo"},
+        {"text": "Anything harder", "sub": "start in plan mode", "at": "harder"}
+      ], "hnote": {"text": "30 min of planning saves hours of review", "at": "thirty", "p": [72, 70], "pp": [50, 80]}}
+    },
+    {
+      "template": "quiz", "chapter": "Quick check",
+      "narration": "Quick check. Your agent proposes this plan: first every database table, then all the services, then every endpoint, then the entire UI. What's the problem? Tap your answer.",
+      "params": {"q": "Plan: all DB tables → all services → all endpoints → the whole UI. What's the problem?", "options": [
+        "Nothing, that's how apps are built",
+        "Nothing is testable end to end until the very end",
+        "It should start with the UI instead",
+        "Plans are unnecessary for agents"
+      ], "answer": 1, "explain": "Horizontal plans hide integration problems until the end. Thin vertical slices give you a checkpoint every step."}
+    },
+    {
+      "template": "exercise", "chapter": "Try it",
+      "narration": "Run the whole loop on one of the tasks from lesson one. Use this prompt to explore, get interviewed, and produce a plan in vertical slices, each with its own check. Then implement it in a fresh session.",
+      "params": {"title": "Try it with your agent", "intro": "Pick a real task and paste:", "prompt": "I want to [describe the feature]. Don't write code yet.\n1. Explore the relevant code and explain how it works today.\n2. Interview me one question at a time, with your recommended answer.\n3. Write a plan as thin vertical slices, each with the exact\n   command or test that verifies it. Save it to plans/[name].md."}
+    },
+    {
+      "template": "recap", "chapter": "Recap",
+      "narration": "Recap. Explore, plan, implement, verify. Spend your attention upstream, where mistakes are cheapest. Plan for alignment, in vertical slices you can test. Then implement from the plan in a fresh session. Next: how to write specs an agent can actually execute.",
+      "params": {"items": ["Explore → plan → implement → *verify*", "Upstream mistakes cost the most", "Plans in vertical, testable slices", "Implement from the plan in a fresh session"], "next": "Specs agents can execute", "next_at": "Next"}
+    }
+  ]
+}

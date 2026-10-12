@@ -1,0 +1,140 @@
+{
+  "id": "09-code-review",
+  "number": 9,
+  "slug": "reviewing-agent-code",
+  "module": "Working with one agent",
+  "title": "Reviewing agent code",
+  "short": "Reviewing agent code",
+  "summary": "Agents write code faster than anyone can read it, and review has become the new bottleneck. Practitioners disagree about reading every line, but they agree on how to review well: scale depth to blast radius, review your own work first, use a fresh-context reviewer, and turn repeated comments into rules.",
+  "takeaways": [
+    "Review is a gradient: go deepest where the blast radius is biggest (shared infra, money, auth), lightest on isolated leaf code.",
+    "Know what's load-bearing in your system, and watch every change there closely.",
+    "Never open a pull request you haven't reviewed yourself. Attach evidence that it works.",
+    "Use a reviewer agent in a fresh context; it isn't biased toward code it just wrote.",
+    "If you keep leaving the same review comment, turn it into a lint rule or a test."
+  ],
+  "practices": [
+    "Keep diffs small and focused so they can actually be reviewed.",
+    "In every PR description, include what changed, why, how it was verified (with real output or screenshots), and anything risky.",
+    "Flag changes to load-bearing code (shared infrastructure, auth, payments, data models, public APIs) explicitly for human review.",
+    "When reviewing, check the blast radius: what else depends on this change, and can it be rolled back?"
+  ],
+  "sources": [
+    {"id": "EL123UNokkI", "t": 58},
+    {"id": "Jxz4GJSG8ZA", "t": 1900},
+    {"id": "8lF7HmQ_RgY", "t": 2547},
+    {"id": "YwZR6tc7qYg", "t": 539},
+    {"id": "b2QkhmQ0sT0", "t": 144},
+    {"id": "b2QkhmQ0sT0", "t": 275},
+    {"id": "b2QkhmQ0sT0", "t": 386},
+    {"id": "HegqGzD-kvc", "t": 1403},
+    {"id": "article-willison-aep-anti-patterns"},
+    {"id": "article-anthropic-claude-code-best-practices"},
+    {"id": "-QFHIoCo-Ko", "t": 3961},
+    {"id": "We7BZVKbCVw", "t": 1017},
+    {"id": "HC8T1OlgYi0", "t": 1425},
+    {"id": "PaPpyQocMww", "t": 2831},
+    {"id": "LCEmiRjPEtQ", "t": 1387}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "Agents can write code far faster than any human can read it. So who reviews it, and how much is enough? This is where agentic engineering gets hard.",
+      "params": {"kicker": "Lesson 9", "module": "Module 2 · Working with one agent", "title": "Reviewing *agent code*", "subtitle": "Review has become the new bottleneck. Here's how to scale it.", "bubble": "Here's 2,000 lines. Enjoy!", "mood": "happy"}
+    },
+    {
+      "template": "stat", "chapter": "The new bottleneck",
+      "narration": "At Uber, the time it takes an engineer to get a first code review grew from three hours in 2024 to nine hours in 2026, as pull requests got bigger and more frequent. And Beyang Liu from Sourcegraph hears developers say they now spend around ninety percent of their time reviewing code.",
+      "params": {"items": [
+        {"value": "3h → 9h", "label": "time to first review at Uber, 2024 → 2026", "tone": "bad", "at": "three hours"},
+        {"value": "~90%", "label": "of time spent reviewing, some developers report", "tone": "ink", "at": "ninety percent"}
+      ], "src": "Will Bond, Uber (AI Engineer) · Beyang Liu, Sourcegraph (a16z)"}
+    },
+    {
+      "template": "compare", "chapter": "Two camps",
+      "narration": "Practitioners genuinely disagree about how much to read. Peter Steinberger says much of an app is boring plumbing, and he ships code he doesn't read. Dex Horthy's team tried not reading agent code for six months. It did not end well. They had to rip out and replace large parts of the system.",
+      "params": {
+        "left": {"title": "“I ship code I don't read”", "tone": "neutral", "items": ["Much of an app is plumbing", "Focus on architecture", "Peter Steinberger, OpenClaw"], "at": "Steinberger"},
+        "right": {"title": "“It did not end well”", "tone": "human", "items": ["Six months without reading", "Large parts ripped out", "Dex Horthy, HumanLayer"], "at": "Dex"},
+        "vs": "vs"
+      }
+    },
+    {
+      "template": "statement", "chapter": "A gradient",
+      "narration": "Both can be right, because review isn't a yes or no. Meta's John Kim calls it a gradient. How deeply you read should depend on the blast radius of the change: how much can break if it's wrong.",
+      "params": {"text": "Review is a *gradient*. Read as deeply as the blast radius demands.", "sub": "John Kim, Meta", "art": "target", "tone": "agent"}
+    },
+    {
+      "template": "stack", "chapter": "A gradient",
+      "narration": "He pictures a codebase as a tree. The trunk is entry points and shared infrastructure, like networking, authentication or payments. Break it, and the whole app breaks, so read every line. The leaves are isolated, one-off code. There, tests and a screenshot of it working may be enough.",
+      "params": {"title": "Review depth follows the tree", "sub": "John Kim's model", "layers": [
+        {"label": "Trunk", "sub": "auth, payments, shared infra: read every line", "tone": "ink", "icon": "lock", "at": "trunk"},
+        {"label": "Branches", "sub": "core features: read the important parts", "tone": "agent", "icon": "branch", "at": "Break it"},
+        {"label": "Leaves", "sub": "isolated one-offs: tests + visual proof", "tone": "good", "icon": "check", "at": "leaves"}
+      ]}
+    },
+    {
+      "template": "list", "chapter": "Three questions",
+      "narration": "To set the depth, he asks three questions. What must not change? How bad is it if this goes wrong? And can I roll it back? A change that's hidden behind a flag and easy to roll back needs far less scrutiny than one that can't be undone.",
+      "params": {"title": "Three questions before you review", "style": "num", "items": [
+        {"text": "What must not change?", "at": "must not change"},
+        {"text": "How bad is it if this goes wrong?", "at": "how bad"},
+        {"text": "Can I roll it back?", "sub": "flags and easy rollbacks cut review time", "at": "roll it back"}
+      ]}
+    },
+    {
+      "template": "statement", "chapter": "Load-bearing code",
+      "narration": "Thorsten Ball adds a related idea. Even if agents write ninety-nine percent of your code, you need to know what's load-bearing: the protocols between components, the business logic, the things that keep the system standing. When an agent touches those, watch it like a hawk.",
+      "params": {"text": "Know what's *load-bearing*, and watch those changes like a hawk.", "sub": "Thorsten Ball, Amp · protocols, business logic, the parts that hold everything up", "art": "layers", "tone": "agent", "sync": false}
+    },
+    {
+      "template": "quote", "chapter": "Review your own first",
+      "narration": "Simon Willison calls out the most common anti-pattern: don't file pull requests with code you haven't reviewed yourself. Your reviewers could have prompted an agent themselves. Your value is the verification, so attach evidence: how you tested it, screenshots, notes on tricky choices.",
+      "params": {"text": "Don't file pull requests with code you *haven't reviewed yourself*.", "who": "Simon Willison", "role": "Agentic Engineering Patterns", "src": "Anti-patterns: things to avoid"}
+    },
+    {
+      "template": "flow", "chapter": "A fresh reviewer",
+      "narration": "Agents can review too, if you set it up right. Anthropic's guide recommends a writer and reviewer pattern: a fresh session reviews the change, because it isn't biased toward code it just wrote. Matt Pocock warns that a review in the same long session happens in the dumb zone. At Anthropic, Claude reviews every pull request, and then a human does.",
+      "params": {"nodes": [
+        {"label": "Writer agent", "sub": "implements + tests", "kind": "agent", "at": "writer"},
+        {"label": "Your own pass", "sub": "diff + evidence", "kind": "human", "at": "set it up"},
+        {"label": "Fresh reviewer", "sub": "new session, new eyes", "kind": "agent", "at": "fresh session"},
+        {"label": "Human review", "sub": "the big questions", "kind": "check", "at": "then a human"}
+      ]}
+    },
+    {
+      "template": "compare", "chapter": "What humans review",
+      "narration": "So what should the human focus on? Leave typos, style and obvious bugs to automation. Spend your attention on the questions only you can answer: do we want this in our product? Is the boundary between these services in the right place? Will this design hold up?",
+      "params": {
+        "left": {"title": "Automate it", "tone": "agent", "who": "agent", "items": ["Style and naming", "Typos and obvious bugs", "Missing tests"], "at": "automation"},
+        "right": {"title": "Keep it human", "tone": "human", "who": "human", "items": ["Do we want this at all?", "Are the boundaries right?", "Will this design hold up?"], "at": "only you"},
+        "vs": "+"
+      }
+    },
+    {
+      "template": "statement", "chapter": "Make rules",
+      "narration": "One more habit from Lauren Tan. If you find yourself leaving the same review comment again and again, treat that as a smell. Turn it into a lint rule, a test, or a CI check, so no one, human or agent, ever has to say it again.",
+      "params": {"text": "Same review comment twice? Make it a *rule*.", "sub": "A lint rule, a test or a CI check never forgets. — Lauren Tan", "art": "tool", "tone": "good", "sync": false}
+    },
+    {
+      "template": "quiz", "chapter": "Quick check",
+      "narration": "Quick check. Which of these changes deserves your most careful, line by line review? Tap your answer.",
+      "params": {"q": "Which change deserves your most careful line-by-line review?", "options": [
+        "A one-off internal admin page",
+        "A change to the auth middleware every service uses",
+        "A copy tweak on a marketing page",
+        "A new unit test file"
+      ], "answer": 1, "explain": "It's trunk code: a huge blast radius, security-critical, and hard to roll back safely."}
+    },
+    {
+      "template": "exercise", "chapter": "Try it",
+      "narration": "Try a fresh-context review on your last change. Open a new session and paste this. You'll get a prioritized list of risks before anyone else spends time on your pull request.",
+      "params": {"title": "Try it with your agent", "intro": "In a NEW session, on your branch:", "prompt": "Review the diff of this branch against main with fresh eyes.\nList, prioritized P0/P1/P2: what could break elsewhere (blast radius),\nchanges to load-bearing code, missing or weak tests, and anything\nyou'd push back on. Quote the exact lines you're worried about."}
+    },
+    {
+      "template": "recap", "chapter": "Recap",
+      "narration": "Recap. Review is a gradient: go deepest where the blast radius is biggest. Know what's load-bearing. Review your own work first and attach evidence. Use a fresh-context reviewer, and turn repeated comments into rules. Next: what to do when an agent goes off the rails.",
+      "params": {"items": ["Depth follows *blast radius*", "Know what's load-bearing", "Review your own first, with evidence", "Fresh-context reviewer; repeated comments → rules"], "next": "When the agent goes off the rails", "next_at": "Next"}
+    }
+  ]
+}

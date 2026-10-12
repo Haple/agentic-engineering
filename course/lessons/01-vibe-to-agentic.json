@@ -1,0 +1,160 @@
+{
+  "id": "01-vibe-to-agentic",
+  "number": 1,
+  "slug": "vibe-coding-to-agentic-engineering",
+  "module": "The shift",
+  "title": "From vibe coding to agentic engineering",
+  "short": "Vibe coding → agentic engineering",
+  "summary": "In late 2025 coding agents crossed a line: they started doing what you asked, almost every time. This lesson defines agentic engineering, separates it from vibe coding, and shows what you still own when code becomes cheap.",
+  "takeaways": [
+    "Vibe coding means not looking at the code. It's fine when the only person a bug can hurt is you.",
+    "Agentic engineering means agents write and run the code while you keep the professional quality bar.",
+    "Code is cheap now. Good code isn't. The skill is turning cheap code into good software.",
+    "You still own what's worth building, the design, the proof that it works, and your understanding of the system.",
+    "Agents don't make you faster automatically. In a 2025 trial, experienced developers were 19% slower while believing they were faster."
+  ],
+  "practices": [
+    "Treat every task as professional work: the quality bar does not drop because an agent wrote the code.",
+    "Before calling a task done, produce evidence it works (tests run, command output, screenshot), not just a summary.",
+    "Match autonomy to the task: small, verifiable tasks can run with more autonomy; ambiguous or risky ones need a plan and a human checkpoint.",
+    "Keep the human able to understand the change: explain non-obvious decisions in the PR or summary."
+  ],
+  "sources": [
+    {"id": "karpathy-vibe-coding-retrospective"},
+    {"id": "96jN2OCOfLs", "t": 83},
+    {"id": "96jN2OCOfLs", "t": 967},
+    {"id": "96jN2OCOfLs", "t": 1692},
+    {"id": "kwSVtQ7dziU", "t": 91},
+    {"id": "wc8FBhQtdsA", "t": 281},
+    {"id": "wc8FBhQtdsA", "t": 569},
+    {"id": "wc8FBhQtdsA", "t": 2762},
+    {"id": "julbw1JuAz0", "t": 2136},
+    {"id": "am_oeAoUhew", "t": 114},
+    {"id": "LCEmiRjPEtQ", "t": 1230},
+    {"id": "metr-dev-productivity"},
+    {"id": "anthropic-2026-agentic-coding-trends"},
+    {"id": "willison-aep-what-is-agentic-engineering"}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "In February 2025, Andrej Karpathy gave a name to a new way of programming. A year later, he said it was already out of date. This lesson is about what replaced it.",
+      "params": {"kicker": "Lesson 1", "module": "Module 1 · The shift", "title": "From vibe coding to *agentic engineering*", "subtitle": "What changed, what didn't, and what this course will teach you.", "bubble": "Let's build something good.", "human": true}
+    },
+    {
+      "template": "quote", "chapter": "Vibe coding",
+      "narration": "He called it vibe coding. You fully give in to the vibes, embrace exponentials, and forget that the code even exists. It was perfect for weekend projects. It was not how you'd build a bank.",
+      "params": {"text": "Fully give in to the vibes, embrace exponentials, and *forget that the code even exists*.", "who": "Andrej Karpathy", "role": "coining “vibe coding”, February 2025", "src": "post on X"}
+    },
+    {
+      "template": "timeline", "chapter": "What changed",
+      "narration": "Here's the short history. Autocomplete finished your lines. Chat assistants wrote snippets you pasted in. Vibe coding let the model drive. Then, in late 2025, coding agents crossed a line. As Simon Willison put it, they now almost always do what you told them to do.",
+      "params": {"events": [
+        {"when": "2021", "label": "Autocomplete", "sub": "finishes your line", "at": "Autocomplete"},
+        {"when": "2023", "label": "Chat", "sub": "copy, paste, hope", "at": "Chat"},
+        {"when": "Feb 2025", "label": "Vibe coding", "sub": "the model drives", "at": "model drive"},
+        {"when": "Nov 2025", "label": "Agents that deliver", "sub": "they write, run and fix code", "now": true, "at": "crossed"}
+      ]}
+    },
+    {
+      "template": "stat", "chapter": "What changed",
+      "narration": "Karpathy described his own workflow flipping in a single month. In December, he went from writing about eighty percent of his code himself to delegating about eighty percent of it to agents.",
+      "params": {"items": [
+        {"value": 80, "suffix": "%", "label": "written by hand, before", "tone": "human", "at": "writing"},
+        {"value": 80, "suffix": "%", "label": "delegated to agents, after", "tone": "agent", "at": "delegating"}
+      ], "src": "Andrej Karpathy on the No Priors podcast, 2026"}
+    },
+    {
+      "template": "statement", "chapter": "What changed",
+      "narration": "Boris Cherny, who created Claude Code, says agents now write one hundred percent of his code. He ships dozens of pull requests a day, without editing a single line by hand.",
+      "params": {"eyebrow": "The creator of Claude Code", "text": "*100%* of his code is written by agents.", "sub": "Boris Cherny ships dozens of pull requests a day — no manual edits.", "art": "agent"}
+    },
+    {
+      "template": "compare", "chapter": "Two disciplines",
+      "narration": "But vibe coding didn't simply grow up. A different discipline appeared next to it. Vibe coding means you don't read the code, which is fine when the only person a bug can hurt is you. Agentic engineering means agents write and run the code, while you keep the professional quality bar.",
+      "params": {
+        "left": {"title": "Vibe coding", "items": ["Don't read the code", "Accept whatever seems to work", "Great for throwaway projects"], "at": "Vibe coding means"},
+        "right": {"title": "Agentic engineering", "items": ["Agents write *and run* the code", "You own design, review and quality", "Built for software people rely on"], "at": "Agentic engineering means"}
+      }
+    },
+    {
+      "template": "quote", "chapter": "Two disciplines",
+      "narration": "Karpathy's own definition: agentic engineering is about preserving the quality bar of what existed before in professional software. You go faster, but you're not allowed to ship a vulnerability just because an agent wrote it.",
+      "params": {"text": "Agentic engineering is about preserving the *quality bar* of what existed before in professional software.", "who": "Andrej Karpathy", "role": "former Director of AI at Tesla", "src": "From Vibe Coding to Agentic Engineering · Sequoia", "t": 967}
+    },
+    {
+      "template": "formula", "chapter": "The name",
+      "narration": "The name has two halves. Agentic, because most of the time you're no longer typing the code. You orchestrate agents and act as oversight. And engineering, because there's an art, a science and real expertise to it. It's a skill you can learn and get better at.",
+      "params": {"parts": [
+        {"text": "Agentic", "sub": "agents do the typing; you orchestrate and oversee", "tone": "agent", "at": "Agentic"},
+        {"op": "+"},
+        {"text": "Engineering", "sub": "an art and a science you can get better at", "tone": "ink", "at": "engineering"}
+      ], "caption": "A discipline, not a vibe.", "caption_at": "skill"}
+    },
+    {
+      "template": "statement", "chapter": "Code is cheap",
+      "narration": "This changes what's scarce. As OpenAI's Ryan Lopopolo puts it, implementation is no longer the scarce resource. Simon Willison asks the real question: if I can churn out ten thousand lines in the time it used to take me to write a hundred, how do I make that code good?",
+      "params": {"text": "Code is cheap now. *Good code* isn't.", "sub": "“How do I make that code good?” — Simon Willison", "sub_at": "real question", "sync": false}
+    },
+    {
+      "template": "list", "chapter": "What you own",
+      "narration": "That question is what this course answers, and it starts with what doesn't change. You still own what's worth building, the design and the taste, the proof that it works, and your understanding of the system. As Karpathy says, you can outsource your thinking, but you can't outsource your understanding.",
+      "params": {"title": "What you still own", "items": [
+        {"text": "What's worth building", "at": "worth"},
+        {"text": "Design and taste", "at": "design"},
+        {"text": "Proof that it works", "at": "proof"},
+        {"text": "Understanding the system", "at": "understanding"}
+      ], "hnote": {"text": "you can't outsource understanding", "at": "outsource your understanding", "p": [74, 66], "pp": [55, 78]}}
+    },
+    {
+      "template": "stat", "chapter": "Reality check",
+      "narration": "Now a reality check. In a 2025 trial, experienced open source developers expected AI to make them twenty-four percent faster. They were actually nineteen percent slower, and still believed they'd been sped up. Tools have improved a lot since then, but the lesson stands. Agents don't make you faster automatically. Skill does.",
+      "params": {"items": [
+        {"value": 24, "prefix": "+", "suffix": "%", "label": "expected speed-up", "tone": "good", "at": "expected"},
+        {"value": 19, "prefix": "−", "suffix": "%", "label": "measured: slower", "tone": "bad", "at": "slower"}
+      ], "src": "METR randomized trial, July 2025 · 16 experienced open-source developers · early-2025 tools"}
+    },
+    {
+      "template": "spectrum", "chapter": "The autonomy slider",
+      "narration": "Karpathy calls this the autonomy slider. At one end, you type and the AI suggests. At the other, agents work for hours on their own. You are in charge of the slider. Agentic engineering is choosing the right setting for each task, and making the higher settings safe.",
+      "params": {"title": "The autonomy slider", "left": {"label": "You drive", "sub": "AI suggests"}, "right": {"label": "Agents drive", "sub": "you supervise"}, "marks": [
+        {"pos": 0.06, "label": "Autocomplete", "at": "suggests"},
+        {"pos": 0.36, "label": "Chat", "at": "other end"},
+        {"pos": 0.66, "label": "Agent in your repo", "at": "agents work"},
+        {"pos": 0.94, "label": "Hours on its own", "at": "hours"}
+      ]}
+    },
+    {
+      "template": "list", "chapter": "Course map",
+      "narration": "Here's the path. First, how agents actually work. Then the core workflow with a single agent. Then your toolkit: memory files, tools and skills. Then scaling up to many agents at once. Then quality, safety and teams. And finally, the engineer you become.",
+      "params": {"title": "The course", "style": "num", "items": [
+        {"text": "How agents actually work", "at": "actually"},
+        {"text": "Working with one agent", "at": "core workflow"},
+        {"text": "Your toolkit", "sub": "memory files, tools, skills", "at": "toolkit"},
+        {"text": "Scaling up", "sub": "subagents, parallel agents, long runs", "at": "scaling"},
+        {"text": "Quality, safety, teams", "at": "quality"},
+        {"text": "The engineer you become", "at": "become"}
+      ]}
+    },
+    {
+      "template": "quiz", "chapter": "Quick check",
+      "narration": "Quick check. Which of these is agentic engineering? Tap your answer.",
+      "params": {"q": "Which of these is agentic engineering?", "options": [
+        "Accepting every change without reading it, because the app runs",
+        "An agent writes and tests the code; you review it against a real quality bar",
+        "Writing every line yourself and using AI only for search",
+        "Pasting chatbot snippets into your editor"
+      ], "answer": 1, "explain": "Agents do the typing and the running. You keep the quality bar and the judgment."}
+    },
+    {
+      "template": "exercise", "chapter": "Try it",
+      "narration": "Try this with your own agent. Ask it to find three small, low-risk tasks in a real project, each with a way to prove it worked. Don't let it change anything yet. You'll use these tasks throughout the course.",
+      "params": {"title": "Try it with your agent", "intro": "Open a real project in Claude Code, Codex or Cursor and paste this:", "prompt": "I'm learning agentic engineering. Explore this repository and suggest\nthree small, low-risk tasks you could complete end to end.\nFor each one, tell me how you would prove it works\n(a test, a command, a screenshot). Don't change any files yet."}
+    },
+    {
+      "template": "recap", "chapter": "Recap",
+      "narration": "Let's recap. Vibe coding forgets the code exists. Agentic engineering keeps the quality bar while agents do the typing. Code is cheap now, good code isn't. And you still own the judgment. Next, let's open the hood and see how a coding agent actually works.",
+      "params": {"items": ["Vibe coding forgets the code; agentic engineering keeps the *quality bar*", "Agents write and run code; you own judgment and proof", "Code is cheap now. Good code isn't.", "Skill, not the tool, decides the speed-up"], "next": "How a coding agent actually works", "next_at": "Next"}
+    }
+  ]
+}

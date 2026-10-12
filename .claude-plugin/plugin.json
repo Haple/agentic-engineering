@@ -1,0 +1,19 @@
+{
+  "name": "agentic-engineering",
+  "description": "The Agentic Engineering course as skills: working practices for coding agents, an interactive tutor for the 24-lesson course, and a repo audit.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Agentic Engineering course",
+    "url": "https://github.com/Haple/agentic-engineering"
+  },
+  "homepage": "https://learn-agentic-engineering.pages.dev",
+  "repository": "https://github.com/Haple/agentic-engineering",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "agentic-engineering",
+    "skills",
+    "claude-code",
+    "course",
+    "best-practices"
+  ]
+}

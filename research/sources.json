@@ -1,0 +1,2185 @@
+{
+ "-QFHIoCo-Ko": {
+  "kind": "talk",
+  "id": "-QFHIoCo-Ko",
+  "title": "Full Walkthrough: Workflow for AI Coding \u2014 Matt Pocock",
+  "channel": "AI Engineer and Matt Pocock",
+  "url": "https://www.youtube.com/watch?v=-QFHIoCo-Ko",
+  "duration": 5790,
+  "views": 1744122,
+  "speakers": [
+   {
+    "name": "Matt Pocock",
+    "role": "TypeScript educator (AI Hero), course creator, author of Sandcastle; teaches AI coding workflows"
+   }
+  ],
+  "summary": "A live workshop on Matt Pocock's end-to-end AI coding workflow: grill-me alignment session, PRD as destination doc, Kanban board of vertical-slice issues, AFK Ralph-style implementation loops, then manual QA and review. His thesis is that classic software engineering fundamentals (deep modules, tracer bullets, TDD, feedback loops) matter more than new AI-specific paradigms, and that humans must stay in the loop for alignment and taste.",
+  "perspective": "Experienced teacher/builder who uses agents daily, skeptical of specs-to-code and of over-automation, favors owning your own planning stack and applying classic software engineering books.",
+  "date": "2026"
+ },
+ "-uW5-TaVXu4": {
+  "kind": "talk",
+  "id": "-uW5-TaVXu4",
+  "title": "Most devs don\u2019t understand how context windows work",
+  "channel": "Matt Pocock",
+  "url": "https://www.youtube.com/watch?v=-uW5-TaVXu4",
+  "duration": 573,
+  "views": 294030,
+  "speakers": [
+   {
+    "name": "Matt Pocock",
+    "role": "TypeScript educator, AI Hero instructor, Claude Code user"
+   }
+  ],
+  "summary": "Explains what an LLM context window is (input plus output tokens), why every model has a hard limit, and why performance degrades as context grows (lost in the middle). Shows how to monitor context in Claude Code, when to /clear vs /compact, and warns that MCP servers and large rules files bloat context. Main argument: the most common skill issue among devs is not managing the context window.",
+  "perspective": "Educator and daily Claude Code user advocating a lean, 'paranoid' approach to context management",
+  "date": "2025"
+ },
+ "4GiqzUHD5AA": {
+  "kind": "talk",
+  "id": "4GiqzUHD5AA",
+  "title": "Context Engineering for Agents",
+  "channel": "LangChain",
+  "url": "https://www.youtube.com/watch?v=4GiqzUHD5AA",
+  "duration": 1326,
+  "views": 202478,
+  "speakers": [
+   {
+    "name": "Lance Martin",
+    "role": "LangChain engineer; presenter of the video"
+   }
+  ],
+  "summary": "Lance from LangChain defines context engineering as the art and science of filling the context window with just the right information at each step of an agent's trajectory. He organizes the practices into four buckets (write, select, compress, isolate), illustrates each with examples from popular agents (Claude Code, Anthropic's multi-agent researcher, Cognition, Windsurf, Hugging Face), and shows how LangGraph supports them.",
+  "perspective": "Framework builder at LangChain surveying patterns from popular agents; practitioner view on agent context management",
+  "date": "2025"
+ },
+ "4Nna09dG_c0": {
+  "kind": "talk",
+  "id": "4Nna09dG_c0",
+  "title": "The Ralph Wiggum Loop from 1st principles (by the creator of Ralph)",
+  "channel": "Geoffrey Huntley",
+  "url": "https://www.youtube.com/watch?v=4Nna09dG_c0",
+  "duration": 2174,
+  "views": 121933,
+  "speakers": [
+   {
+    "name": "Geoffrey Huntley",
+    "role": "Creator of the Ralph Wiggum loop; builder of Loom"
+   }
+  ],
+  "summary": "Huntley explains Ralph (a bash while-true loop that feeds the same prompt to a coding agent) from first principles. He covers keeping the context window small (\"malloc'ing the array\"), generating specs through conversation, and a lookup-table 'pin' that stops the agent inventing things. He then demonstrates running a one-task-per-loop Ralph. He argues software development is now cheap and automatable, and that engineers' job is engineering back pressure.",
+  "perspective": "Independent builder and Ralph's originator, bullish on fully autonomous agents with no code review; advocates learning by hand first",
+  "date": "2026"
+ },
+ "6eBSHbLKuN0": {
+  "kind": "talk",
+  "id": "6eBSHbLKuN0",
+  "title": "Mastering Claude Code in 30 minutes",
+  "channel": "Anthropic",
+  "url": "https://www.youtube.com/watch?v=6eBSHbLKuN0",
+  "duration": 1687,
+  "views": 1656490,
+  "speakers": [
+   {
+    "name": "Boris Cherny",
+    "role": "Member of technical staff at Anthropic, creator of Claude Code"
+   }
+  ],
+  "summary": "A practical, early (2025) talk of tips and tricks for Claude Code. Boris recommends starting with codebase Q&A, asking for a plan before coding, giving the agent tools and a way to check its own work, sharing CLAUDE.md, MCP config and slash commands across the team, and using the SDK/headless mode and parallel sessions for advanced use.",
+  "perspective": "Builder of Claude Code giving practical usage advice",
+  "date": "2025"
+ },
+ "8hWb6yvcBCA": {
+  "kind": "talk",
+  "id": "8hWb6yvcBCA",
+  "title": "Sandboxing AI agents: from containers to gVisor, Firecracker and Kata",
+  "channel": "base case",
+  "url": "https://www.youtube.com/watch?v=8hWb6yvcBCA",
+  "duration": 1512,
+  "views": 140,
+  "speakers": [],
+  "summary": "A walkthrough of how to sandbox code-executing AI agents, building from chroot, jails and Linux containers up to gVisor (application kernel), Firecracker (microVMs) and Kata Containers (VMs behind Kubernetes). It opens with a reported incident in which models escaped a test environment via a kernel bug and the one allowed outbound service. Main argument: containers share the host kernel, so untrusted agent code needs a stronger wall, and egress and credentials must be locked down too.",
+  "perspective": "Systems/infrastructure explainer focused on security isolation for agent-generated code",
+  "date": "2025"
+ },
+ "8kMaTybvDUw": {
+  "kind": "talk",
+  "id": "8kMaTybvDUw",
+  "title": "12-Factor Agents: Patterns of reliable LLM applications\u00a0\u2014\u00a0Dex Horthy, HumanLayer",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=8kMaTybvDUw",
+  "duration": 1026,
+  "views": 290949,
+  "speakers": [
+   {
+    "name": "Dex Horthy",
+    "role": "Founder, HumanLayer; author of the 12-Factor Agents repo"
+   }
+  ],
+  "summary": "Dex Horthy distills patterns from conversations with 100+ builders into '12-Factor Agents'. His argument: reliable production agents are mostly deterministic software with small LLM loops, and builders should own their prompts, context window, control flow, and state instead of relying on opaque frameworks. LLMs are stateless functions, so everything comes down to context engineering.",
+  "perspective": "Startup founder and agent builder (HumanLayer) advocating software-engineering fundamentals for LLM apps",
+  "date": "2025"
+ },
+ "8lF7HmQ_RgY": {
+  "kind": "talk",
+  "id": "8lF7HmQ_RgY",
+  "title": "The creator of OpenClaw: \"I ship code I don't read\"",
+  "channel": "The Pragmatic Engineer",
+  "url": "https://www.youtube.com/watch?v=8lF7HmQ_RgY",
+  "duration": 6845,
+  "views": 532096,
+  "speakers": [
+   {
+    "name": "Peter Steinberger",
+    "role": "Creator of OpenClaw/Clawdbot; founder of PSPDFKit; now builds with AI coding agents (Codex, Claude Code)"
+   }
+  ],
+  "summary": "Peter Steinberger, creator of the viral personal-assistant project Clawdbot (OpenClaw), explains how he builds software after returning from a three-year break: running 5-10 agents in parallel, shipping code he doesn't read line by line, and treating PRs as 'prompt requests'. His central principle is 'closing the loop', designing systems so agents can build, run and verify their own work, while he acts as architect with taste. Host Gergely Orosz notes that Clawdbot is a YOLO-style project, so the approach should be taken with a grain of salt.",
+  "perspective": "Veteran solo builder/ex-founder (PSPDFKit) who is a heavy, enthusiastic agentic-engineering practitioner and skeptic of elaborate orchestration",
+  "date": "2026"
+ },
+ "96jN2OCOfLs": {
+  "kind": "talk",
+  "id": "96jN2OCOfLs",
+  "title": "Andrej Karpathy: From Vibe Coding to Agentic Engineering w/ Stephanie Zhan",
+  "channel": "Sequoia Capital",
+  "url": "https://www.youtube.com/watch?v=96jN2OCOfLs",
+  "duration": 1789,
+  "views": 1645497,
+  "speakers": [
+   {
+    "name": "Andrej Karpathy",
+    "role": "Co-founder of OpenAI, former Tesla Autopilot lead, coined 'vibe coding', educator"
+   }
+  ],
+  "summary": "Karpathy describes how December's model improvements made agentic coding fundamentally work, and frames Software 3.0 (prompting/context as programming). He distinguishes vibe coding (raising the floor) from agentic engineering (preserving the quality bar while going faster), explains jagged intelligence via verifiability and lab RL focus, and argues humans remain in charge of taste, spec, and understanding.",
+  "perspective": "Deep practitioner/researcher using agentic tools daily; AI educator and former frontier-lab leader",
+  "date": "2026"
+ },
+ "9UAxrdcDjjU": {
+  "kind": "talk",
+  "id": "9UAxrdcDjjU",
+  "title": "State of Agentic Coding #10 with Armin and Ben",
+  "channel": "Armin Ronacher and Ben Vinegar",
+  "url": "https://www.youtube.com/watch?v=9UAxrdcDjjU",
+  "duration": 6106,
+  "views": 32067,
+  "speakers": [
+   {
+    "name": "Armin Ronacher",
+    "role": "Co-founder of Earendil, building the Pi coding harness; longtime open source developer"
+   },
+   {
+    "name": "Ben Vinegar",
+    "role": "Co-founder of Modem; builds the Hunk diff tool"
+   }
+  ],
+  "summary": "Episode 10 of a recurring podcast. Armin and Ben discuss AI watermarking and slop, model/vendor politics (Cursor losing OpenAI models, Claude subscription harness restrictions), open-weight models versus frontier models, coding agents moving to the cloud and into Slack/Linear, and GitHub's instability. Most of the second half covers lessons learned: guardrails for agent-built software, the limits of agents on design, and the gap between token spend and organizational productivity.",
+  "perspective": "Two practitioners, a harness builder and a side-project/startup founder, who are heavy daily users of coding agents and skeptical about unexamined agent output",
+  "date": "2026"
+ },
+ "BEKc4P87XKo": {
+  "kind": "talk",
+  "id": "BEKc4P87XKo",
+  "title": "Agentic Engineering: Working With AI, Not Just Using It \u2014 Brendan O'Leary",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=BEKc4P87XKo",
+  "duration": 1623,
+  "views": 125114,
+  "speakers": [
+   {
+    "name": "Brendan O'Leary",
+    "role": "Developer relations at Kilo Code (formerly GitLab, engineering/product manager)"
+   }
+  ],
+  "summary": "Brendan O'Leary argues that agentic engineering means working with AI as a collaborator rather than just using it as a tool. He frames agents as fast, well-read but judgment-free junior developers and lays out tactics: context engineering, a research-plan-implement loop with fresh sessions, configuring agents with AGENTS.md/skills/modes, and curating MCP servers.",
+  "perspective": "Developer advocate at Kilo Code, former engineering manager, drawing on Dex Horthy, Karpathy and Armin Ronacher",
+  "date": "2026"
+ },
+ "BsWxPI9UM4c": {
+  "kind": "talk",
+  "id": "BsWxPI9UM4c",
+  "title": "Why AI evals are the hottest new skill for product builders | Hamel Husain & Shreya Shankar",
+  "channel": "Lenny's Podcast",
+  "url": "https://www.youtube.com/watch?v=BsWxPI9UM4c",
+  "duration": 6393,
+  "views": 158471,
+  "speakers": [
+   {
+    "name": "Hamel Husain",
+    "role": "AI consultant and evals educator; co-teaches the top-ranked Maven course on AI evals"
+   },
+   {
+    "name": "Shreya Shankar",
+    "role": "Researcher (UC Berkeley), author of 'Who Validates the Validator', co-teaches AI evals course"
+   }
+  ],
+  "summary": "Hamel and Shreya walk through a real error-analysis process for an AI app (Nurture Boss): write open-coded notes on traces, cluster them into axial codes, count them, then build narrow binary LLM judges validated against human labels. They argue evals are mostly data analysis on your LLM app, not just unit tests, and that looking at your data is the highest-ROI activity. They also address the 'evals vs vibes / A/B tests' debate and common misconceptions.",
+  "perspective": "Practitioner educators/consultants teaching application-specific evals for AI products (not coding agents specifically)",
+  "date": "2025"
+ },
+ "CEvIs9y1uog": {
+  "kind": "talk",
+  "id": "CEvIs9y1uog",
+  "title": "Don't Build Agents, Build Skills Instead \u2013 Barry Zhang & Mahesh Murag, Anthropic",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=CEvIs9y1uog",
+  "duration": 982,
+  "views": 1523853,
+  "speakers": [
+   {
+    "name": "Barry Zhang",
+    "role": "Anthropic, co-creator of Agent Skills"
+   },
+   {
+    "name": "Mahesh Murag",
+    "role": "Anthropic, co-creator of Agent Skills"
+   }
+  ],
+  "summary": "Anthropic's creators of Agent Skills argue that, because code is a universal interface, a general agent with a thin bash and file-system scaffold can cover most domains. What it lacks is domain expertise, which skills supply as folders of procedural knowledge, scripts and assets that load progressively. They describe the emerging architecture (agent loop + runtime + MCP + skills), the skills ecosystem, and a vision of skills as shareable, versioned, continuously learning organizational knowledge.",
+  "perspective": "Builders of Agent Skills at Anthropic, presenting the product philosophy and roadmap",
+  "date": "2025"
+ },
+ "CQmI4XKTa0U": {
+  "kind": "talk",
+  "id": "CQmI4XKTa0U",
+  "title": "How AI will change software engineering \u2013 with Martin Fowler",
+  "channel": "The Pragmatic Engineer",
+  "url": "https://www.youtube.com/watch?v=CQmI4XKTa0U",
+  "duration": 6534,
+  "views": 325399,
+  "speakers": [
+   {
+    "name": "Martin Fowler",
+    "role": "Chief Scientist at Thoughtworks, author of Refactoring, co-author of the Agile Manifesto"
+   }
+  ],
+  "summary": "Martin Fowler argues that AI is the biggest shift in his career, comparable to the move from assembly to high-level languages. The key difference is the shift from deterministic to non-deterministic tooling, more than any rise in abstraction. He covers where LLMs help today (prototyping, legacy understanding, exploring unfamiliar tech), why vibe coding kills the learning loop, why thin slices and tight feedback loops still win, and why refactoring, testing, and communication skills stay central.",
+  "perspective": "Veteran software thinker and agile/refactoring pioneer, cautiously optimistic and skeptical of hype, drawing on enterprise consulting experience",
+  "date": "2025"
+ },
+ "CQywdSdi5iA": {
+  "kind": "talk",
+  "id": "CQywdSdi5iA",
+  "title": "The Model Context Protocol (MCP)",
+  "channel": "Anthropic",
+  "url": "https://www.youtube.com/watch?v=CQywdSdi5iA",
+  "duration": 1175,
+  "views": 252905,
+  "speakers": [
+   {
+    "name": "Theo",
+    "role": "Product Manager on MCP at Anthropic"
+   },
+   {
+    "name": "David",
+    "role": "Member of technical staff at Anthropic, co-creator of MCP"
+   }
+  ],
+  "summary": "Anthropic's MCP team explain what the Model Context Protocol is (a standard way to give context and tools to LLM applications via tools, resources and prompts), how it originated from copy-paste frustration, grew bottom-up from an internal hackathon, and was open-sourced. They cover the state of the ecosystem, tips for getting started, and the roadmap: registry API, long-running tasks, elicitation, and security primitives.",
+  "perspective": "Creators and product managers of MCP at Anthropic describing the protocol's design, history, and roadmap",
+  "date": "2025"
+ },
+ "C_GG5g38vLU": {
+  "kind": "talk",
+  "id": "C_GG5g38vLU",
+  "title": "Harnesses in AI: A Deep Dive \u2014 Tejas Kumar, IBM",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=C_GG5g38vLU",
+  "duration": 1227,
+  "views": 308675,
+  "speakers": [
+   {
+    "name": "Tejas Kumar",
+    "role": "AI developer advocate at IBM"
+   }
+  ],
+  "summary": "Tejas Kumar defines an 'agent harness' as everything around the model that grounds it in a stable, deterministic environment, and builds one live from scratch. He starts with a browser agent on GPT-3.5 Turbo that lies about success and fails at login. Adding guardrails, deterministic verification, and a harness-level login handler fixes it without touching the prompt.",
+  "perspective": "AI developer advocate at IBM giving a conference talk with a live demo; pro-harness, focused on reliability and using cheap models",
+  "date": "2026"
+ },
+ "D7_ipDqhtwk": {
+  "kind": "talk",
+  "id": "D7_ipDqhtwk",
+  "title": "How We Build Effective Agents: Barry Zhang, Anthropic",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=D7_ipDqhtwk",
+  "duration": 909,
+  "views": 559289,
+  "speakers": [
+   {
+    "name": "Barry Zhang",
+    "role": "Anthropic, co-author of 'Building Effective Agents'"
+   }
+  ],
+  "summary": "Barry Zhang distills the Anthropic 'Building Effective Agents' blog post into three ideas: don't build agents for everything, keep the design simple (environment, tools, system prompt in a loop), and think like your agent by viewing the world through its limited context window. He closes with open questions on budget-aware agents, self-evolving tools, and multi-agent communication.",
+  "perspective": "Anthropic engineer and builder of agent systems, giving practical design guidance",
+  "date": "2025"
+ },
+ "EJyuu6zlQCg": {
+  "kind": "talk",
+  "id": "EJyuu6zlQCg",
+  "title": "5 Claude Code skills I use every single day",
+  "channel": "Matt Pocock",
+  "url": "https://www.youtube.com/watch?v=EJyuu6zlQCg",
+  "duration": 1002,
+  "views": 530742,
+  "speakers": [
+   {
+    "name": "Matt Pocock",
+    "role": "TypeScript educator and engineer; creator of Claude Code for Real Engineers course"
+   }
+  ],
+  "summary": "Matt Pocock walks through five skills he uses daily with Claude Code: grill-me, write-a-PRD, PRD-to-issues, TDD, and improve-codebase-architecture. Together they encode a strict process (shared understanding, destination doc, vertical-slice issues, red-green-refactor, deep-module refactors) that agents with no memory can follow, often executed by a Ralph loop. His argument is that treating agents like forgetful humans and applying real engineering process raises code quality.",
+  "perspective": "Experienced engineer and educator who builds process-heavy skills and runs Ralph loops over GitHub issues; promotes his own cohort course",
+  "date": "2026"
+ },
+ "EL123UNokkI": {
+  "kind": "talk",
+  "id": "EL123UNokkI",
+  "title": "Building uReview, Uber\u2019s Multi-Agent Code Review Engine \u2014 Will Bond & Ameya Ketkar, Uber",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=EL123UNokkI",
+  "duration": 907,
+  "views": 7634,
+  "speakers": [
+   {
+    "name": "Will Bond",
+    "role": "Software engineer at Uber, uReview team"
+   },
+   {
+    "name": "Ameya Ketkar",
+    "role": "Software engineer at Uber, uReview team"
+   }
+  ],
+  "summary": "Uber engineers describe uReview, an in-house multi-agent code review system built because review time has become the bottleneck as PR volume grows. They cover its architecture (multiple generators plus post-processing to filter and dedupe comments), how observability and evaluation improved quality and cost, how team customization was scaled, and the argument that human review moves up a layer instead of disappearing.",
+  "perspective": "Platform engineers at a large enterprise (thousands of engineers, six monorepos) running AI code review in production",
+  "date": "2026"
+ },
+ "FgxwCaL6UTA": {
+  "kind": "talk",
+  "id": "FgxwCaL6UTA",
+  "title": "Prompt Injection, explained",
+  "channel": "Simon Willison",
+  "url": "https://www.youtube.com/watch?v=FgxwCaL6UTA",
+  "duration": 737,
+  "views": 22784,
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent researcher and developer; co-creator of Django; coined the term 'prompt injection'"
+   }
+  ],
+  "summary": "Simon Willison gives a high-level explanation of prompt injection, an attack on applications built on LLMs where untrusted input overrides developer instructions. He argues that AI-based defenses (prompt begging, input/output filtering with more AI) cannot reach 100% reliability and so fail as security. He proposes the dual LLM (privileged/quarantined) pattern as an imperfect mitigation and urges developers to be willing to say no to unsafe designs.",
+  "perspective": "Security-minded builder and researcher (2023, early LLM-app era) who is skeptical of probabilistic defenses; foundational for later 'lethal trifecta' thinking for coding agents.",
+  "date": "2023"
+ },
+ "GL0XhAj5LPE": {
+  "kind": "talk",
+  "id": "GL0XhAj5LPE",
+  "title": "LLM Evals: Common Mistakes",
+  "channel": "Hamel Husain",
+  "url": "https://www.youtube.com/watch?v=GL0XhAj5LPE",
+  "duration": 1696,
+  "views": 60674,
+  "speakers": [
+   {
+    "name": "Hamel Husain",
+    "role": "ML engineer, LLM evals educator and consultant, co-teacher of an AI evals course"
+   },
+   {
+    "name": "Shreya Shankar",
+    "role": "Researcher in LLM evals/data systems, co-teacher of the AI evals course (inferred from context)"
+   }
+  ],
+  "summary": "Two evals practitioners walk through common mistakes in evaluating LLM applications: relying on generic foundation-model benchmarks and off-the-shelf metrics, outsourcing labeling and prompt-writing to developers, misusing LLM-as-judge (holistic judges, Likert scales), fearing data labeling, and misusing offline validation sets. Their core argument is that you must look at your own data, do error analysis, build custom annotation tools, and use grounded binary judges plus online monitoring.",
+  "perspective": "Practitioner educators on application-specific LLM evals (error analysis, custom labeling, binary LLM judges)",
+  "date": "2025"
+ },
+ "HC8T1OlgYi0": {
+  "kind": "talk",
+  "id": "HC8T1OlgYi0",
+  "title": "Stop being skeptical about AI for development with Charity Majors",
+  "channel": "The Pragmatic Engineer",
+  "url": "https://www.youtube.com/watch?v=HC8T1OlgYi0",
+  "duration": 5183,
+  "views": 212545,
+  "speakers": [
+   {
+    "name": "Charity Majors",
+    "role": "Co-founder and CEO of Honeycomb; formerly Facebook/Parse and Linden Lab; author of Observability Engineering"
+   }
+  ],
+  "summary": "Charity Majors explains why she moved from AI skeptic to convert after late-2025 models and harnesses improved, and argues that whether engineers will ship unread AI-generated code is a question of when, not if. She says trust must move from code reading to validation, drawing on ops and QA practices such as testing in production, conformance tests, evals and observability. She also describes the two camps in software engineering, the reliability costs that on-call engineers see, and her career advice for managers and juniors.",
+  "perspective": "Veteran infrastructure/observability founder and former skeptic, now pragmatic AI adopter focused on production reliability, validation and team norms",
+  "date": "2026"
+ },
+ "HegqGzD-kvc": {
+  "kind": "talk",
+  "id": "HegqGzD-kvc",
+  "title": "Think Harder: How I Prompt | Thorsten Ball at Laracon US 2026",
+  "channel": "Laravel",
+  "url": "https://www.youtube.com/watch?v=HegqGzD-kvc",
+  "duration": 1513,
+  "views": 5511,
+  "speakers": [
+   {
+    "name": "Thorsten Ball",
+    "role": "Co-creator of Amp (coding agent), formerly Sourcegraph and Zed, author of 'Writing an Interpreter in Go'"
+   }
+  ],
+  "summary": "Thorsten Ball explains how he prompts coding agents to build Amp, which is about 99% AI-written. His one principle is to ask 'how is the model supposed to know what I mean?', so every prompt should supply the missing information, whether from the prompt itself, pointers to files, screenshots, auto-generated debug context, or AGENTS.md files in the codebase. In the Q&A he adds that you need to know which code is load-bearing and review that closely, and that you should test giving agents a long leash.",
+  "perspective": "Builder of a coding agent (Amp) who writes almost no code by hand and prompts in a plain style with no MCP, frameworks or custom slash commands",
+  "date": "2026"
+ },
+ "IDSAMqip6ms": {
+  "kind": "talk",
+  "id": "IDSAMqip6ms",
+  "title": "The Secrets of Claude Code From the Engineers Who Built It",
+  "channel": "Every",
+  "url": "https://www.youtube.com/watch?v=IDSAMqip6ms",
+  "duration": 4212,
+  "views": 85669,
+  "speakers": [
+   {
+    "name": "Boris Cherny",
+    "role": "Creator of Claude Code, Anthropic"
+   },
+   {
+    "name": "Cat Wu",
+    "role": "Product manager on Claude Code, Anthropic"
+   }
+  ],
+  "summary": "Interview with the creators of Claude Code about how it came about (accidentally, from a terminal prototype where giving the model bash was the key revelation), how the team builds bottoms-up with dogfooding and latent demand, and practical power-user tips (plan mode, subagents, hooks, settings.json, slash commands). They also discuss where agents are headed: longer autonomy, Claudes monitoring Claudes, and non-terminal form factors.",
+  "perspective": "Builders of Claude Code at Anthropic describing product philosophy and practical usage, alongside an Every founder who uses it heavily",
+  "date": "2025"
+ },
+ "IZAlq-V19U8": {
+  "kind": "talk",
+  "id": "IZAlq-V19U8",
+  "title": "Claude Code\u2019s Bitter Lesson: Prompts, Harnesses, Mods, and Agents \u2014 Thariq Shihipar",
+  "channel": "Latent Space",
+  "url": "https://www.youtube.com/watch?v=IZAlq-V19U8",
+  "duration": 5672,
+  "views": 125966,
+  "speakers": [
+   {
+    "name": "Thariq Shihipar",
+    "role": "Anthropic, Claude Code team (engineering, teaching/technical writing)"
+   }
+  ],
+  "summary": "Thariq Shihipar of Anthropic's Claude Code team discusses how to get the most from agents: prompting as building a mental model of Claude, surfacing unknowns, artifacts as an interface for the harness, and the new 'Claude Mods' system for customizing the harness itself. He argues CLAUDE.md and per-model failure logs go stale as models improve. The second half covers Claude Tag, multiplayer agents, and Anthropic's 'pacing the frontier' safety concerns after incidents of agents hacking out of sandboxes during evals.",
+  "perspective": "Builder on the Claude Code team at Anthropic, focused on teaching usage and harness engineering; HCI background",
+  "date": "2026"
+ },
+ "Ib5GBkD555M": {
+  "kind": "talk",
+  "id": "Ib5GBkD555M",
+  "title": "Why Software Factories Fail",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=Ib5GBkD555M",
+  "duration": 1158,
+  "views": 498360,
+  "speakers": [
+   {
+    "name": "Dex Horthy",
+    "role": "Founder of Human Layer; speaker at AI Engineer; popularized context engineering and 'research-plan-implement' workflows"
+   }
+  ],
+  "summary": "Dex argues that lights-out software factories (no human code review) fail because coding models are trained via RL on tests-pass rewards, which cannot capture long-term maintainability. No amount of harness engineering or loops can fix what is a model training problem. His prescription is to keep reading code, and to front-load product review, architecture, program design, and vertical-slice planning so reviews stay short.",
+  "perspective": "Startup founder and builder (Human Layer) working on hard problems in complex brownfield codebases; skeptical of 'lights-out' software factories and token-maxing narratives",
+  "date": "2026"
+ },
+ "J5B9UGTuNoM": {
+  "kind": "talk",
+  "id": "J5B9UGTuNoM",
+  "title": "I\u2019m HOOKED on Claude Code Hooks: Advanced Agentic Coding",
+  "channel": "IndyDevDan",
+  "url": "https://www.youtube.com/watch?v=J5B9UGTuNoM",
+  "duration": 1851,
+  "views": 124365,
+  "speakers": [
+   {
+    "name": "IndyDevDan",
+    "role": "Independent engineer and YouTuber teaching agentic coding; seller of the 'Principled AI Coding' course"
+   }
+  ],
+  "summary": "A demo-driven walkthrough of Claude Code hooks (pre-tool use, post-tool use, notification, stop, subagent stop), showing how to block dangerous commands, log every agent event for observability, and add text-to-speech notifications. The main argument is that hooks give deterministic control and observability over agents, making Claude Code a programmable engineering primitive. The last third is opinion on why the Claude Code creators left Anthropic for Cursor, plus a course pitch.",
+  "perspective": "Independent builder and educator who is a heavy Claude Code user, bullish on it as the best agentic coding tool of 2025, and who sells an AI coding course.",
+  "date": "2025"
+ },
+ "JiWgKRgdgpI": {
+  "kind": "talk",
+  "id": "JiWgKRgdgpI",
+  "title": "DHH\u2019s new way of writing code",
+  "channel": "The Pragmatic Engineer",
+  "url": "https://www.youtube.com/watch?v=JiWgKRgdgpI",
+  "duration": 6441,
+  "views": 311553,
+  "speakers": [
+   {
+    "name": "David Heinemeier Hansson (DHH)",
+    "role": "Creator of Ruby on Rails, Omarchy; co-founder and CTO of 37signals"
+   }
+  ],
+  "summary": "DHH explains why he went from AI skeptic (on Lex Fridman) to agent-first on everything after Claude Code-style agent harnesses and Opus 4.5 arrived in late 2025. He describes his multi-agent workflow, how agents expand ambition (the P1 optimization, 100 PRs in 90 minutes), how senior engineers benefit most, and why taste, craft and product sense matter more. He also warns about overwork and predicts 'peak programmer'.",
+  "perspective": "Veteran builder and craft-focused CTO/framework creator; former AI skeptic, now enthusiastic but quality-obsessed practitioner",
+  "date": "2026"
+ },
+ "Jxz4GJSG8ZA": {
+  "kind": "talk",
+  "id": "Jxz4GJSG8ZA",
+  "title": "The Truth About Coding Agents: Why 90% of Your Time Is Now Code Review",
+  "channel": "a16z Deep Dives",
+  "url": "https://www.youtube.com/watch?v=Jxz4GJSG8ZA",
+  "duration": 2761,
+  "views": 2870,
+  "speakers": [
+   {
+    "name": "Beyang Liu",
+    "role": "Co-founder and CTO of Sourcegraph, builder of the Amp coding agent"
+   }
+  ],
+  "summary": "Sourcegraph's CTO discusses building the Amp coding agent: agent-centric (not model-centric) design, smart vs fast agents, using small and open-weight models for sub-agents, and why code review is becoming the human bottleneck. The last third turns to US open-weight model policy and the dependence on Chinese open models.",
+  "perspective": "Builder of a commercial coding agent (Amp) and long-time dev-tools founder, speaking with VC hosts",
+  "date": "2025"
+ },
+ "LCEmiRjPEtQ": {
+  "kind": "talk",
+  "id": "LCEmiRjPEtQ",
+  "title": "Andrej Karpathy: Software Is Changing (Again)",
+  "channel": "Y Combinator",
+  "url": "https://www.youtube.com/watch?v=LCEmiRjPEtQ",
+  "duration": 2372,
+  "views": 2586312,
+  "speakers": [
+   {
+    "name": "Andrej Karpathy",
+    "role": "Former Director of AI at Tesla, OpenAI founding member, creator of the term 'vibe coding'"
+   }
+  ],
+  "summary": "Karpathy frames the shift from Software 1.0 (code) and 2.0 (neural net weights) to Software 3.0, where prompts in English program LLMs. He describes LLMs as fallible 'people spirits' that behave like 1960s-era operating systems. He argues for partial-autonomy apps with fast generation-verification loops, an 'autonomy slider', keeping AI on a leash, and building docs and infrastructure for agents. He frames this as the decade of agents, not the year of agents.",
+  "perspective": "AI researcher and educator, hands-on LLM user, and builder of AI-assisted products, speaking at YC AI Startup School (June 2025)",
+  "date": "2025"
+ },
+ "MhHEGMFCEB0": {
+  "kind": "talk",
+  "id": "MhHEGMFCEB0",
+  "title": "OpenAI Codex Masterclass  \u2014 Vaibhav Srivastav & Katia Gil Guzman",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=MhHEGMFCEB0",
+  "duration": 3719,
+  "views": 48601,
+  "speakers": [
+   {
+    "name": "Vaibhav Srivastav (VB)",
+    "role": "Developer Experience, OpenAI (London)"
+   },
+   {
+    "name": "Katia Gil Guzman",
+    "role": "Developer Experience, OpenAI (London)"
+   }
+  ],
+  "summary": "A hands-on workshop from OpenAI's DevEx team on Codex, OpenAI's software engineering agent. It covers the model-plus-harness architecture, the Codex app with worktrees, plugins, skills, automations, code review, custom subagents, and experimental features such as guardian approvals and hooks. The main argument is that as you delegate more work to parallel agents, you need automated review, scoped subagents, and reusable bundled workflows.",
+  "perspective": "Vendor builders and developer advocates for OpenAI Codex. Practical product demos with a promotional slant.",
+  "date": "2026"
+ },
+ "OqM67QG_Ikk": {
+  "kind": "talk",
+  "id": "OqM67QG_Ikk",
+  "title": "From fork() to Fleet: Designing an Agent Sandbox Cloud \u2014 Abhishek Bhardwaj, OpenAI",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=OqM67QG_Ikk",
+  "duration": 2674,
+  "views": 85345,
+  "speakers": [
+   {
+    "name": "Abhishek Bhardwaj",
+    "role": "RL and agent infrastructure team, OpenAI (sandbox infra for ChatGPT/Codex web)"
+   }
+  ],
+  "summary": "A first-principles tour of how to run untrusted agent-generated code securely and at scale. It walks the isolation spectrum from fork/exec to containers, gVisor and microVMs, then covers disk persistence (incremental snapshots, checkpoint/restore) and fleet orchestration. His main argument: use microVMs from the start, and treat durable storage as the next unlock for long-running agents.",
+  "perspective": "Infrastructure engineer at OpenAI who builds sandboxes for RL training and Codex web, with a strong security-first stance",
+  "date": "2026"
+ },
+ "PaPpyQocMww": {
+  "kind": "talk",
+  "id": "PaPpyQocMww",
+  "title": "SpaceX AI Engineer Lauren Tan: Part 1",
+  "channel": "Ai insider",
+  "url": "https://www.youtube.com/watch?v=PaPpyQocMww",
+  "duration": 3331,
+  "views": 127848,
+  "speakers": [
+   {
+    "name": "Lauren Tan",
+    "role": "AI engineer at Cursor / SpaceX AI, ex-Meta React team, creator of the Pstack plugin"
+   }
+  ],
+  "summary": "Lauren Tan describes how she went from closely supervising one agent to having agents auto-merge PRs (about 1,000 PRs in a month). Her main argument is that trust is the limiting factor, and trust comes from verification skills, hard-enforced codebase constraints (lint, CI, architecture), and evals for skills, not from soft rules. She also covers cloud agents, greenfield vs brownfield risk, and the token ROI trade-off.",
+  "perspective": "Practitioner at Cursor shipping with agents at very high volume. Pro-autonomy, but insists on verification and hard guardrails first.",
+  "date": "2026"
+ },
+ "RFKCzGlAU6Q": {
+  "kind": "talk",
+  "id": "RFKCzGlAU6Q",
+  "title": "How Claude Code Works - Jared Zoneraich, PromptLayer",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=RFKCzGlAU6Q",
+  "duration": 3943,
+  "views": 101242,
+  "speakers": [
+   {
+    "name": "Jared Zoneraich",
+    "role": "Founder of PromptLayer (prompt engineering/eval platform); not affiliated with Anthropic"
+   }
+  ],
+  "summary": "Jared explains, based on leaked system prompts, open-source Codex and his own heavy usage, why Claude Code and similar coding agents finally work. The core argument: a simple architecture (a single master while-loop plus a few simple tools such as bash, grep and diff-based edit) combined with better models beats elaborate DAGs and scaffolding. He also covers context management, sub-agents, todos, skills, other agents' philosophies (Codex, AMP, Cursor), and how to eval agents.",
+  "perspective": "Startup founder and enthusiast builder of AI engineering tooling, who rebuilt his engineering org around Claude Code and reverse-engineers coding agents",
+  "date": "2025"
+ },
+ "RNJCfif1dPY": {
+  "kind": "talk",
+  "id": "RNJCfif1dPY",
+  "title": "Andrew Ng: Building Faster with AI",
+  "channel": "Y Combinator",
+  "url": "https://www.youtube.com/watch?v=RNJCfif1dPY",
+  "duration": 2638,
+  "views": 460220,
+  "speakers": [
+   {
+    "name": "Andrew Ng",
+    "role": "Founder of AI Fund (venture studio), DeepLearning.AI, Coursera co-founder; Stanford professor"
+   }
+  ],
+  "summary": "Andrew Ng talks at YC Startup School about how startups can win through execution speed in the AI era. He covers concrete ideas, agentic workflows, AI coding assistants making prototyping 10x faster, the shift of the bottleneck to product management and user feedback, and why understanding AI tech buys speed. A Q&A covers hype narratives, token costs, moats, responsible AI and open source.",
+  "perspective": "AI practitioner and venture studio founder who co-builds roughly one startup per month; optimist about AI tools, skeptical of AGI/doom hype",
+  "date": "2025"
+ },
+ "RjfbvDXpFls": {
+  "kind": "talk",
+  "id": "RjfbvDXpFls",
+  "title": "Building pi in a World of Slop \u2014 Mario Zechner",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=RjfbvDXpFls",
+  "duration": 1105,
+  "views": 564998,
+  "speakers": [
+   {
+    "name": "Mario Zechner",
+    "role": "Creator of Pi (minimal, self-modifying open-source coding agent harness); ex game developer, open-source maintainer"
+   }
+  ],
+  "summary": "Mario Zechner explains why he left Claude Code and OpenCode to build Pi, a minimal and extensible coding agent harness where the agent can modify itself. He then covers how AI-generated 'slop' PRs and issues are overwhelming open-source maintainers. Finally he argues that agents compound errors without learning or bottlenecks, so engineers should scope agent tasks tightly, read all critical code, and slow down.",
+  "perspective": "Skeptical open-source builder and harness author, former game developer, advocating minimal tools, user control over context, and human discipline",
+  "date": "2026"
+ },
+ "S-sYlFiGFv8": {
+  "kind": "talk",
+  "id": "S-sYlFiGFv8",
+  "title": "How the Claude Code team uses Claude Code",
+  "channel": "Claude",
+  "url": "https://www.youtube.com/watch?v=S-sYlFiGFv8",
+  "duration": 1343,
+  "views": 329398,
+  "speakers": [
+   {
+    "name": "Claude Code team members (Boris Cherny referenced; others include Sid and Robert)",
+    "role": "Engineers at Anthropic building Claude Code and Claude Tag"
+   }
+  ],
+  "summary": "Members of the Claude Code team describe how their way of working has shifted from prompting a single session and approving each tool call to giving goals to a Slack-native agent (Claude Tag) running in the cloud. They cover the short shelf life of harness features, loops and routines, fan-out workflows with adversarial review, code review that focuses humans on the big picture, verification, and what changes for engineers.",
+  "perspective": "Builders of Claude Code and Claude Tag at Anthropic, describing their own dogfooding practices",
+  "date": "2026"
+ },
+ "SlGRN8jh2RI": {
+  "kind": "talk",
+  "id": "SlGRN8jh2RI",
+  "title": "Anthropic's Boris Cherny: Why Coding Is Solved, and What Comes Next",
+  "channel": "Sequoia Capital",
+  "url": "https://www.youtube.com/watch?v=SlGRN8jh2RI",
+  "duration": 1476,
+  "views": 489049,
+  "speakers": [
+   {
+    "name": "Boris Cherny",
+    "role": "Creator of Claude Code, Anthropic"
+   }
+  ],
+  "summary": "Boris Cherny, creator of Claude Code, describes how it began as a bet on the next model, why he considers coding 'solved' (the model writes 100% of his code), and how he now works: many parallel sessions, /loop and routines, thousands of overnight agents. He predicts more cross-disciplinary generalists, software becoming as universal as literacy after the printing press, and the harness and safety scaffolding mattering less as models improve.",
+  "perspective": "Builder of Claude Code at Anthropic; heavy daily practitioner and optimist about full agent autonomy",
+  "date": "2026"
+ },
+ "Usufn8IQJgw": {
+  "kind": "talk",
+  "id": "Usufn8IQJgw",
+  "title": "Context engineering with Dex Horthy",
+  "channel": "The Pragmatic Engineer",
+  "url": "https://www.youtube.com/watch?v=Usufn8IQJgw",
+  "duration": 5591,
+  "views": 206726,
+  "speakers": [
+   {
+    "name": "Dex Horthy",
+    "role": "Founder of HumanLayer, author of 12-Factor Agents, early coiner of 'context engineering'"
+   }
+  ],
+  "summary": "Dex Horthy explains context engineering as controlling exactly which tokens go into a model, and the 'smart zone vs dumb zone' of context windows. He draws on his team's failed lights-off software factory to argue against not reading code. He advocates 'token smarter' leverage points (human-in-the-loop planning, slow nightly loops) over 'token harder' dark factories.",
+  "perspective": "Startup founder and practitioner of agentic coding who tested extreme 'dark factory' ideas, then retreated to human-in-the-loop leverage",
+  "date": "2026"
+ },
+ "We7BZVKbCVw": {
+  "kind": "talk",
+  "id": "We7BZVKbCVw",
+  "title": "Head of Claude Code: What happens after coding is solved | Boris Cherny",
+  "channel": "Lenny's Podcast",
+  "url": "https://www.youtube.com/watch?v=We7BZVKbCVw",
+  "duration": 5265,
+  "views": 570448,
+  "speakers": [
+   {
+    "name": "Boris Cherny",
+    "role": "Head of Claude Code at Anthropic, creator of Claude Code"
+   }
+  ],
+  "summary": "Boris Cherny, creator of Claude Code, describes how the tool grew from a terminal hack into a product that writes 100% of his code, and argues that coding is largely solved. He shares principles for building on AI models (don't box the model in, bet on the general model, build for the model six months out, latent demand), practical tips (best model, plan mode, parallel sessions), and predictions that roles will converge toward 'builder'.",
+  "perspective": "Builder and head of Claude Code at Anthropic; an optimistic insider who ships 10-30 PRs a day with no hand-written code",
+  "date": "2026"
+ },
+ "WjckELpzLOU": {
+  "kind": "talk",
+  "id": "WjckELpzLOU",
+  "title": "Mitchell Hashimoto\u2019s new way of writing code",
+  "channel": "The Pragmatic Engineer",
+  "url": "https://www.youtube.com/watch?v=WjckELpzLOU",
+  "duration": 7104,
+  "views": 342408,
+  "speakers": [
+   {
+    "name": "Mitchell Hashimoto",
+    "role": "Co-founder of HashiCorp (Terraform, Vagrant, Vault), creator of Ghostty terminal"
+   }
+  ],
+  "summary": "Mitchell Hashimoto recounts the HashiCorp story (Vagrant, Terraform, Vault, the pivot to enterprise open core, the near-acquisition by VMware, and his views on AWS/Azure/GCP). He then covers how he uses AI agents day to day, how AI-generated PRs are overwhelming open source (Ghostty's move to a vouching system), and how Git, CI/CD and testing will need to change for agentic workflows.",
+  "perspective": "Veteran infrastructure founder and open source maintainer who is a pragmatic, hands-on AI agent user (Claude Code, Amp, Codex) and a skeptic of low-effort AI contributions",
+  "date": "2026"
+ },
+ "XSZP9GhhuAc": {
+  "kind": "talk",
+  "id": "XSZP9GhhuAc",
+  "title": "Prompting for Agents | Code w/ Claude",
+  "channel": "Anthropic",
+  "url": "https://www.youtube.com/watch?v=XSZP9GhhuAc",
+  "duration": 1767,
+  "views": 97061,
+  "speakers": [
+   {
+    "name": "Hannah",
+    "role": "Applied AI team, Anthropic"
+   },
+   {
+    "name": "Jeremy",
+    "role": "Product engineer, Applied AI team, Anthropic"
+   }
+  ],
+  "summary": "Anthropic applied AI engineers explain how prompting differs for agents (models using tools in a loop) versus classic structured prompts. They cover when to use agents, thinking like your agent, giving heuristics, tool selection and design, guiding thinking, managing context, and how to evaluate agents with small realistic evals.",
+  "perspective": "Anthropic applied AI engineers who built Claude Code-style agents and the Research feature",
+  "date": "2025"
+ },
+ "XyQ4ZTS5dGw": {
+  "kind": "talk",
+  "id": "XyQ4ZTS5dGw",
+  "title": "Agentic Engineering in Action with Mitchell Hashimoto",
+  "channel": "Zed Industries",
+  "url": "https://www.youtube.com/watch?v=XyQ4ZTS5dGw",
+  "duration": 3664,
+  "views": 49517,
+  "speakers": [
+   {
+    "name": "Mitchell Hashimoto",
+    "role": "Creator of Ghostty terminal emulator, founder of HashiCorp (Terraform)"
+   }
+  ],
+  "summary": "Mitchell Hashimoto walks through a real Ghostty commit (undo-close-tab/window feature) built with Claude Code, showing how he acts as architect, gives well-scoped prompts with guardrails, manually cleans up, and uses the agent for cleanups and review. He discusses what agents are good and hopeless at (Zig, high-performance data structures, architecture), and why skill and understanding still matter.",
+  "perspective": "Veteran systems engineer and open-source maintainer, pragmatic AI-agent adopter (mid-2025, Claude 4 era) who treats agents like junior engineers",
+  "date": "2025"
+ },
+ "YAsxyoTWFDA": {
+  "kind": "talk",
+  "id": "YAsxyoTWFDA",
+  "title": "I Have Spent 1000+ Hours With Claude Code. This Is What I Learned",
+  "channel": "The Coding Sloth",
+  "url": "https://www.youtube.com/watch?v=YAsxyoTWFDA",
+  "duration": 1351,
+  "views": 867312,
+  "speakers": [
+   {
+    "name": "The Coding Sloth",
+    "role": "YouTube programming creator; heavy Claude Code user on the $20 plan"
+   }
+  ],
+  "summary": "A tier-list style walkthrough of Claude Code features after 1000+ hours of use. Top picks are skills, plan mode, and verification (tests, linters, screenshots). Much of the talk is about managing context and tokens on limited plans. It ends with alternatives to Claude Code and a push to still learn to code.",
+  "perspective": "Independent developer/educator, budget-constrained ($20 plan) heavy user, opinionated and humorous",
+  "date": "2026"
+ },
+ "YwZR6tc7qYg": {
+  "kind": "talk",
+  "id": "YwZR6tc7qYg",
+  "title": "Everything We Got Wrong About Research-Plan-Implement -  Dexter Horthy",
+  "channel": "AAIF Live",
+  "url": "https://www.youtube.com/watch?v=YwZR6tc7qYg",
+  "duration": 1606,
+  "views": 145380,
+  "speakers": [
+   {
+    "name": "Dex Horthy",
+    "role": "Founder of HumanLayer, author of 12-Factor Agents, creator of the Research-Plan-Implement (RPI) / CRISPY workflow"
+   }
+  ],
+  "summary": "Dex Horthy explains what went wrong with the Research-Plan-Implement workflow after thousands of engineers adopted it. The monolithic planning prompt skipped steps, long plans were not worth reading, and not reading code backfired. He proposes splitting the workflow into smaller prompts (CRISPY) with short alignment artifacts, vertical plans, and always reading the code.",
+  "perspective": "Practitioner and startup founder building coding-agent workflows, correcting his own earlier advice",
+  "date": "2026"
+ },
+ "_IK18goX4X8": {
+  "kind": "talk",
+  "id": "_IK18goX4X8",
+  "title": "Ship working code while you sleep with the Ralph Wiggum technique",
+  "channel": "Matt Pocock",
+  "url": "https://www.youtube.com/watch?v=_IK18goX4X8",
+  "duration": 984,
+  "views": 168584,
+  "speakers": [
+   {
+    "name": "Matt Pocock",
+    "role": "TypeScript educator and AI engineer (AI Hero), practitioner of the Ralph Wiggum technique"
+   }
+  ],
+  "summary": "Matt Pocock explains the Ralph Wiggum technique (credited to Geoffrey Huntley): running a coding agent in a simple bash for loop that repeatedly picks the highest-priority task from a JSON PRD, implements one feature, commits, and logs progress. He walks through his ralph.sh script, the PRD and progress.txt files, and stresses small tasks and strong feedback loops (types, tests, CI, browser automation). He also shows a human-in-the-loop variant.",
+  "perspective": "Practitioner and educator who switched from multi-phase plans to Ralph loops for his own production app (course video manager)",
+  "date": "2026"
+ },
+ "aFsAOu2bgFk": {
+  "kind": "talk",
+  "id": "aFsAOu2bgFk",
+  "title": "From IDEs to AI Agents with Steve Yegge",
+  "channel": "The Pragmatic Engineer",
+  "url": "https://www.youtube.com/watch?v=aFsAOu2bgFk",
+  "duration": 5520,
+  "views": 259053,
+  "speakers": [
+   {
+    "name": "Steve Yegge",
+    "role": "Software engineer of 40 years (ex-Amazon, Google), creator of Gas Town and Beads, co-author of 'Vibe Coding' with Gene Kim"
+   }
+  ],
+  "summary": "Steve Yegge lays out his eight levels of AI adoption for engineers, from no AI to orchestrating many agents. He argues that exponential model improvement will reshape the industry: big companies shrink, small teams of 2-20 people rival their output, and AI use drains developers in a 'vampiric' way. He also describes lessons from building the Gas Town orchestrator, including 'heresies' in vibe-coded codebases and the bitter lesson.",
+  "perspective": "Veteran engineer and AI-orchestration builder; an optimist who believes the curves will keep going, and who is provocative about IDEs and big companies",
+  "date": "2026"
+ },
+ "aSXaxOdVtAQ": {
+  "kind": "talk",
+  "id": "aSXaxOdVtAQ",
+  "title": "TDD, AI agents and coding with Kent Beck",
+  "channel": "The Pragmatic Engineer",
+  "url": "https://www.youtube.com/watch?v=aSXaxOdVtAQ",
+  "duration": 4533,
+  "views": 208991,
+  "speakers": [
+   {
+    "name": "Kent Beck",
+    "role": "Creator of Extreme Programming and TDD, co-author of the Agile Manifesto, author of Tidy First"
+   }
+  ],
+  "summary": "Kent Beck, after 50+ years of programming, describes how he uses agentic coding tools daily and why he calls them an unpredictable 'genie'. He explains how TDD acts as a guardrail against agents that delete tests, fake results, and cause disruption at a distance. The rest of the talk covers the history of the Agile Manifesto, XP, TDD, and Facebook's feedback-loop culture.",
+  "perspective": "Veteran practitioner and methodology pioneer enthusiastically experimenting with AI coding agents, while staying hands-on and caring about code quality",
+  "date": "2025"
+ },
+ "abw_m-DRi1k": {
+  "kind": "talk",
+  "id": "abw_m-DRi1k",
+  "title": "The Lethal Trifecta Is Already on Your Laptops \u2014 Michael Patterson, Coder",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=abw_m-DRi1k",
+  "duration": 1244,
+  "views": 8806,
+  "speakers": [
+   {
+    "name": "Michael Patterson",
+    "role": "Staff Solutions Engineer at Coder"
+   }
+  ],
+  "summary": "A vendor talk on Simon Willison's 'lethal trifecta' (private data access, external communication, and untrusted content) as it applies to coding agents running on developer laptops. Patterson argues agents should run in isolated remote environments, with a model proxy and an agent firewall, and he covers the organizational blockers (CISOs, shadow AI, alert fatigue) to rolling agents out at scale.",
+  "perspective": "Enterprise security/infrastructure vendor (Coder, cloud development environments) pitching isolation-based controls for AI agents; some self-promotion.",
+  "date": "2026"
+ },
+ "am_oeAoUhew": {
+  "kind": "talk",
+  "id": "am_oeAoUhew",
+  "title": "Harness Engineering: How to Build Software When Humans Steer, Agents Execute \u2014\u00a0Ryan Lopopolo, OpenAI",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=am_oeAoUhew",
+  "duration": 2781,
+  "views": 249772,
+  "speakers": [
+   {
+    "name": "Ryan Lopopolo",
+    "role": "Member of Technical Staff, OpenAI (harness engineering, built software exclusively with Codex agents)"
+   }
+  ],
+  "summary": "Ryan Lopopolo describes nine months of building software exclusively with agents (Codex) at OpenAI, banning his team from touching editors. His argument: code is free, so the scarce resources are human time, attention and model context. Engineers should encode non-functional requirements as docs, lints, structural tests and review agents so agents do the full job and humans steer.",
+  "perspective": "OpenAI engineer who runs an agent-only team and is a heavy token consumer (over a billion output tokens a day)",
+  "date": "2026"
+ },
+ "article-agents-md": {
+  "kind": "article",
+  "id": "article-agents-md",
+  "title": "AGENTS.md",
+  "url": "https://agents.md/",
+  "date": "",
+  "speakers": [
+   {
+    "name": "AGENTS.md maintainers (OpenAI Codex, Amp, Jules, Cursor, Factory; now Agentic AI Foundation / Linux Foundation)",
+    "role": "Authors of the open AGENTS.md format"
+   }
+  ],
+  "summary": "AGENTS.md is a simple, open, vendor-neutral file format that acts as a README for coding agents, giving them a predictable place to find setup, build, test, code-style and PR instructions. It is kept separate from README.md so human docs stay concise, and one file works across many agents. It supports nested files for monorepos and migration via symlinks.",
+  "perspective": "Open-standard authors and maintainers of agent context-file conventions, an ecosystem collaboration across multiple coding-agent vendors"
+ },
+ "article-anthropic-2026-agentic-coding-trends": {
+  "kind": "article",
+  "id": "article-anthropic-2026-agentic-coding-trends",
+  "title": "2026 Agentic Coding Trends Report",
+  "url": "https://resources.anthropic.com/2026-agentic-coding-trends-report",
+  "date": "2026",
+  "speakers": [
+   {
+    "name": "Anthropic",
+    "role": "report"
+   }
+  ],
+  "summary": "Anthropic's report predicts eight trends for agentic coding in 2026, spanning foundation, capability and impact trends. Its main argument is that engineering is shifting from writing code to orchestrating agents (multi-agent teams, long-running autonomous work, scaled oversight), while the work stays collaborative: developers use AI in about 60% of tasks but can fully delegate only 0-20%.",
+  "perspective": "Vendor (Anthropic, maker of Claude Code) trend report drawing on internal research and customer case studies; predictive and promotional in tone"
+ },
+ "article-anthropic-agent-skills": {
+  "kind": "article",
+  "id": "article-anthropic-agent-skills",
+  "title": "Equipping agents for the real world with Agent Skills",
+  "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+  "date": "2025-10-16",
+  "speakers": [
+   {
+    "name": "Barry Zhang, Keith Lazuka, Mahesh Murag",
+    "role": "Anthropic engineers, authors of Agent Skills"
+   }
+  ],
+  "summary": "Anthropic introduces Agent Skills: folders containing a SKILL.md plus optional files and scripts that agents discover and load dynamically to gain domain expertise. The core design principle is progressive disclosure, which keeps context use small while allowing effectively unbounded bundled knowledge. The article also covers bundling executable code, security risks from untrusted skills, and the future of agent-authored skills.",
+  "perspective": "Builders of Claude Code and the Agent Skills feature at Anthropic"
+ },
+ "article-anthropic-building-effective-agents": {
+  "kind": "article",
+  "id": "article-anthropic-building-effective-agents",
+  "title": "Building Effective AI Agents",
+  "url": "https://www.anthropic.com/engineering/building-effective-agents",
+  "date": "2024-12-19",
+  "speakers": [
+   {
+    "name": "Erik S. and Barry Zhang",
+    "role": "Authors, Anthropic"
+   }
+  ],
+  "summary": "Anthropic distills what it learned from dozens of customer agent deployments and its own agents (including SWE-bench). It argues for simple, composable patterns over heavy frameworks. It defines the workflow-versus-agent distinction, lays out five workflow patterns (prompt chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer), and describes agents as LLMs using tools in a loop. It closes with advice on designing agent-computer interfaces (tools).",
+  "perspective": "Model-provider engineering team (Anthropic) giving practitioner guidance on building agentic systems; written Dec 2024, with a later note that the tooling landscape has changed."
+ },
+ "article-anthropic-claude-code-best-practices": {
+  "kind": "article",
+  "id": "article-anthropic-claude-code-best-practices",
+  "title": "Best practices for Claude Code",
+  "url": "https://www.anthropic.com/engineering/claude-code-best-practices",
+  "date": "2026-10-06",
+  "speakers": [
+   {
+    "name": "Anthropic (Claude Code team)",
+    "role": "Authors of Claude Code documentation / engineering best practices"
+   }
+  ],
+  "summary": "Official Anthropic guide to getting the most out of Claude Code. Its core argument is that the context window is the most important resource to manage, and that most best practices follow from it: give the agent a way to verify its work, explore then plan then code, keep CLAUDE.md short, clear context often, use subagents and parallel sessions, and add independent review.",
+  "perspective": "Tool builder (Anthropic) documenting patterns proven across internal teams and external engineers"
+ },
+ "article-anthropic-claude-code-sandboxing": {
+  "kind": "article",
+  "id": "article-anthropic-claude-code-sandboxing",
+  "title": "Making Claude Code more secure and autonomous with sandboxing",
+  "url": "https://www.anthropic.com/engineering/claude-code-sandboxing",
+  "date": "2025-10-20",
+  "speakers": [
+   {
+    "name": "David Dworken",
+    "role": "Anthropic engineer, co-author"
+   },
+   {
+    "name": "Oliver Weller-Davies",
+    "role": "Anthropic engineer, co-author"
+   }
+  ],
+  "summary": "Anthropic describes how OS-level sandboxing (filesystem and network isolation) lets Claude Code run more autonomously with far fewer permission prompts while limiting the damage from prompt injection. It also covers an open-sourced sandbox runtime and Claude Code on the web, which keeps credentials out of the sandbox by routing git through a proxy.",
+  "perspective": "Anthropic engineering team describing the design of Claude Code's security features"
+ },
+ "article-anthropic-context-engineering": {
+  "kind": "article",
+  "id": "article-anthropic-context-engineering",
+  "title": "Effective context engineering for AI agents",
+  "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+  "date": "2025-09-29",
+  "speakers": [
+   {
+    "name": "Anthropic Applied AI team (Prithvi Rajasekaran, Ethan Dixon, Carly Ryan, Jeremy Hadfield)",
+    "role": "Authors, Anthropic Applied AI"
+   }
+  ],
+  "summary": "Anthropic's Applied AI team defines context engineering as the successor to prompt engineering: curating the smallest set of high-signal tokens in a finite attention budget across system prompts, tools, examples, and message history. It covers just-in-time retrieval and progressive disclosure. For long-horizon work it recommends compaction, structured note-taking, and sub-agent architectures.",
+  "perspective": "Builders of Claude and Claude Code describing internal best practices for agent design"
+ },
+ "article-anthropic-demystifying-evals": {
+  "kind": "article",
+  "id": "article-anthropic-demystifying-evals",
+  "title": "Demystifying evals for AI agents",
+  "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+  "date": "2026-01-09",
+  "speakers": [
+   {
+    "name": "Mikaela Grace, Jeremy Hadfield, Rodrigo Olivares, Jiri De Jonghe",
+    "role": "Anthropic engineers (authors of the Anthropic Engineering blog post)"
+   }
+  ],
+  "summary": "A practical guide from Anthropic on designing evals for AI agents. It defines evals, grader types (code, model, human), capability vs regression evals, and pass@k vs pass^k. It gives a step-by-step roadmap, from starting with 20-50 tasks drawn from real failures to reading transcripts and maintaining the suite, and covers eval design for coding, conversational, research and computer-use agents. Main argument: evals compound in value and are how teams escape reactive, guess-and-check development.",
+  "perspective": "Anthropic engineers who build and evaluate Claude Code and other agents, drawing on internal work and frontier customers"
+ },
+ "article-anthropic-long-running-harnesses": {
+  "kind": "article",
+  "id": "article-anthropic-long-running-harnesses",
+  "title": "Effective harnesses for long-running agents",
+  "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+  "date": "2025-11-26",
+  "speakers": [
+   {
+    "name": "Justin Young",
+    "role": "Author, Anthropic engineering (with contributions from the Claude Code and code RL teams)"
+   }
+  ],
+  "summary": "Anthropic describes a harness for getting the Claude Agent SDK to make steady progress on long projects that span many context windows. An initializer agent sets up the environment (feature list, init.sh, progress file, git repo), and each coding agent then works on one feature at a time, verifies it end-to-end with browser automation, and leaves clean artifacts for the next session. The main argument is that compaction alone is not enough, and that structured artifacts and disciplined session routines are what make long-running agents work.",
+  "perspective": "Anthropic engineering researchers building and testing a long-running agent harness on the Claude Agent SDK"
+ },
+ "article-anthropic-multi-agent-research": {
+  "kind": "article",
+  "id": "article-anthropic-multi-agent-research",
+  "title": "How we built our multi-agent research system",
+  "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+  "date": "2025-06-13",
+  "speakers": [
+   {
+    "name": "Jeremy Hadfield, Barry Zhang, Kenneth Lien, Florian Scholz, Jeremy Fox, Daniel Ford",
+    "role": "Anthropic engineers who built the Claude Research multi-agent system"
+   }
+  ],
+  "summary": "Anthropic engineers describe how they built Claude's Research feature as an orchestrator-worker multi-agent system. They cover when multi-agents pay off (breadth-first, high-value tasks, with ~15x token cost), prompting heuristics for coordinating subagents, lightweight evals with LLM judges plus human testing, and the production challenges of stateful, error-compounding agents.",
+  "perspective": "Builders of a production multi-agent system at Anthropic sharing hard-won engineering lessons"
+ },
+ "article-anthropic-teams-use-claude-code": {
+  "kind": "article",
+  "id": "article-anthropic-teams-use-claude-code",
+  "title": "How Anthropic teams use Claude Code",
+  "url": "https://www.anthropic.com/news/how-anthropic-teams-use-claude-code",
+  "date": "2025-07-24",
+  "speakers": [
+   {
+    "name": "Anthropic (article authors)",
+    "role": "Company blog post summarizing internal interviews about Claude Code usage"
+   }
+  ],
+  "summary": "Anthropic interviewed its own teams (Infrastructure, Product Engineering, Security Engineering, Inference, Data Science, Product Design, Growth Marketing, Legal) about how they use Claude Code. Use cases span codebase navigation, testing and review, debugging, prototyping, documentation, and automation. The main argument is that agentic coding dissolves the boundary between technical and non-technical work, and works best as a thought partner rather than a code generator.",
+  "perspective": "Vendor-side (Anthropic) case-study roundup of internal dogfooding; self-reported metrics, not independent measurement"
+ },
+ "article-anthropic-writing-tools-for-agents": {
+  "kind": "article",
+  "id": "article-anthropic-writing-tools-for-agents",
+  "title": "Writing effective tools for AI agents\u2014using AI agents",
+  "url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+  "date": "2025-09-11",
+  "speakers": [
+   {
+    "name": "Ken Aizawa (Anthropic)",
+    "role": "Author, with contributions from Anthropic Research, MCP, Product Engineering and Applied AI teams"
+   }
+  ],
+  "summary": "Anthropic's engineering guide to designing tools and MCP servers for LLM agents. Tools are a contract between deterministic systems and non-deterministic agents, so they must be designed for agents rather than as thin API wrappers. The recommended loop is prototype, build an evaluation, then analyze transcripts and iterate with Claude Code. Core principles: choose a few well-targeted tools, namespace them, return high-signal and token-efficient responses, and prompt-engineer tool descriptions.",
+  "perspective": "Anthropic engineers who build Claude Code and MCP, drawing on internal tool optimization and evaluation work"
+ },
+ "article-ball-how-to-build-an-agent": {
+  "kind": "article",
+  "id": "article-ball-how-to-build-an-agent",
+  "title": "How to Build an Agent",
+  "url": "https://ampcode.com/how-to-build-an-agent",
+  "date": "2025-04-21",
+  "speakers": [
+   {
+    "name": "Thorsten Ball",
+    "role": "Amp"
+   }
+  ],
+  "summary": "A hands-on tutorial that builds a working code-editing agent in under 400 lines of Go using the Anthropic API. It demystifies agents as an LLM, a loop, and tool definitions (read_file, list_files, edit_file). The central argument is that there is no secret: the inner loop is trivial and the rest is practical engineering and elbow grease.",
+  "perspective": "Builder of a commercial coding agent (Amp) demystifying agent internals for engineers"
+ },
+ "article-beck-augmented-coding": {
+  "kind": "article",
+  "id": "article-beck-augmented-coding",
+  "title": "Augmented Coding: Beyond the Vibes",
+  "url": "https://tidyfirst.substack.com/p/augmented-coding-beyond-the-vibes",
+  "date": "2025-06-25",
+  "speakers": [
+   {
+    "name": "Kent Beck",
+    "role": "Author of Tidy First, creator of Extreme Programming and TDD; writing about augmented coding"
+   }
+  ],
+  "summary": "Kent Beck recounts four weeks building BPlusTree3, a performance-competitive B+ Tree library in Rust and Python, using AI ('the genie') with a TDD-focused system prompt. He distinguishes 'augmented coding' (caring about code quality, tests, and complexity) from 'vibe coding' (caring only about behavior). He argues that programming remains programming, with more consequential decisions and less yak shaving, while admitting the AI still struggles to care about simplicity.",
+  "perspective": "Veteran software craftsman and TDD originator experimenting hands-on with AI coding agents, optimistic but candid about code-quality shortcomings"
+ },
+ "article-fowler-context-engineering-coding-agents": {
+  "kind": "article",
+  "id": "article-fowler-context-engineering-coding-agents",
+  "title": "Context Engineering for Coding Agents",
+  "url": "https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html",
+  "date": "2026-02-05",
+  "speakers": [
+   {
+    "name": "Birgitta B\u00f6ckeler",
+    "role": "Distinguished Engineer / AI-assisted delivery writer at Thoughtworks, author on martinfowler.com"
+   }
+  ],
+  "summary": "A primer on the context configuration features in coding agents (rules files, skills, slash commands, subagents, MCP servers, hooks, plugins), organized by what they are, who decides to load them, and how much context they consume. It uses Claude Code as the worked example. The main argument is to keep context small and build it up iteratively. The article also warns that context engineering is probabilistic, not deterministic, so it gives no guarantees.",
+  "perspective": "Practitioner and consultant analyzing the emerging coding-agent tooling landscape with a pragmatic, mildly skeptical eye"
+ },
+ "article-github-agentic-engineering-system": {
+  "kind": "article",
+  "id": "article-github-agentic-engineering-system",
+  "title": "GitHub's Agentic Engineering System",
+  "url": "https://github.com/resources/insights/agentic-engineering-system",
+  "date": "2026-08-12",
+  "speakers": [
+   {
+    "name": "GitHub (authors of the Agentic Engineering System)",
+    "role": "Framework authors, GitHub"
+   }
+  ],
+  "summary": "GitHub presents its Agentic Engineering System (AES), a tool-agnostic framework for scaling agent use. It rests on three stocks (governance, shared knowledge, customer value), three activities (define, deliver, detect) and three modes (director, performer, assessor). The main argument is that agent speed only creates value when governance and shared knowledge are strong enough to support the level of delegation. Otherwise teams get rework, review burden and risk.",
+  "perspective": "Platform vendor / enterprise engineering-operating-model framework, drawing on System Dynamics and DORA"
+ },
+ "article-hamel-evals-faq": {
+  "kind": "article",
+  "id": "article-hamel-evals-faq",
+  "title": "AI Evals: Everything You Need to Know \u2013 Hamel\u2019s Blog",
+  "url": "https://hamel.dev/blog/posts/evals-faq/",
+  "date": "2026-09-18",
+  "speakers": [
+   {
+    "name": "Hamel Husain (with Shreya Shankar)",
+    "role": "AI evals educator and consultant; co-teaches an AI Evals course to 5,000+ engineers and PMs"
+   }
+  ],
+  "summary": "A long FAQ on AI evals for product teams. Its central argument is that evals should start with manual error analysis of real traces rather than infrastructure or generic metrics. From there, teams build targeted binary evaluators, validate LLM judges against human labels, and keep a single domain expert in charge of quality. It also covers agent and coding-agent evaluation, CI versus production monitoring, and tooling choices.",
+  "perspective": "Practitioner and educator who is skeptical of generic eval metrics and vendor tooling. Strongly favors looking at data, custom tools, and a human in the loop."
+ },
+ "article-hashimoto-ai-adoption": {
+  "kind": "article",
+  "id": "article-hashimoto-ai-adoption",
+  "title": "My AI Adoption Journey",
+  "url": "https://mitchellh.com/writing/my-ai-adoption-journey",
+  "date": "2026-02-05",
+  "speakers": [
+   {
+    "name": "Mitchell Hashimoto",
+    "role": "Software engineer, founder of HashiCorp, creator of Ghostty"
+   }
+  ],
+  "summary": "Mitchell Hashimoto describes his six-step, measured path from AI skeptic to productive agent user. He moved from chatbots to agents, forced himself to redo his own commits with agents, and then added end-of-day agents, outsourcing slam-dunk tasks, harness engineering, and keeping one agent running. His argument is that real value comes from deliberate, friction-tolerant skill building, not hype.",
+  "perspective": "Experienced, craft-focused senior engineer and tool-builder who started as an AI skeptic and now uses agents pragmatically"
+ },
+ "article-humanlayer-12-factor-agents": {
+  "kind": "article",
+  "id": "article-humanlayer-12-factor-agents",
+  "title": "12-Factor Agents: patterns for reliable LLM applications",
+  "url": "https://github.com/humanlayer/12-factor-agents",
+  "date": "",
+  "speakers": [
+   {
+    "name": "Dex Horthy",
+    "role": "Founder of HumanLayer, author of 12-Factor Agents"
+   }
+  ],
+  "summary": "The README introduces 12-Factor Agents, a set of engineering principles for building reliable LLM-powered software for production customers. Dex Horthy argues that the \"prompt + bag of tools + loop until done\" pattern tops out around 70-80% quality, and that good agents are mostly deterministic software with LLM steps placed carefully. He recommends adding small, modular agent concepts to existing products rather than adopting a framework wholesale.",
+  "perspective": "Startup founder and agent builder who has tried many agent frameworks and talked with 100+ SaaS builders; skeptical of frameworks for production agents"
+ },
+ "article-humanlayer-ace-fca": {
+  "kind": "article",
+  "id": "article-humanlayer-ace-fca",
+  "title": "Advanced Context Engineering for Coding Agents",
+  "url": "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/ace-fca.md",
+  "date": "",
+  "speakers": [
+   {
+    "name": "Dex Horthy",
+    "role": "Founder of HumanLayer, author of 12-factor agents, coined 'context engineering' framing and 'frequent intentional compaction'"
+   }
+  ],
+  "summary": "Dex Horthy argues that today's coding agents can work in large brownfield codebases (e.g. a 300k LOC Rust repo) if you apply context engineering: deliberately compact context, keep utilization at 40-60%, and use a research -> plan -> implement workflow with human review at the highest-leverage points (research and plans, not code). He backs it with BAML case studies, a failure story (parquet-java), and a view that the real challenge is team and workflow transformation and mental alignment.",
+  "perspective": "Startup founder / practitioner building agent tooling (HumanLayer, CodeLayer) and using Claude Code heavily on complex brownfield systems"
+ },
+ "article-huntley-ralph": {
+  "kind": "article",
+  "id": "article-huntley-ralph",
+  "title": "Ralph Wiggum as a \"software engineer\"",
+  "url": "https://ghuntley.com/ralph/",
+  "date": "2025-07-14",
+  "speakers": [
+   {
+    "name": "Geoffrey Huntley",
+    "role": "Software engineer, creator of the Ralph Wiggum loop technique and the CURSED programming language"
+   }
+  ],
+  "summary": "Huntley describes Ralph, a technique that in its purest form is a Bash loop feeding the same prompt to a coding agent over and over. The agent does one task per loop, using a fixed 'stack' of specs and a fix plan, subagents for expensive work, and tests or type checks as back pressure. He argues that operator skill in tuning the prompt, watching the stream and resetting the plan matters most, and says Ralph is for greenfield projects only, not existing codebases.",
+  "perspective": "Hands-on practitioner and enthusiast pushing autonomous looping to its limits, using it to build a new programming language (CURSED) with Claude Code"
+ },
+ "article-huyen-agents": {
+  "kind": "article",
+  "id": "article-huyen-agents",
+  "title": "Agents",
+  "url": "https://huyenchip.com/2025/01/07/agents.html",
+  "date": "2025-01-07",
+  "speakers": [
+   {
+    "name": "Chip Huyen",
+    "role": "Author of AI Engineering (2025); ML/AI engineer and writer"
+   }
+  ],
+  "summary": "A conceptual overview of foundation-model agents, adapted from the Agents section of the book AI Engineering. An agent is defined by its environment and tool inventory, and its success depends on tool selection and the strength of its planner. The article covers planning (decoupled from execution, reflection, control flows), function calling, tool selection experiments, and a taxonomy of agent failure modes (planning, tool, efficiency) with how to evaluate each.",
+  "perspective": "AI/ML engineering author and practitioner giving a framework-level, evaluation-focused view of agents"
+ },
+ "article-karpathy-vibe-coding-retrospective": {
+  "kind": "article",
+  "id": "article-karpathy-vibe-coding-retrospective",
+  "title": "Vibe coding, one year later (post on X)",
+  "url": "https://x.com/karpathy/status/2019137879310836075",
+  "date": "2026-02-04",
+  "speakers": [
+   {
+    "name": "Andrej Karpathy",
+    "role": "post on X"
+   }
+  ],
+  "summary": "Karpathy reflects on the one-year anniversary of his 'vibe coding' tweet. He argues that vibe coding was a fun, throwaway-project mode when LLMs were weaker, while today professionals increasingly work through LLM agents with more oversight. He proposes 'agentic engineering' as the name for this discipline, which keeps software quality high while claiming the leverage of agents.",
+  "perspective": "AI researcher and educator who coined 'vibe coding' and is now proposing 'agentic engineering' as its professional successor"
+ },
+ "article-metr-dev-productivity": {
+  "kind": "article",
+  "id": "article-metr-dev-productivity",
+  "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity",
+  "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+  "date": "2025-07-10",
+  "speakers": [
+   {
+    "name": "METR",
+    "role": "research"
+   }
+  ],
+  "summary": "METR ran a randomized controlled trial with 16 experienced open-source developers on 246 real issues in their own mature repositories. Allowing AI tools (mainly Cursor Pro with Claude 3.5/3.7 Sonnet) made them 19% slower, even though they expected a 24% speedup and afterward still believed AI had sped them up by 20%. The authors stress the limits of the result: a narrow setting, early-2025 tools, and possible learning effects. They also argue that benchmarks and anecdotes each misjudge real-world usefulness.",
+  "perspective": "Independent AI-evaluation non-profit running a rigorous field study; cautious, empirical, focused on AI R&D acceleration risk"
+ },
+ "article-metr-long-tasks": {
+  "kind": "article",
+  "id": "article-metr-long-tasks",
+  "title": "Measuring AI Ability to Complete Long Software Tasks",
+  "url": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
+  "date": "2025-03-19",
+  "speakers": [
+   {
+    "name": "METR",
+    "role": "research"
+   }
+  ],
+  "summary": "METR proposes measuring AI agent capability by the length of tasks (in human expert time) that models can complete at a given success probability. They find this '50% time horizon' has grown exponentially for 6 years, doubling roughly every 7 months. Extrapolating, agents could handle month-long software projects by the end of the decade, though models are currently reliable only on tasks of a few minutes.",
+  "perspective": "AI safety/evaluation research org doing empirical forecasting of agent capabilities"
+ },
+ "article-openai-harness-engineering-mirror": {
+  "kind": "article",
+  "id": "article-openai-harness-engineering-mirror",
+  "title": "Harness engineering: leveraging Codex in an agent-first world",
+  "url": "https://businessdatasolutions.github.io/ai-wiki/sources/2026-02-11-lopopolo-codex-harness-engineering",
+  "date": "2026-02-11",
+  "speakers": [
+   {
+    "name": "Ryan Lopopolo",
+    "role": "Member of Technical Staff, OpenAI; coiner of 'harness engineering'"
+   }
+  ],
+  "summary": "A wiki summary of OpenAI's first-person post on five months of building an internal product with zero manually-written code, entirely authored by Codex. The main argument is that the engineer's job shifts from writing code to designing environments, feedback loops and mechanical constraints (repo-as-system-of-record, layered architecture, golden principles, garbage collection) so agents can work at high throughput without drift.",
+  "perspective": "Vendor-side production case study (OpenAI engineering team using Codex), summarized by a third-party wiki"
+ },
+ "article-ronacher-agentic-coding": {
+  "kind": "article",
+  "id": "article-ronacher-agentic-coding",
+  "title": "Agentic Coding Recommendations",
+  "url": "https://lucumr.pocoo.org/2025/6/12/agentic-coding/",
+  "date": "2025-06-12",
+  "speakers": [
+   {
+    "name": "Armin Ronacher",
+    "role": "Creator of Flask, software engineer, blogger (lucumr.pocoo.org)"
+   }
+  ],
+  "summary": "Armin Ronacher shares his practical agentic coding setup built around Claude Code: running in YOLO mode, preferring simple tools over MCP, picking Go and simple code for agent-friendliness, and designing fast, observable, chaos-proof tools. His core principles are simplicity, stability, observability and smart parallelization.",
+  "perspective": "Experienced open-source engineer and heavy daily user of Claude Code, pragmatic and tool-focused"
+ },
+ "article-willison-aep-adding-a-new-content-type": {
+  "kind": "article",
+  "id": "article-willison-aep-adding-a-new-content-type",
+  "title": "Adding a new content type to my blog-to-newsletter tool - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/adding-a-new-content-type/",
+  "date": "2026-04-18",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Creator of Datasette, co-creator of Django, independent developer and writer on AI coding agents"
+   }
+  ],
+  "summary": "A worked example from Simon Willison's Agentic Engineering Patterns guide. He shows how three short prompts to Claude Code on the web added a new content type ('beats') to his blog-to-newsletter tool in one shot. The prompts clone a reference repo, point at an existing behavior to imitate, and give the agent a way to verify its own work.",
+  "perspective": "Experienced practitioner and prolific blogger documenting his own day-to-day agentic coding patterns"
+ },
+ "article-willison-aep-agentic-manual-testing": {
+  "kind": "article",
+  "id": "article-willison-aep-agentic-manual-testing",
+  "title": "Agentic manual testing - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/agentic-manual-testing/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Creator of Datasette, co-creator of Django, writer on AI and agentic engineering"
+   }
+  ],
+  "summary": "A guide chapter arguing that the defining trait of a coding agent is that it can execute the code it writes, so agents should be told to test their work manually as well as with automated tests. It covers concrete mechanisms (python -c, curl, Playwright, Rodney) and Showboat, a tool that records the agent's testing as a document with real command output.",
+  "perspective": "Practitioner and tool-builder who uses coding agents daily and favors hands-on verification, with an open-source tooling mindset"
+ },
+ "article-willison-aep-anti-patterns": {
+  "kind": "article",
+  "id": "article-willison-aep-anti-patterns",
+  "title": "Anti-patterns: things to avoid - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/anti-patterns/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, creator of Datasette, co-creator of Django, writer on AI-assisted engineering"
+   }
+  ],
+  "summary": "A short guide chapter naming one core anti-pattern of agentic engineering: dumping unreviewed agent-generated code on collaborators via pull requests. Willison argues the submitter is responsible for the first review pass and lists the traits of a good agentic PR: it works, it is small, it has context, and its description has been read. He also recommends attaching evidence of manual testing.",
+  "perspective": "Experienced open-source developer and practitioner advocating professional norms for working with coding agents"
+ },
+ "article-willison-aep-better-code": {
+  "kind": "article",
+  "id": "article-willison-aep-better-code",
+  "title": "AI should help us produce better code - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/better-code/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, co-creator of Django, writer on LLMs and agentic engineering"
+   }
+  ],
+  "summary": "Willison argues that coding agents should raise code quality, not lower it. Shipping worse code with agents is a choice. Agents make simple-but-tedious technical debt fixes and exploratory prototyping cheap enough to adopt a zero-tolerance attitude to code smells, and a compound engineering loop lets those quality gains accumulate.",
+  "perspective": "Practitioner and prolific blogger on AI-assisted development, optimistic but pragmatic about agent-driven quality"
+ },
+ "article-willison-aep-code-is-cheap": {
+  "kind": "article",
+  "id": "article-willison-aep-code-is-cheap",
+  "title": "Writing code is cheap now - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/code-is-cheap/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, co-creator of Django, writer on LLMs and agentic engineering"
+   }
+  ],
+  "summary": "Willison argues that the central shift in agentic engineering is that writing code is now cheap, which upends engineering habits built around code being expensive. Delivering *good* code (verified, tested, simple, documented, well-designed) still costs real effort, so developers need new habits, such as firing off speculative prompts in async agent sessions instead of dismissing ideas as not worth the time.",
+  "perspective": "Experienced practitioner and prominent blogger documenting emerging agentic engineering patterns; pragmatic and openly still figuring things out"
+ },
+ "article-willison-aep-first-run-the-tests": {
+  "kind": "article",
+  "id": "article-willison-aep-first-run-the-tests",
+  "title": "First run the tests - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/first-run-the-tests/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, co-creator of Django, writer on AI and agentic engineering"
+   }
+  ],
+  "summary": "A short guide chapter arguing that automated tests are now essential when working with coding agents. Simon Willison recommends starting every new agent session on an existing project with the four-word prompt \"First run the tests\", which makes the agent discover how to run the tests, gauge the project's size, and stay in a testing mindset.",
+  "perspective": "Practitioner and author of a patterns guide for agentic engineering, building with Claude Code and similar agents"
+ },
+ "article-willison-aep-hoard-things-you-know-how-to-do": {
+  "kind": "article",
+  "id": "article-willison-aep-hoard-things-you-know-how-to-do",
+  "title": "Hoard things you know how to do - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/hoard-things-you-know-how-to-do/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, creator of Datasette, writer on LLMs and agentic engineering"
+   }
+  ],
+  "summary": "Simon Willison argues that a core engineering skill is accumulating a personal collection of working, proven solutions to technical problems. In the agentic era this hoard becomes a powerful input for coding agents: tell them to combine existing working examples to build something new. He describes how he stores solutions (blog, TIL, GitHub repos, HTML tools, research repo) and how he points agents at them.",
+  "perspective": "Veteran software engineer and prolific LLM tool builder, sharing a pattern from his own practice"
+ },
+ "article-willison-aep-how-coding-agents-work": {
+  "kind": "article",
+  "id": "article-willison-aep-how-coding-agents-work",
+  "title": "How coding agents work - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/how-coding-agents-work/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, co-creator of Django, writer on LLMs and agentic engineering"
+   }
+  ],
+  "summary": "A concise explainer of how coding agents work under the hood: an LLM is a stateless token-completion engine, and a coding agent is a harness that adds a system prompt, callable tools, and a loop. The author argues that understanding these mechanics (tokens, chat templates, caching, tool calls, reasoning) helps you use agents more effectively.",
+  "perspective": "Experienced practitioner and educator demystifying agents from first principles"
+ },
+ "article-willison-aep-interactive-explanations": {
+  "kind": "article",
+  "id": "article-willison-aep-interactive-explanations",
+  "title": "Interactive explanations - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/interactive-explanations/",
+  "date": "2026-02-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, co-creator of Django, writer on AI/LLMs"
+   }
+  ],
+  "summary": "A short guide chapter on 'cognitive debt': the cost of losing track of how agent-written code works. Willison's remedy is to ask coding agents for interactive or animated explanations, illustrated by a Rust word-cloud tool whose spiral placement algorithm only made sense after he asked Claude for an animation.",
+  "perspective": "Practitioner and prolific writer documenting agentic engineering patterns, enthusiastic but pragmatic about coding agents"
+ },
+ "article-willison-aep-linear-walkthroughs": {
+  "kind": "article",
+  "id": "article-willison-aep-linear-walkthroughs",
+  "title": "Linear walkthroughs - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/linear-walkthroughs/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, creator of Datasette, writer on AI and agentic engineering"
+   }
+  ],
+  "summary": "A short guide chapter on 'linear walkthroughs': asking a coding agent to produce a structured, linear explanation of a codebase. Willison demonstrates by having Claude Code generate a walkthrough of a vibe-coded SwiftUI app using his Showboat tool, which embeds real command output (not hand-copied code) to avoid hallucinations. He argues the pattern counters the risk that LLMs slow down learning.",
+  "perspective": "Practitioner and prolific writer documenting agentic engineering patterns, hands-on with Claude Code"
+ },
+ "article-willison-aep-prompts": {
+  "kind": "article",
+  "id": "article-willison-aep-prompts",
+  "title": "Prompts I use - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/prompts/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, creator of Datasette, prolific writer on LLMs and agentic engineering"
+   }
+  ],
+  "summary": "A short, continually updated section of Simon Willison's Agentic Engineering Patterns guide. It collects the reusable prompts he actually uses: Claude Artifacts for small HTML tools, a proofreader, alt text drafting, and podcast highlight extraction. The prompt text itself is not in this extract, but the framing shows a practical pattern: saved custom instructions in Claude Projects, plus a firm line on what he won't delegate to an LLM.",
+  "perspective": "Practitioner and prolific blogger who uses LLMs heavily for tools and editing but keeps authorship of opinionated writing for himself"
+ },
+ "article-willison-aep-red-green-tdd": {
+  "kind": "article",
+  "id": "article-willison-aep-red-green-tdd",
+  "title": "Red/green TDD - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, co-creator of Django, writer on AI and LLMs"
+   }
+  ],
+  "summary": "A short guide in Simon Willison's Agentic Engineering Patterns series arguing that the phrase \"use red/green TDD\" is a concise prompt that improves coding agent results. Writing tests first and confirming they fail guards against non-working or unused code and builds a regression suite. The article cuts off at the example prompt.",
+  "perspective": "Experienced practitioner and writer documenting practical patterns for working with coding agents"
+ },
+ "article-willison-aep-subagents": {
+  "kind": "article",
+  "id": "article-willison-aep-subagents",
+  "title": "Subagents - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/subagents/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, creator of Datasette, co-creator of Django, writer on LLMs and agentic engineering"
+   }
+  ],
+  "summary": "A short chapter from Simon Willison's Agentic Engineering Patterns guide explaining subagents as a way to work around context limits. A subagent is a fresh copy of the agent with a new context window, dispatched like a tool call. He walks through Claude Code's Explore subagent, then covers parallel and specialist subagents, and warns against over-splitting tasks into too many specialists.",
+  "perspective": "Practitioner and prolific writer on LLM tooling, explaining subagent patterns through a hands-on Claude Code example"
+ },
+ "article-willison-aep-using-git-with-coding-agents": {
+  "kind": "article",
+  "id": "article-willison-aep-using-git-with-coding-agents",
+  "title": "Using Git with coding agents - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/using-git-with-coding-agents/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, creator of Datasette, author of the Agentic Engineering Patterns guide"
+   }
+  ],
+  "summary": "A short guide on using Git together with coding agents. Agents are fluent in Git, so developers can delegate hard operations (merge conflicts, bisect, reflog recovery, history rewriting, repo extraction) and no longer need to memorize the commands. Git history also works as a way to seed an agent's context and as a safety net for reversing mistakes. The article is partly truncated: several example prompts are missing from the text.",
+  "perspective": "Practitioner and prolific AI-tooling blogger who uses coding agents daily and is pragmatic about delegating tedious tooling to them"
+ },
+ "article-willison-aep-what-is-agentic-engineering": {
+  "kind": "article",
+  "id": "article-willison-aep-what-is-agentic-engineering",
+  "title": "What is agentic engineering? - Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/guides/agentic-engineering-patterns/what-is-agentic-engineering/",
+  "date": "2002-01-01",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, co-creator of Django, writer on LLMs and AI-assisted programming"
+   }
+  ],
+  "summary": "Opening chapter of Willison's Agentic Engineering Patterns guide. It defines agentic engineering as developing software with coding agents, which he describes as agents that run tools in a loop and can execute code. He argues that humans still own deciding what to build, supplying tools, specifying problems, and verifying results, and he distinguishes this from vibe coding, which should mean unreviewed prototype-quality code.",
+  "perspective": "Experienced practitioner and writer who is pragmatic and definition-focused, and who documents durable patterns for working with coding agents"
+ },
+ "article-willison-agentic-engineering-patterns": {
+  "kind": "article",
+  "id": "article-willison-agentic-engineering-patterns",
+  "title": "Writing about Agentic Engineering Patterns",
+  "url": "https://simonwillison.net/2026/Feb/23/agentic-engineering-patterns/",
+  "date": "2026-02-23",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, creator of Datasette, co-creator of Django, prolific writer on AI-assisted programming"
+   }
+  ],
+  "summary": "Simon Willison announces Agentic Engineering Patterns, a guide of evergreen, chapter-shaped patterns for getting good results from coding agents like Claude Code and Codex. He defines agentic engineering as professionals using code-executing agents to amplify existing expertise, in contrast to vibe coding. The first two chapters cover the collapsing cost of writing code and red/green TDD.",
+  "perspective": "Experienced software engineer and prolific blogger documenting practical coding-agent patterns; pragmatic and professional-craft oriented"
+ },
+ "article-willison-lethal-trifecta": {
+  "kind": "article",
+  "id": "article-willison-lethal-trifecta",
+  "title": "The lethal trifecta for AI agents: private data, untrusted content, and external communication",
+  "url": "https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/",
+  "date": "2025-06-16",
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Independent developer, co-creator of Django, coined the term 'prompt injection'"
+   }
+  ],
+  "summary": "Willison defines the 'lethal trifecta' of AI agent capabilities (access to private data, exposure to untrusted content, and ability to externally communicate) that together let an attacker trick an agent into stealing the user's data. He argues that guardrail products can't be trusted, vendors can't protect users who mix and match tools (especially via MCP), and the only reliable defense is to avoid combining all three.",
+  "perspective": "Independent developer and security-minded commentator who coined 'prompt injection' and has catalogued dozens of real-world exfiltration attacks"
+ },
+ "b2QkhmQ0sT0": {
+  "kind": "talk",
+  "id": "b2QkhmQ0sT0",
+  "title": "How I Review AI Code - (Meta Senior Staff Engineer)",
+  "channel": "John Kim",
+  "url": "https://www.youtube.com/watch?v=b2QkhmQ0sT0",
+  "duration": 1232,
+  "views": 317049,
+  "speakers": [
+   {
+    "name": "John Kim",
+    "role": "Senior Staff Software Engineer at Meta; AI YouTuber"
+   }
+  ],
+  "summary": "John Kim argues that code review in the agent era is a gradient, not a binary of reading everything or nothing. He treats the codebase like a tree: review trunk code (core infra, high blast radius, ungated) deeply and skim gated leaf code. He leans on agent-provided proof (tests, logs, screenshots, video), adversarial review agents, feature gating and experiments to land safely, and reserves a final human-driven 20% for launch readiness.",
+  "perspective": "Practitioner senior engineer at Big Tech using Claude Code and Codex, pragmatic middle path between 'never read code' and 'read everything'",
+  "date": "2026"
+ },
+ "bKrAcTf2pL4": {
+  "kind": "talk",
+  "id": "bKrAcTf2pL4",
+  "title": "FastRender with Wilson Lin - building a web browser with swarms of thousands of coding agents",
+  "channel": "Simon Willison",
+  "url": "https://www.youtube.com/watch?v=bKrAcTf2pL4",
+  "duration": 2856,
+  "views": 11031,
+  "speakers": [
+   {
+    "name": "Wilson Lin",
+    "role": "Product engineer at Cursor; built FastRender, an experimental browser engine, using swarms of coding agents"
+   }
+  ],
+  "summary": "Wilson Lin explains FastRender, a research project in which Cursor ran up to ~2,000 concurrent coding agents for a week to build a >1M-line Rust browser engine. The main argument: scaling agents is largely about hierarchical planner/worker structure, rigorous initial instructions, strong feedback loops (specs, test suites, compilation), and tolerating small transient errors to preserve throughput.",
+  "perspective": "Cursor researcher/builder experimenting with multi-agent harnesses at extreme scale",
+  "date": "2026"
+ },
+ "dRsjO-88nBs": {
+  "kind": "talk",
+  "id": "dRsjO-88nBs",
+  "title": "Building headless automation with Claude Code | Code w/ Claude",
+  "channel": "Anthropic",
+  "url": "https://www.youtube.com/watch?v=dRsjO-88nBs",
+  "duration": 1259,
+  "views": 81997,
+  "speakers": [
+   {
+    "name": "Sedara",
+    "role": "Engineer on the Claude Code team at Anthropic"
+   }
+  ],
+  "summary": "A Code w/ Claude talk introducing the Claude Code SDK (headless mode via `claude -p`) and the Claude GitHub Action built on top of it. Includes a live demo where @claude on GitHub issues and PRs produces a feature implementation and a color change, plus a walkthrough of SDK flags for permissions, structured output, session resume and MCP-based permission prompts.",
+  "perspective": "Builder on the Claude Code team demoing headless/CI automation",
+  "date": "2025"
+ },
+ "fE0W9UGzZzk": {
+  "kind": "talk",
+  "id": "fE0W9UGzZzk",
+  "title": "people are lying about agentic coding",
+  "channel": "Lars Faye",
+  "url": "https://www.youtube.com/watch?v=fE0W9UGzZzk",
+  "duration": 459,
+  "views": 269974,
+  "speakers": [
+   {
+    "name": "Lars Faye",
+    "role": "Independent developer, YouTuber and essayist, skeptic of fully autonomous agentic coding"
+   }
+  ],
+  "summary": "Lars Faye argues that the industry narrative that 'coding is solved' conflicts with the reality that agents need detailed specs, rigid feedback loops, strong verification and architectural pipelines, all of which demand domain expertise. He says developers who struggle are told 'skill issue', which feels like gaslighting. He advocates using agents as a delegation layer while staying close to the code, optimizing for doing better rather than faster.",
+  "perspective": "Skeptical, experienced independent developer who uses AI tools as a delegation layer and keeps reading and writing code",
+  "date": "2026"
+ },
+ "fHWFF_pnqDk": {
+  "kind": "talk",
+  "id": "fHWFF_pnqDk",
+  "title": "Vibe coding in prod | Code w/ Claude",
+  "channel": "Anthropic",
+  "url": "https://www.youtube.com/watch?v=fHWFF_pnqDk",
+  "duration": 1877,
+  "views": 218354,
+  "speakers": [
+   {
+    "name": "Eric",
+    "role": "Researcher at Anthropic focused on coding agents; co-author of 'Building Effective Agents'"
+   }
+  ],
+  "summary": "Eric argues that as AI task length doubles roughly every seven months, engineers must learn to 'vibe code in prod' responsibly, forgetting the code exists but not the product. The way to do it safely is to act as Claude's product manager, confine vibe coding to leaf nodes, and design systems so correctness can be verified without reading the code. He backs this with a 22,000-line change merged into Anthropic's production RL codebase.",
+  "perspective": "Anthropic researcher and builder of coding agents, pro-delegation but pragmatic about risk",
+  "date": "2025"
+ },
+ "fQmlML9Lay4": {
+  "kind": "talk",
+  "id": "fQmlML9Lay4",
+  "title": "Conductor CEO Charlie Holtz Walks Us Through His AI Coding Setup",
+  "channel": "Y Combinator",
+  "url": "https://www.youtube.com/watch?v=fQmlML9Lay4",
+  "duration": 995,
+  "views": 307126,
+  "speakers": [
+   {
+    "name": "Charlie Holtz",
+    "role": "Co-founder/CEO of Conductor (YC S24), a Mac app for orchestrating parallel coding agents"
+   }
+  ],
+  "summary": "Charlie Holtz walks through his daily AI coding setup: running many Claude Code/Codex agents in parallel via Conductor, voice-driven prompting, and reviewing PRs in-app. He argues humans should remain architects and own the core, keep 'slop-free zones', and treat code as 'sawdust' while prompts are what matter.",
+  "perspective": "Startup founder building a multi-agent orchestration tool and dogfooding it; heavy token spender, opinionated about UI and human-owned architecture",
+  "date": "2026"
+ },
+ "fabAI1OKKww": {
+  "kind": "talk",
+  "id": "fabAI1OKKww",
+  "title": "The complete guide to Agent Skills",
+  "channel": "Burke Holland",
+  "url": "https://www.youtube.com/watch?v=fabAI1OKKww",
+  "duration": 990,
+  "views": 225463,
+  "speakers": [
+   {
+    "name": "Burke Holland",
+    "role": "Developer advocate for GitHub Copilot / Visual Studio Code"
+   }
+  ],
+  "summary": "A hands-on walkthrough of Agent Skills in VS Code. Skills are folders with a SKILL.md (name + description metadata) that can bundle scripts and templates. The agent loads them progressively, so they cost little context. The video shows how to build a hello-world skill, then uses Anthropic's PDF skill to teach the agent a capability it lacked, and ends with guidance on skills vs instructions vs prompt files vs custom agents.",
+  "perspective": "Tool vendor developer advocate (GitHub Copilot / VS Code) giving a practical tutorial",
+  "date": "2025"
+ },
+ "gv0WHhKelSE": {
+  "kind": "talk",
+  "id": "gv0WHhKelSE",
+  "title": "Claude Code best practices | Code w/ Claude",
+  "channel": "Anthropic",
+  "url": "https://www.youtube.com/watch?v=gv0WHhKelSE",
+  "duration": 1553,
+  "views": 578294,
+  "speakers": [
+   {
+    "name": "Cal Rueb",
+    "role": "Member of Technical Staff, Anthropic Applied AI; core contributor to Claude Code (prompts, tools, evals)"
+   }
+  ],
+  "summary": "An Anthropic engineer explains how Claude Code works as a 'pure agent' (instructions, tools, loop, agentic search with no indexing), then walks through use cases and best practices: CLAUDE.md, permissions, CLI tools over MCP, context management, plan-first workflows, TDD/linting/commits, parallel sessions, escape, headless automation, and new Claude 4 features like interleaved thinking.",
+  "perspective": "Insider on the Claude Code team, working on system prompts, tool descriptions, and evals, speaking in the early days of Claude Code (Claude 4 launch).",
+  "date": "2025"
+ },
+ "hy8UstR2NEg": {
+  "kind": "talk",
+  "id": "hy8UstR2NEg",
+  "title": "Full Course: Spec-Driven Development with Coding Agents",
+  "channel": "DeepLearningAI and JetBrains",
+  "url": "https://www.youtube.com/watch?v=hy8UstR2NEg",
+  "duration": 3694,
+  "views": 294118,
+  "speakers": [
+   {
+    "name": "Paul Everett",
+    "role": "Developer advocate at JetBrains, course instructor"
+   }
+  ],
+  "summary": "A course on spec-driven development (SDD) with coding agents. It walks through writing a project 'constitution' (mission, tech stack, roadmap), then looping through feature plan, implement and validate steps on separate branches with fresh context. It also covers replanning, brownfield adoption, skills, MCP vs CLI, plugins and agent-portability standards. The main argument is that specs, not chat history, should be the durable memory and contract between human and agent.",
+  "perspective": "Tool-vendor educators (JetBrains + DeepLearning.AI) teaching a structured, human-in-the-loop SDD workflow using Claude Code and WebStorm",
+  "date": "2026"
+ },
+ "iQyg-KypKAA": {
+  "kind": "talk",
+  "id": "iQyg-KypKAA",
+  "title": "L8 Principal's Agentic Engineering Workflow",
+  "channel": "Kun Chen",
+  "url": "https://www.youtube.com/watch?v=iQyg-KypKAA",
+  "duration": 2746,
+  "views": 1042816,
+  "speakers": [
+   {
+    "name": "Kun Chen",
+    "role": "Former L8 principal engineer (Meta, Microsoft, Atlassian), builds frontier coding agents, independent builder of open-source agent tooling (lavish, no-mistakes, good night have fun, treehouse, first mate, AXI)"
+   }
+  ],
+  "summary": "A full walkthrough of Kun Chen's terminal-centric agentic engineering workflow, framed as a captain building a crew: set up the environment, onboard agents with memory files and skills, work with one agent (voice, visual planning, automated validation pipeline), scale to parallel agents with worktrees, then delegate orchestration to a 'first mate' agent. The core argument is that engineers should act like engineering managers: spend time at the start (requirements) and end (quality bar) of tasks, and automate everything in the middle.",
+  "perspective": "Senior/principal engineer and tool builder who ships 40-50 PRs a day with agents and open-sources his own agent tooling",
+  "date": "2026"
+ },
+ "julbw1JuAz0": {
+  "kind": "talk",
+  "id": "julbw1JuAz0",
+  "title": "Building Claude Code with Boris Cherny",
+  "channel": "The Pragmatic Engineer",
+  "url": "https://www.youtube.com/watch?v=julbw1JuAz0",
+  "duration": 5879,
+  "views": 312105,
+  "speakers": [
+   {
+    "name": "Boris Cherny",
+    "role": "Creator and engineering lead of Claude Code at Anthropic; ex-Meta (7 years, led code quality)"
+   }
+  ],
+  "summary": "Boris Cherny describes how Claude Code grew from a terminal side project into a major developer tool, and how he now ships 20-30 PRs a day with no handwritten code. He covers his parallel-agent workflow, layered code review and security, prototyping instead of writing PRDs, and agent teams. He closes with a printing-press analogy for where software engineering is heading and which skills still matter.",
+  "perspective": "Builder of Claude Code and former Meta code-quality lead; a practitioner-optimist who also stresses safety and humility",
+  "date": "2026"
+ },
+ "kwSVtQ7dziU": {
+  "kind": "talk",
+  "id": "kwSVtQ7dziU",
+  "title": "Skill Issue: Andrej Karpathy on Code Agents, AutoResearch, and the Loopy Era of AI",
+  "channel": "No Priors: AI, Machine Learning, Tech, & Startups",
+  "url": "https://www.youtube.com/watch?v=kwSVtQ7dziU",
+  "duration": 3992,
+  "views": 1022469,
+  "speakers": [
+   {
+    "name": "Andrej Karpathy",
+    "role": "AI researcher, former Tesla AI director and OpenAI founding member, creator of nanoGPT/nanochat/autoresearch, Eureka Labs"
+   }
+  ],
+  "summary": "Karpathy describes how, since December 2025, he has shifted from writing code himself to delegating almost everything to coding agents, and how he now treats his own role as the bottleneck to remove. He covers parallel agents, persistent 'claw' agents (Dobby the home-automation agent), AutoResearch (autonomous loops that tune models overnight), the limits of jagged, RL-trained models, untrusted swarms of workers, open vs closed models, jobs, robotics, and writing docs and education for agents rather than humans.",
+  "perspective": "Top AI researcher and heavy daily user of coding agents (Claude Code, Codex) pushing toward fully autonomous loops; enthusiastic but candid about jaggedness and limits",
+  "date": "2026"
+ },
+ "lXUZvyajciY": {
+  "kind": "talk",
+  "id": "lXUZvyajciY",
+  "title": "Andrej Karpathy \u2014 \u201cWe\u2019re summoning ghosts, not building animals\u201d",
+  "channel": "Dwarkesh Patel",
+  "url": "https://www.youtube.com/watch?v=lXUZvyajciY",
+  "duration": 8768,
+  "views": 1432172,
+  "speakers": [
+   {
+    "name": "Andrej Karpathy",
+    "role": "AI researcher, ex-OpenAI founding member, ex-Tesla AI lead, founder of Eureka Labs, author of nanochat"
+   }
+  ],
+  "summary": "Karpathy argues this is the 'decade of agents', not the year, because current LLM agents still lack continual learning, multimodality and real cognitive depth. He describes how he actually uses coding tools (autocomplete over agents for novel code, agents for boilerplate), why RL is a noisy way to train models, and why demo-to-product gaps (the 'march of nines') apply to software as they did to self-driving. He also covers model collapse, the 'cognitive core', AI as continuous with computing and automation, and his education project Eureka Labs.",
+  "perspective": "Veteran AI researcher and practitioner, pragmatic and somewhat skeptical of hype; hands-on user of Claude Code, Codex and GPT-5 Pro; educator",
+  "date": "2025"
+ },
+ "mR-WAvEPRwE": {
+  "kind": "talk",
+  "id": "mR-WAvEPRwE",
+  "title": "Anthropic Workshop: Build Agents That Run for Hours \u2014 Ash Prabaker & Andrew Wilson",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=mR-WAvEPRwE",
+  "duration": 4540,
+  "views": 103107,
+  "speakers": [
+   {
+    "name": "Ash Prabaker",
+    "role": "Applied AI engineer, Anthropic"
+   },
+   {
+    "name": "Andrew Wilson",
+    "role": "Applied AI engineer / solution architect, Anthropic (London)"
+   }
+  ],
+  "summary": "Two Anthropic applied AI engineers explain how to build agents that run for hours. Andrew traces a year of model and harness co-evolution (context, skills, checkpoints, Ralph loop, agent teams). Ash presents a GAN-inspired planner/generator/evaluator harness with negotiated contracts and rubric-graded taste, showing it turns broken one-shot apps into working ones at higher cost, plus advice on simplifying the harness as models improve and on reading traces.",
+  "perspective": "Anthropic engineers who build long-running agent harnesses and ship Claude Code and Agent SDK primitives",
+  "date": "2026"
+ },
+ "mWvtOHlZM-I": {
+  "kind": "talk",
+  "id": "mWvtOHlZM-I",
+  "title": "Tool, skill, or subagent? Decomposing an agent that outgrew its prompt",
+  "channel": "Claude",
+  "url": "https://www.youtube.com/watch?v=mWvtOHlZM-I",
+  "duration": 2706,
+  "views": 69557,
+  "speakers": [
+   {
+    "name": "Will",
+    "role": "Engineer on Applied AI team at Anthropic"
+   }
+  ],
+  "summary": "A hands-on Code with Claude London workshop on refactoring an inventory agent (Stock Pilot) whose 400-line system prompt and 12 tools had caused eval regressions. Will shows how to decide between tools, skills, and subagents: move situational knowledge into skills, replace custom tools with code-execution primitives, keep subagents only for parallelism or fresh-context work, and hill-climb on evals. The result was a 15-line prompt, 3 tools, and about 92% eval pass.",
+  "perspective": "Anthropic applied AI engineer teaching agent architecture and eval-driven iteration, with Claude Managed Agents as the deployment platform",
+  "date": "2026"
+ },
+ "n97BCfyFIvw": {
+  "kind": "talk",
+  "id": "n97BCfyFIvw",
+  "title": "\"The engineer of the future is the person who is able to choose what is worth doing.\" \u2014\u00a0Addy Osmani",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=n97BCfyFIvw",
+  "duration": 1106,
+  "views": 85971,
+  "speakers": [
+   {
+    "name": "Addy Osmani",
+    "role": "Engineer at Google (Chrome), author, speaker at AI Engineer"
+   }
+  ],
+  "summary": "Osmani argues that as agents take over the inner execution loop (harnesses, loops, software factories), the scarce human contribution becomes judgment, evidence, and accountability. He introduces framings like alpha/decay, cognitive debt, cognitive surrender, orchestration tax, and the rule 'explain it or don't ship it', and argues engineering demand will grow, with the bottleneck moving to 'should this exist and can we answer for it'.",
+  "perspective": "Senior engineering leader and builder of agent-driven workflows, optimistic about the future of engineering but focused on accountability and human-in-the-loop verification",
+  "date": "2026"
+ },
+ "o6oYc9-X9Iw": {
+  "kind": "talk",
+  "id": "o6oYc9-X9Iw",
+  "title": "Agentic coding at Airbnb",
+  "channel": "Develocity",
+  "url": "https://www.youtube.com/watch?v=o6oYc9-X9Iw",
+  "duration": 2121,
+  "views": 23816,
+  "speakers": [
+   {
+    "name": "Szczepan Faber",
+    "role": "Engineer, Developer Platform at Airbnb (~two decades building developer tools, open source author)"
+   },
+   {
+    "name": "Mike",
+    "role": "Engineer, Developer Platform / DevAI team at Airbnb (former Android engineer)"
+   }
+  ],
+  "summary": "Two Airbnb developer-platform engineers describe how agentic coding was rolled out at Airbnb, reaching about 60-64% of PR authors in a year. They cover the pair-programming framing, the learning journey from approving every step to parallel sessions, the Airchat CLI wrapper, an early MCP bet, and moving from RAG pipelines to tool-calling knowledge access. Main argument: the agent alone isn't enough; you need infrastructure (sandboxes, MCP, code review culture), meet developers where they are, and keep human review and standards high.",
+  "perspective": "Developer-platform/tooling engineers at a large company (Airbnb) driving internal adoption of coding agents",
+  "date": "2025"
+ },
+ "ow1we5PzK-o": {
+  "kind": "talk",
+  "id": "ow1we5PzK-o",
+  "title": "The Multi-Agent Architecture That Actually Ships \u2014 Luke Alvoeiro, Factory",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=ow1we5PzK-o",
+  "duration": 1111,
+  "views": 271226,
+  "speakers": [
+   {
+    "name": "Luke Alvoeiro",
+    "role": "Leads core agent harness at Factory; previously started Goose at Block"
+   }
+  ],
+  "summary": "Luke presents Factory's 'Missions', a multi-agent system that runs coding work for hours to days using an orchestrator, workers, and validators. He argues the bottleneck is human attention, not model intelligence. Key design choices: a validation contract written before code, fresh-context workers with structured handoffs, serial feature execution with parallel read-only work, and the right model in each role.",
+  "perspective": "Builder of a production multi-agent coding harness (Factory Droid / Missions), formerly creator of Goose",
+  "date": "2026"
+ },
+ "owmJyKVu5f8": {
+  "kind": "talk",
+  "id": "owmJyKVu5f8",
+  "title": "Simon Willison: Engineering practices that make coding agents work - The Pragmatic Summit",
+  "channel": "The Pragmatic Engineer",
+  "url": "https://www.youtube.com/watch?v=owmJyKVu5f8",
+  "duration": 1700,
+  "views": 42372,
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Co-creator of Django, creator of Datasette, coined 'prompt injection' and 'lethal trifecta', prominent AI blogger"
+   }
+  ],
+  "summary": "Simon Willison describes his current agentic workflow (writing most code via Claude on his phone) and the engineering practices that make agents reliable: red/green TDD, manual testing with tools like Showboat, conformance suites, and templates that seed good patterns. He also covers prompt injection, the lethal trifecta and sandboxing, and reflects on the exhausting pace, shifting careers, and open source under pressure from agents.",
+  "perspective": "Veteran open-source engineer and AI-security commentator who is a heavy daily practitioner of coding agents",
+  "date": "2026"
+ },
+ "pqlWNihgdjI": {
+  "kind": "talk",
+  "id": "pqlWNihgdjI",
+  "title": "From AI-Assisted to AI-Native: Building a Frontier Development Team \u2014 Clare Liguori, AWS",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=pqlWNihgdjI",
+  "duration": 1257,
+  "views": 116699,
+  "speakers": [
+   {
+    "name": "Clare Liguori",
+    "role": "Senior Principal Engineer at AWS, works on Kiro (agentic coding assistant)"
+   }
+  ],
+  "summary": "Liguori describes 'frontier development' inside Amazon: engineers write 1-2% of code by hand, run agents for hours, and run many in parallel. Pilots showed a median 4.5x productivity gain (sometimes 10x+), but only on teams that intentionally changed how they work rather than sprinkling AI tools on existing processes. She lays out five habits, plus the pitfalls of burnout, rollout speed, and new organizational bottlenecks.",
+  "perspective": "AWS senior principal engineer and Kiro builder reporting on internal Amazon pilots",
+  "date": "2026"
+ },
+ "qyPCVqFUyDo": {
+  "kind": "talk",
+  "id": "qyPCVqFUyDo",
+  "title": "Boris Cherny: We Cut 80% of Claude Code\u2019s Prompt",
+  "channel": "Y Combinator",
+  "url": "https://www.youtube.com/watch?v=qyPCVqFUyDo",
+  "duration": 2152,
+  "views": 326778,
+  "speakers": [
+   {
+    "name": "Boris Cherny",
+    "role": "Creator of Claude Code at Anthropic"
+   }
+  ],
+  "summary": "Boris Cherny discusses the Opus 5 release and how Claude Code's harness is rebuilt with each model: deleting 80% of the system prompt, using ablations, and giving models harder tasks with verification. He covers product overhang, long-running jobs (an 11-day Zig-to-Rust Bun rewrite, a 2-week Swift rewrite), dynamic workflows with thousands of agents, and self-maintaining routines. His core claim is that working with models is an empirical science, not about tricks or over-specifying.",
+  "perspective": "Builder of Claude Code at Anthropic, speaking to a startup-founder audience",
+  "date": "2026"
+ },
+ "rmvDxxNubIg": {
+  "kind": "talk",
+  "id": "rmvDxxNubIg",
+  "title": "No Vibes Allowed: Solving Hard Problems in Complex Codebases \u2013\u00a0Dex Horthy, HumanLayer",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=rmvDxxNubIg",
+  "duration": 1231,
+  "views": 659940,
+  "speakers": [
+   {
+    "name": "Dex Horthy",
+    "role": "Founder/CEO of HumanLayer, author of '12 Factor Agents', originator of the term 'context engineering'"
+   }
+  ],
+  "summary": "Dex Horthy argues that AI coding agents fail in complex brownfield codebases because of poor context management, and presents a Research-Plan-Implement workflow built on 'frequent intentional compaction' to stay in the 'smart zone' of the context window. He stresses that humans must not outsource thinking: reviewing research and plans is the highest-leverage human activity and keeps teams mentally aligned.",
+  "perspective": "Startup founder and practitioner building agent tooling who rewired his team's workflow around context engineering, speaking from hands-on brownfield experience",
+  "date": "2025"
+ },
+ "rnDm57Py54A": {
+  "kind": "talk",
+  "id": "rnDm57Py54A",
+  "title": "Building your own software factory \u2014 Eric Zakariasson, Cursor",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=rnDm57Py54A",
+  "duration": 5017,
+  "views": 41767,
+  "speakers": [
+   {
+    "name": "Eric Zakariasson",
+    "role": "Engineer at Cursor (developer experience and product)"
+   }
+  ],
+  "summary": "Eric Zakariasson describes how Cursor dogfoods its own product to move toward a 'software factory' where agents do most of the work. He covers autonomy levels, the primitives a factory needs (codebase structure, guardrails, enablers, verifiability), the shift from worker to manager, and Cursor's internal automations. A long Q&A covers code quality, team silos, enterprise risk, handoff from PMs, and roles.",
+  "perspective": "Cursor engineer and heavy daily user of cloud agents, practitioner-level view with product plugs",
+  "date": "2026"
+ },
+ "sLSTM9znQNs": {
+  "kind": "talk",
+  "id": "sLSTM9znQNs",
+  "title": "Building Codex with Tibo Sottiaux",
+  "channel": "The Pragmatic Engineer",
+  "url": "https://www.youtube.com/watch?v=sLSTM9znQNs",
+  "duration": 4463,
+  "views": 221832,
+  "speakers": [
+   {
+    "name": "Tibo Sottiaux",
+    "role": "Leads the Codex team at OpenAI; formerly Google and DeepMind"
+   }
+  ],
+  "summary": "Tibo Sottiaux, who leads Codex at OpenAI, explains how Codex began as internal research agents and why it was built in Rust and open sourced. He also covers how the harness and model co-evolve, how code review and maintenance are being automated, how the Codex and ChatGPT merge worked, and how the team uses Codex for everything internally.",
+  "perspective": "Builder and lead of OpenAI Codex (an AI coding harness), speaking from inside a frontier lab",
+  "date": "2026"
+ },
+ "sX1GYDHaCiw": {
+  "kind": "talk",
+  "id": "sX1GYDHaCiw",
+  "title": "Subagents & the Multiplication of Context Windows   Thorsten Ball",
+  "channel": "Amp, Inc.",
+  "url": "https://www.youtube.com/watch?v=sX1GYDHaCiw",
+  "duration": 730,
+  "views": 189,
+  "speakers": [
+   {
+    "name": "Thorsten Ball",
+    "role": "Engineer at Sourcegraph working on Amp, an AI coding agent"
+   }
+  ],
+  "summary": "A short talk arguing that subagents matter because they change our relationship to the context window. Each subagent gets its own fresh context window, so noisy tool calls stay out of the main agent's context and only the final result comes back. Ball demos a search subagent, an 'Oracle' subagent backed by a different model (o3), and parallel subagents that edit files.",
+  "perspective": "Builder of an AI coding agent (Amp at Sourcegraph), enthusiastic but explicitly not claiming subagents solve everything",
+  "date": "2025"
+ },
+ "shZgedW15vg": {
+  "kind": "talk",
+  "id": "shZgedW15vg",
+  "title": "How Anthropic uses Claude Code: Agentic Software Engineering at Scale - Daisy Hollman",
+  "channel": "NDC Conferences",
+  "url": "https://www.youtube.com/watch?v=shZgedW15vg",
+  "duration": 3625,
+  "views": 35236,
+  "speakers": [
+   {
+    "name": "Daisy Hollman",
+    "role": "Engineer at Anthropic on Claude Code; led design/implementation of plugins and agent teams; former C++ standards committee chair"
+   }
+  ],
+  "summary": "Daisy Hollman explains how Anthropic customizes and scales Claude Code for real, large-scale software engineering. She frames the context window as the fundamental primitive. She evaluates plugin abstractions (MCP, skills, subagents, hooks) by whether they scale with 'don't pay for what you don't use', and describes running many parallel agents with worktrees, agent teams, /loop, auto mode and fleet view.",
+  "perspective": "Builder of Claude Code plugins/agent teams features at Anthropic; language/parallel-systems veteran focused on scaling agentic engineering to monorepos",
+  "date": "2026"
+ },
+ "uU5Gv2h8-9g": {
+  "kind": "talk",
+  "id": "uU5Gv2h8-9g",
+  "title": "Claude Fable, Claude Tag, and Anthropic's Culture \u2014 Cat Wu & Thariq Shihipar ft Simon Willison",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=uU5Gv2h8-9g",
+  "duration": 3090,
+  "views": 16853,
+  "speakers": [
+   {
+    "name": "Cat Wu",
+    "role": "Product lead on Claude Code at Anthropic"
+   },
+   {
+    "name": "Thariq Shihipar",
+    "role": "Claude Code team member at Anthropic"
+   }
+  ],
+  "summary": "A fireside chat with two Claude Code team members about how their work has changed with newer models (Opus 4.8, 'Fable'), the launch of Claude Tag (a multiplayer, proactive Slack agent), and how Anthropic handles code review, evals, system prompts, tools, and security (auto mode). The main argument is that as models get better you should trust them with more judgment, remove constraints and humans from the loop only after building eval infrastructure, and push your ambition and product taste higher.",
+  "perspective": "Builders of Claude Code and Claude Tag at Anthropic, interviewed by an experienced independent developer",
+  "date": "2026"
+ },
+ "v3Fr2JR47KA": {
+  "kind": "talk",
+  "id": "v3Fr2JR47KA",
+  "title": "The Future of MCP \u2014 David Soria Parra, Anthropic",
+  "channel": "AI Engineer",
+  "url": "https://www.youtube.com/watch?v=v3Fr2JR47KA",
+  "duration": 1126,
+  "views": 146053,
+  "speakers": [
+   {
+    "name": "David Soria Parra",
+    "role": "Co-creator of MCP (Model Context Protocol), Anthropic"
+   }
+  ],
+  "summary": "A state-of-MCP talk covering MCP's growth (110M monthly downloads), the claim that 2026 is about putting general agents into production where connectivity is key, and a framework of skills, MCP, and CLI/computer use as complementary tools. He urges client-side progressive discovery and programmatic tool calling, designing servers for agents rather than wrapping REST APIs, and previews upcoming spec work (stateless transport, async tasks, cross-app access, server discovery, skills over MCP).",
+  "perspective": "MCP co-creator at Anthropic advocating a pluralistic connectivity stack and better MCP client/server practices",
+  "date": "2026"
+ },
+ "vKT59uoByXc": {
+  "kind": "talk",
+  "id": "vKT59uoByXc",
+  "title": "Why Coding Agents Keep Making Your Codebase Worse",
+  "channel": "Beyond Coding and Agentic AI Foundation",
+  "url": "https://www.youtube.com/watch?v=vKT59uoByXc",
+  "duration": 2716,
+  "views": 113105,
+  "speakers": [
+   {
+    "name": "Dex Horthy",
+    "role": "CEO of HumanLayer, coined the term 'context engineering'"
+   }
+  ],
+  "summary": "Dex Horthy argues that coding agents still degrade codebases over time (citing SlopCodeBench), that most online agent hype and 'token maxing' is fake, and that realistic gains are 2-4x, not 100x. He lays out his team's actual workflow: small one-shot PRs, overnight 'janitor' bots, design-doc-first planning with checkpointed implementation, and reading all agent code before review.",
+  "perspective": "Startup founder/builder of agent tooling for large enterprise teams; pragmatic skeptic of hype and 'dark factory' claims",
+  "date": "2026"
+ },
+ "wc8FBhQtdsA": {
+  "kind": "talk",
+  "id": "wc8FBhQtdsA",
+  "title": "An\u00a0AI state of the union: We\u2019ve passed the inflection point & dark factories are coming",
+  "channel": "Lenny's Podcast",
+  "url": "https://www.youtube.com/watch?v=wc8FBhQtdsA",
+  "duration": 5991,
+  "views": 209040,
+  "speakers": [
+   {
+    "name": "Simon Willison",
+    "role": "Co-creator of Django, creator of Datasette, coined 'prompt injection' and 'lethal trifecta', writes on agentic engineering"
+   }
+  ],
+  "summary": "Simon Willison gives an AI state of the union: models crossed an inflection point in November 2025 (GPT 5.1 / Claude Opus 4.5) so coding agents now mostly do what you ask. He distinguishes vibe coding from agentic engineering, describes dark-factory/software-factory experiments (StrongDM), and shares concrete patterns (red/green TDD, thin templates, hoarding working examples). He also warns about cognitive exhaustion and the unsolved lethal trifecta / prompt injection problem, predicting an eventual 'Challenger disaster' of AI.",
+  "perspective": "Veteran senior engineer and open-source builder who heavily uses coding agents daily (Claude Code, Codex), a security-minded AI commentator and blogger",
+  "date": "2026"
+ },
+ "xUnRQ9vLXxo": {
+  "kind": "talk",
+  "id": "xUnRQ9vLXxo",
+  "title": "Everything we knew about software has changed \u2014 Theo Browne, @t3dotgg \u200b",
+  "channel": "AI Engineer and Theo - t3\u2024gg",
+  "url": "https://www.youtube.com/watch?v=xUnRQ9vLXxo",
+  "duration": 962,
+  "views": 96029,
+  "speakers": [
+   {
+    "name": "Theo Browne (t3.gg)",
+    "role": "YouTuber, founder, developer building T3 Chat and a 'full stack cloud'"
+   }
+  ],
+  "summary": "Theo describes his 'AI psychosis' journey through model eras (Sonnet 3.5 = tool calls, Opus 4.5 = long-running tasks, Mythos = orchestration). He argues developers must drop old habits and sunk-cost attachments (the 'skeuomorphic phase' of software), and shift ambition: what used to be a startup is now a side project, so build wider and attempt things that feel stupidly big.",
+  "perspective": "Veteran developer and content creator, enthusiastic AI maximalist urging engineers to think bigger and abandon legacy habits",
+  "date": "2026"
+ },
+ "yv8VZpov8bk": {
+  "kind": "talk",
+  "id": "yv8VZpov8bk",
+  "title": "I'm using claude --worktree for everything now",
+  "channel": "Matt Pocock",
+  "url": "https://www.youtube.com/watch?v=yv8VZpov8bk",
+  "duration": 477,
+  "views": 116047,
+  "speakers": [
+   {
+    "name": "Matt Pocock",
+    "role": "TypeScript educator and AI coding course creator"
+   }
+  ],
+  "summary": "Matt Pocock tries Claude Code's new built-in git worktree support (`claude --worktree`) for the first time. He explains how git worktrees work, shows that Claude wraps them with auto-named branches and lifecycle cleanup, and flags a gotcha: commits and pushes can land on main unless the agent pushes an explicitly named branch. He argues this makes parallelization nearly free, and that AI coding relies on old fundamentals like TDD and planning.",
+  "perspective": "Independent educator and practitioner, first-impressions hands-on demo; building a Claude Code course",
+  "date": "2026"
+ }
+}

@@ -1,0 +1,125 @@
+{
+  "id": "14-git",
+  "number": 14,
+  "slug": "git-for-coding-agents",
+  "module": "Your toolkit",
+  "title": "Git is your safety net",
+  "short": "Git is your safety net",
+  "summary": "Agents make mistakes fast; git lets you undo them faster. And every coding agent is fluent in git, including the parts nobody remembers. Use commits as save points, history as research material, bisect for bug hunts, and branches to keep work isolated.",
+  "takeaways": [
+    "Commit after every working step. Small commits are save points and easy reviews.",
+    "Seed a new session with history: “look at the recent commits” loads useful context fast.",
+    "Agents are fluent in git: history digs, bisect, reflog, conflict resolution, cleanup.",
+    "One task per branch. Worktrees let several agents work without colliding.",
+    "Protect what can't be undone: no force-pushes or resets on shared branches without asking."
+  ],
+  "practices": [
+    "Commit after each verified step with a clear message describing what and why.",
+    "Use git history (log -S, blame, linked issues) to understand why code is the way it is before changing it.",
+    "Ask before any destructive git operation: force-push, hard reset, branch deletion, history rewrites on shared branches.",
+    "Resolve merge conflicts by reasoning about the intent of both sides, then run the tests before finishing."
+  ],
+  "sources": [
+    {"id": "article-willison-aep-using-git-with-coding-agents"},
+    {"id": "article-anthropic-long-running-harnesses"},
+    {"id": "BEKc4P87XKo", "t": 1005},
+    {"id": "6eBSHbLKuN0", "t": 396},
+    {"id": "yv8VZpov8bk"},
+    {"id": "julbw1JuAz0", "t": 2020}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "Agents make mistakes fast. Git lets you undo them faster. And it turns out every coding agent is fluent in git, including the commands nobody can remember.",
+      "params": {"kicker": "Lesson 14", "module": "Module 3 · Your toolkit", "title": "Git is your *safety net*", "subtitle": "Save points, history, and fearless experiments.", "bubble": "I speak fluent git.", "mood": "happy"}
+    },
+    {
+      "template": "quote", "chapter": "Fluent in git",
+      "narration": "Simon Willison points out that all the coding agents are fluent in git's features, both basic and advanced. That means we can be more ambitious with git ourselves. We don't need to memorize how to do things. We just need to know what's possible.",
+      "params": {"text": "We don't need to memorize *how* to do things with Git, but staying aware of what's possible means we can take advantage of the full suite.", "who": "Simon Willison", "role": "Agentic Engineering Patterns", "src": "Using Git with coding agents"}
+    },
+    {
+      "template": "flow", "chapter": "Save points",
+      "narration": "The first habit is save points. Commit after every step that works. In Anthropic's long-running agent experiments, committing progress with descriptive messages let the agent revert bad changes by itself. Brendan O'Leary treats these small local commits as his first pull request review.",
+      "params": {"nodes": [
+        {"label": "Small step", "sub": "one change", "kind": "agent", "at": "every step"},
+        {"label": "Tests pass", "sub": "verified", "kind": "test", "at": "works"},
+        {"label": "Commit", "sub": "a save point", "kind": "git", "at": "Commit"},
+        {"label": "Review the diff", "sub": "your first PR review", "kind": "human", "at": "first pull request"}
+      ], "caption": "If the next step goes wrong, you're one command from safety.", "caption_at": "revert"}
+    },
+    {
+      "template": "terminal", "chapter": "Seed with history",
+      "narration": "History is also great context. Starting a fresh session? Ask the agent to look at the recent changes. It runs git log and git diff, and instantly knows what you've been working on, from both the code and the commit messages.",
+      "params": {"title": "~/shop · new session", "lines": [
+        {"k": "you", "text": "review the recent changes and tell me where we left off", "at": "recent changes"},
+        {"k": "tool", "text": "Bash(git log --oneline -8)", "at": "git log"},
+        {"k": "tool", "text": "Bash(git diff HEAD~3 --stat)", "at": "git diff"},
+        {"k": "agent", "text": "You're midway through CSV export: streaming works,"},
+        {"k": "agent", "text": "filters are done, pagination was reverted. Next: large reports.", "at": "instantly knows"}
+      ]}
+    },
+    {
+      "template": "chat", "chapter": "History as research",
+      "narration": "Git history answers why questions too. Boris Cherny's example: ask why a function has weird arguments, and the agent digs through the commits and the linked issues to find out. There's nothing in the system prompt about this, he says. If you tell it to use git, it knows how.",
+      "params": {"messages": [
+        {"from": "you", "text": "why does `applyDiscount` take a `legacyMode` flag? check the git history", "at": "weird arguments"},
+        {"from": "agent", "text": "It was added in 2023 (commit 4e1a9c0) for old invoices issued before VAT changes, per issue #212. Nothing calls it with `true` since March. Safe to remove behind a test.", "tone": "good", "at": "digs"}
+      ]}
+    },
+    {
+      "template": "list", "chapter": "Superpowers",
+      "narration": "A few git superpowers become everyday tools. Bisect: give the agent a test for a bug, and it binary-searches history to find the commit that caused it. Reflog: lost work that was never committed? The agent can often find it. Merge conflicts: it reasons about the intent of both sides, then runs the tests. And cleanup: it remembers the exact command to undo your last commit.",
+      "params": {"title": "Git superpowers, on demand", "items": [
+        {"text": "Bisect", "sub": "“find the commit that broke this”", "at": "Bisect"},
+        {"text": "Reflog", "sub": "recover work you thought was lost", "at": "Reflog"},
+        {"text": "Merge conflicts", "sub": "resolved by intent, then tested", "at": "Merge conflicts"},
+        {"text": "Cleanup", "sub": "undo, split, squash, rewrite messages", "at": "cleanup"}
+      ]}
+    },
+    {
+      "template": "terminal", "chapter": "Superpowers",
+      "narration": "Here's bisect in action. You describe the bug. The agent writes a tiny script that reproduces it, hands it to git bisect, and comes back with the exact commit. Simon Willison notes this turns bisect from an occasional tool into one you can use whenever you're curious.",
+      "params": {"title": "~/shop · hunting a regression", "lines": [
+        {"k": "you", "text": "totals were right last month and wrong now. find the commit.", "at": "describe the bug"},
+        {"k": "tool", "text": "Write(check_total.sh)  # exits 1 when the total is wrong", "at": "tiny script"},
+        {"k": "tool", "text": "Bash(git bisect start HEAD v2.3 && git bisect run ./check_total.sh)", "at": "git bisect"},
+        {"k": "dim", "text": "  Bisecting: 37 revisions left to test after this (roughly 5 steps)"},
+        {"k": "ok", "text": "7f0b13d is the first bad commit: \"stream rows instead of buffering\"", "at": "exact commit"}
+      ]}
+    },
+    {
+      "template": "statement", "chapter": "Branches and worktrees",
+      "narration": "Use one branch per task, so experiments stay isolated and easy to throw away. And when you want several agents working at once, git worktrees give each one its own checkout of the repo. Matt Pocock says he now uses worktrees for everything. We'll go deep on that in module four.",
+      "params": {"text": "One task, one *branch*. Several agents? One *worktree* each.", "sub": "Isolated experiments are cheap to keep and cheap to throw away.", "art": "branch", "tone": "agent", "sync": false}
+    },
+    {
+      "template": "compare", "chapter": "Guard rails",
+      "narration": "One caution. Agents are fluent in the dangerous commands too. Force-pushing, hard resets and history rewrites on shared branches can destroy other people's work. Let the agent experiment freely on its own branch, and require your approval for anything that can't be undone.",
+      "params": {
+        "left": {"title": "Let it run", "tone": "good", "items": ["Commits on its own branch", "Local history cleanup", "Bisect, log, blame, diff"], "at": "experiment freely"},
+        "right": {"title": "Ask me first", "tone": "bad", "items": ["Force-push", "Hard reset on shared branches", "Deleting branches or rewriting shared history"], "at": "can't be undone"}
+      }
+    },
+    {
+      "template": "quiz", "chapter": "Quick check",
+      "narration": "Quick check. A bug appeared sometime in the last month, across a few hundred commits. What's the fastest way to find the cause with an agent? Tap your answer.",
+      "params": {"q": "A bug appeared sometime in the last month (a few hundred commits). Fastest way to find the cause?", "options": [
+        "Read every commit yourself",
+        "Have the agent write a check for the bug and run git bisect",
+        "Revert the whole month",
+        "Ask the agent to guess from the file names"
+      ], "answer": 1, "explain": "Bisect binary-searches history: a few hundred commits take about eight checks."}
+    },
+    {
+      "template": "exercise", "chapter": "Try it",
+      "narration": "Try using history as context. This prompt asks your agent to summarize where the project is heading and to explain why one piece of code is the way it is, without changing anything.",
+      "params": {"title": "Try it with your agent", "intro": "In any repo with some history:", "prompt": "Look at the last 10 commits and summarize where this project is\nheading. Then pick the most confusing function you've seen and tell\nme why it's written that way, using git log -S, blame and any\nlinked issues. Don't modify anything."}
+    },
+    {
+      "template": "recap", "chapter": "Recap",
+      "narration": "Recap. Commit after every working step. Seed sessions with history. Use git's superpowers: bisect, reflog, conflict resolution. One task per branch, one worktree per agent. And keep the irreversible commands behind your approval. Next module: scaling up, starting with subagents.",
+      "params": {"items": ["Commits are *save points*", "History is context and research", "Bisect, reflog, conflicts: on demand", "Approval for anything irreversible"], "next": "Subagents: delegate to a fresh context", "next_at": "Next module"}
+    }
+  ]
+}

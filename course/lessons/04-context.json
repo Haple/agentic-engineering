@@ -1,0 +1,157 @@
+{
+  "id": "04-context",
+  "number": 4,
+  "slug": "context-engineering",
+  "module": "Working with one agent",
+  "title": "Context is everything",
+  "short": "Context is everything",
+  "summary": "Almost every best practice for coding agents comes from one constraint: the context window fills up fast, and quality drops as it fills. Learn the smart zone and the dumb zone, why fresh sessions beat long ones, and the four moves of context engineering.",
+  "takeaways": [
+    "The context window is the agent's working memory. It doesn't learn as it goes; you program that memory directly.",
+    "Quality degrades long before the window is full. Treat roughly the first 40% as the smart zone.",
+    "A long session full of failed attempts poisons the trajectory. A fresh session with a better prompt usually wins.",
+    "Write important state to files, start fresh often, and load context just in time instead of up front.",
+    "Context engineering has four moves: write it down, select what's relevant, compress, and isolate."
+  ],
+  "practices": [
+    "Load context just in time: search and read the files the task needs instead of reading everything up front.",
+    "Keep tool output lean: summarize long logs and stack traces instead of pasting them whole.",
+    "At natural breakpoints, write the goal, decisions, open questions and next step to a file so a fresh session can resume.",
+    "If the same correction has been needed twice, stop and suggest restarting with a clean session and a better prompt."
+  ],
+  "sources": [
+    {"id": "article-anthropic-claude-code-best-practices"},
+    {"id": "LCEmiRjPEtQ", "t": 1029},
+    {"id": "4GiqzUHD5AA", "t": 55},
+    {"id": "4GiqzUHD5AA", "t": 220},
+    {"id": "Usufn8IQJgw", "t": 4226},
+    {"id": "Usufn8IQJgw", "t": 4278},
+    {"id": "Usufn8IQJgw", "t": 4338},
+    {"id": "Usufn8IQJgw", "t": 4421},
+    {"id": "YwZR6tc7qYg", "t": 1560},
+    {"id": "-QFHIoCo-Ko", "t": 251},
+    {"id": "-uW5-TaVXu4", "t": 418},
+    {"id": "4Nna09dG_c0", "t": 761},
+    {"id": "article-anthropic-context-engineering"},
+    {"id": "BEKc4P87XKo", "t": 663},
+    {"id": "YAsxyoTWFDA", "t": 842}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "If you remember one lesson from this course, make it this one. Almost every best practice for working with coding agents comes from a single constraint.",
+      "params": {"kicker": "Lesson 4", "module": "Module 2 · Working with one agent", "title": "Context is *everything*", "subtitle": "The smart zone, the dumb zone, and how to stay smart.", "bubble": "My memory is… limited.", "mood": "think"}
+    },
+    {
+      "template": "quote", "chapter": "The constraint",
+      "narration": "Anthropic's own guide to Claude Code says it plainly. Most best practices are based on one constraint: the context window fills up fast, and performance degrades as it fills.",
+      "params": {"text": "Most best practices are based on one constraint: the context window fills up fast, and *performance degrades as it fills*.", "who": "Anthropic", "role": "Best practices for Claude Code", "src": "code.claude.com docs"}
+    },
+    {
+      "template": "formula", "chapter": "Working memory",
+      "narration": "Karpathy offers a helpful picture. The model is like a CPU. The context window is its RAM, a small working memory. And unlike a new colleague, the model doesn't get smarter as it works with you. So you are the operating system, deciding what goes into that memory.",
+      "params": {"parts": [
+        {"text": "Model", "icon": "brain", "sub": "the CPU", "tone": "ink", "at": "CPU"},
+        {"op": "+"},
+        {"text": "Context", "icon": "layers", "sub": "the RAM: small working memory", "tone": "soft", "at": "RAM"},
+        {"op": "+"},
+        {"text": "You", "icon": "user", "sub": "the operating system", "tone": "human", "at": "operating system"}
+      ], "caption": "It doesn't learn as it goes. You program its memory directly.", "caption_at": "smarter"}
+    },
+    {
+      "template": "context", "chapter": "Smart zone, dumb zone",
+      "narration": "Here's the catch. Quality doesn't hold steady until the window is full. Dex Horthy calls the early part the smart zone. Past it comes the dumb zone, where the agent forgets instructions and contradicts itself. His rule of thumb for beginners: try to stay under about forty percent, and start wrapping up around sixty.",
+      "params": {"title": "One session's context window", "cap": "200K tokens", "blocks": [
+        {"label": "system + tools", "kind": "sys", "w": 0.1, "at": "early"},
+        {"label": "memory", "kind": "mem", "w": 0.04},
+        {"label": "your task", "kind": "you", "w": 0.04},
+        {"label": "files read", "kind": "file", "w": 0.18, "at": "smart zone"},
+        {"label": "test output", "kind": "out", "w": 0.14, "at": "dumb zone"},
+        {"label": "retries", "kind": "junk", "w": 0.16, "at": "contradicts"}
+      ], "zones": [{"from": 0, "to": 0.4, "label": "smart zone", "tone": "good"}, {"from": 0.4, "to": 0.6, "label": "wrap up", "tone": "warn"}, {"from": 0.6, "to": 1, "label": "dumb zone", "tone": "bad"}], "zones_at": "smart zone", "rot": {"at": "forgets", "from": 0.45}}
+    },
+    {
+      "template": "terminal", "chapter": "Smart zone, dumb zone",
+      "narration": "You'll recognize the dumb zone when you see it. Deep into a long session, the agent starts trying more and more extreme things to make a test pass. Dex's favorite example: let me just delete your env file and try again. That's your cue to stop.",
+      "params": {"title": "180K tokens in…", "lines": [
+        {"k": "err", "text": "FAIL  auth.test.ts (attempt 6)"},
+        {"k": "agent", "text": "Let me try mocking the whole auth module."},
+        {"k": "err", "text": "FAIL  auth.test.ts (attempt 7)", "at": "more and more"},
+        {"k": "agent", "text": "I'll disable the token check for now."},
+        {"k": "err", "text": "FAIL  auth.test.ts (attempt 8)"},
+        {"k": "agent", "text": "Let me delete your .env file and try again.", "at": "delete"},
+        {"k": "warn", "text": "← time to stop and start fresh", "at": "cue"}
+      ]}
+    },
+    {
+      "template": "list", "chapter": "What poisons context",
+      "narration": "Size isn't the only problem. Dex lists four things that matter in a context window. Its size. Its quality, meaning wrong or outdated information. What's missing. And the trajectory, the history of what the agent has done. Models continue patterns, so a history full of mistakes and corrections invites more mistakes.",
+      "params": {"title": "Four things that matter in a context window", "style": "num", "items": [
+        {"text": "Size", "sub": "how many tokens", "at": "size"},
+        {"text": "Quality", "sub": "wrong or outdated information", "at": "quality"},
+        {"text": "Missing information", "sub": "what it needed but never saw", "at": "missing"},
+        {"text": "Trajectory", "sub": "a history of mistakes invites more", "at": "trajectory"}
+      ]}
+    },
+    {
+      "template": "quote", "chapter": "What poisons context",
+      "narration": "He describes it from the model's point of view. If I read the history, I should probably make another mistake, so the human can yell at me. When a session reaches that point, more corrections won't help.",
+      "params": {"text": "If I read the history, I should probably make another mistake so the human can *yell at me*.", "who": "Dex Horthy", "role": "founder, HumanLayer, on a poisoned trajectory", "src": "Context engineering with Dex Horthy · The Pragmatic Engineer", "t": 4421}
+    },
+    {
+      "template": "compare", "chapter": "Fresh beats long",
+      "narration": "Which leads to the most practical habit in this course. Anthropic's guidance: if you've corrected the agent twice on the same thing, clear the session and start over with a better prompt that includes what you learned. A clean session with a better prompt almost always beats a long one full of corrections.",
+      "params": {
+        "left": {"title": "One long session", "items": ["Corrections pile up", "Failed attempts stay in view", "Quality keeps sliding"], "at": "corrected"},
+        "right": {"title": "Fresh session, better prompt", "items": ["Starts in the smart zone", "Includes what you learned", "Usually finishes faster"], "at": "clean session"}
+      }
+    },
+    {
+      "template": "chat", "chapter": "Hand off, then clear",
+      "narration": "Here's how to restart without losing progress. Ask the agent to summarize the session for a fresh agent: the goal, what was decided, what failed, which files matter. Review it, clear, and paste it in. As Brendan O'Leary says, AI is really great at writing prompts for AI.",
+      "params": {"messages": [
+        {"from": "you", "text": "Summarize this session for a fresh agent: goal, decisions, what failed and why, key files, next step. Under 200 words.", "at": "summarize"},
+        {"from": "agent", "text": "**Goal:** fix flaky auth test. **Decided:** keep real token check. **Failed:** mocking the module (hides the bug). **Files:** auth.ts, session.ts. **Next:** fix the clock skew in session.ts.", "tone": "good", "at": "decided"},
+        {"from": "you", "text": "/clear  → paste the summary", "label": "fresh start", "at": "clear"}
+      ]}
+    },
+    {
+      "template": "stat", "chapter": "Clear or compact",
+      "narration": "What about compaction, where the agent summarizes itself automatically when the window fills? It works, but it's lossy, and it decides what to forget on its own. Matt Pocock's advice: clear should be your default. Compact only when you want to keep the gist. Better yet, write the important state to a file before you need to.",
+      "params": {"items": [
+        {"value": "/clear", "label": "your default", "sub": "known, clean starting point", "tone": "good", "at": "default"},
+        {"value": "/compact", "label": "keep the gist", "sub": "lossy: it chooses what to forget", "tone": "ink", "at": "gist"}
+      ], "src": "Advice from Matt Pocock and Anthropic's Claude Code guide"}
+    },
+    {
+      "template": "list", "chapter": "Four moves",
+      "narration": "Lance Martin sums up context engineering in four moves. Write things down outside the window, in notes and plans. Select only what's relevant for this step. Compress what you keep. And isolate work in separate contexts, like subagents, so one task doesn't pollute another. We'll use all four throughout the course.",
+      "params": {"title": "The four moves of context engineering", "style": "num", "items": [
+        {"text": "Write", "sub": "notes, plans, progress files outside the window", "at": "write"},
+        {"text": "Select", "sub": "only what this step needs, just in time", "at": "select"},
+        {"text": "Compress", "sub": "summaries instead of raw logs", "at": "compress"},
+        {"text": "Isolate", "sub": "separate contexts, like subagents", "at": "isolate"}
+      ]}
+    },
+    {
+      "template": "quiz", "chapter": "Quick check",
+      "narration": "Quick check. You've corrected your agent three times on the same bug, and it keeps making it. What's the best move? Tap your answer.",
+      "params": {"q": "You've corrected the agent three times on the same bug. What's the best move?", "options": [
+        "Correct it again, more firmly",
+        "Switch to a model with a bigger context window",
+        "Get a summary of what you learned, then start a fresh session",
+        "Paste in the whole codebase so it has more context"
+      ], "answer": 2, "explain": "The trajectory is poisoned. A clean session with a better prompt beats more corrections, and a bigger window just extends the dumb zone."}
+    },
+    {
+      "template": "exercise", "chapter": "Try it",
+      "narration": "Practice the handoff. Next time a session feels long, paste this prompt, save the summary, clear the session, and start again from the summary. Notice how much sharper the agent feels.",
+      "params": {"title": "Try it with your agent", "intro": "In a long session, before you clear it:", "prompt": "Summarize this session for a fresh agent who knows nothing:\nthe goal, decisions made, what failed and why, the files that\nmatter, and the exact next step. Under 200 words.\nSave it to notes/handoff.md."}
+    },
+    {
+      "template": "recap", "chapter": "Recap",
+      "narration": "Recap. Context is the agent's working memory, and quality drops as it fills. Stay in the smart zone. When a session goes bad, hand off and start fresh. And write, select, compress and isolate. Next, the core workflow that puts all of this to work: explore, plan, implement, verify.",
+      "params": {"items": ["Context = the agent's *working memory*", "Stay in the smart zone (≈ under 40%)", "Poisoned session? Hand off and start fresh", "Write, select, compress, isolate"], "next": "The core loop: explore, plan, implement, verify", "next_at": "Next"}
+    }
+  ]
+}

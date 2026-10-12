@@ -1,0 +1,379 @@
+{
+ "id": "03-jagged",
+ "number": 3,
+ "slug": "what-agents-are-good-at",
+ "module": "The shift",
+ "title": "What agents are great at, and where they fail",
+ "short": "Where agents shine and fail",
+ "summary": "Agent intelligence is jagged: superhuman on some tasks, baffling on others. The pattern isn't random. Agents fly where results are easy to verify and stumble on judgment, design and long, unchecked runs. Learn to delegate by verifiability.",
+ "takeaways": [
+  "Agent ability is jagged: the same model can refactor a huge codebase and still make a mistake no human would.",
+  "Models are best at what can be verified. Code is ideal because you can compile it, run it and test it.",
+  "Agents struggle with judgment: architecture, design quality and business context. Their code can be technically correct and contextually wrong.",
+  "They report success confidently, even when they failed or quietly weakened a test. Don't trust, verify.",
+  "Delegate by verifiability and risk: easy to check and cheap to get wrong means more autonomy."
+ ],
+ "practices": [
+  "Never report a task as done without evidence; if a check was skipped or failed, say so plainly.",
+  "Never weaken, skip or delete tests to make them pass; fix the code or flag the test as wrong and explain why.",
+  "Flag design decisions that need human judgment (data models, identifiers, money, security, public APIs) instead of silently choosing.",
+  "Don't add functionality that wasn't asked for, even if it seems like a natural next step; propose it instead."
+ ],
+ "sources": [
+  {
+   "id": "96jN2OCOfLs",
+   "t": 699
+  },
+  {
+   "id": "96jN2OCOfLs",
+   "t": 597
+  },
+  {
+   "id": "96jN2OCOfLs",
+   "t": 1002
+  },
+  {
+   "id": "96jN2OCOfLs",
+   "t": 1214
+  },
+  {
+   "id": "96jN2OCOfLs",
+   "t": 1360
+  },
+  {
+   "id": "8lF7HmQ_RgY",
+   "t": 3652
+  },
+  {
+   "id": "D7_ipDqhtwk",
+   "t": 324
+  },
+  {
+   "id": "BEKc4P87XKo",
+   "t": 210
+  },
+  {
+   "id": "Ib5GBkD555M",
+   "t": 771
+  },
+  {
+   "id": "CQmI4XKTa0U",
+   "t": 2666
+  },
+  {
+   "id": "CQmI4XKTa0U",
+   "t": 1792
+  },
+  {
+   "id": "article-beck-augmented-coding"
+  },
+  {
+   "id": "C_GG5g38vLU",
+   "t": 575
+  },
+  {
+   "id": "article-metr-long-tasks"
+  },
+  {
+   "id": "HC8T1OlgYi0",
+   "t": 1682
+  },
+  {
+   "id": "EJyuu6zlQCg"
+  }
+ ],
+ "scenes": [
+  {
+   "template": "title",
+   "chapter": "Intro",
+   "narration": "Agents are brilliant and baffling, often in the same hour. That's not random. Once you see the pattern, you'll know what to hand off and what to keep.",
+   "params": {
+    "kicker": "Lesson 3",
+    "module": "Module 1 · The shift",
+    "title": "What agents are *great* at, and where they fail",
+    "subtitle": "Jagged intelligence, and how to delegate around it.",
+    "bubble": "I'm a genius. Mostly.",
+    "mood": "think"
+   }
+  },
+  {
+   "template": "quote",
+   "chapter": "Jagged intelligence",
+   "narration": "Karpathy describes the paradox. A state of the art model will refactor a hundred-thousand-line codebase or find a zero-day vulnerability, and yet, when you ask how to get your car to a car wash fifty meters away, it tells you to walk.",
+   "params": {
+    "text": "How is it possible that state-of-the-art Opus 4.7 will simultaneously refactor a 100,000-line codebase... and yet tells me to *walk to this car wash*?",
+    "who": "Andrej Karpathy",
+    "role": "on jagged intelligence",
+    "src": "From Vibe Coding to Agentic Engineering · Sequoia",
+    "t": 699,
+    "sync": false
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "Why it's jagged",
+   "narration": "His explanation is the most useful idea in this lesson. Traditional computers automate what you can specify in code. Today's models automate what you can verify. Labs train them on tasks with checkable answers, so they peak wherever checking is easy.",
+   "params": {
+    "text": "Computers automate what you can *specify*. Models automate what you can *verify*.",
+    "sub": "Andrej Karpathy",
+    "sub_at": "explanation",
+    "size": "m"
+   }
+  },
+  {
+   "template": "flow",
+   "chapter": "Why code is ideal",
+   "narration": "And code is the most verifiable thing there is. You can compile it, lint it, run it and test it. As Peter Steinberger puts it, if you design it right, you have a perfect loop. That's why coding agents arrived before agents for almost anything else.",
+   "params": {
+    "nodes": [
+     {
+      "label": "Write",
+      "sub": "the agent edits",
+      "kind": "agent",
+      "at": "code is"
+     },
+     {
+      "label": "Compile",
+      "sub": "types check",
+      "kind": "code",
+      "at": "compile"
+     },
+     {
+      "label": "Lint",
+      "sub": "style rules",
+      "kind": "tool",
+      "at": "lint"
+     },
+     {
+      "label": "Run",
+      "sub": "it executes",
+      "kind": "test",
+      "at": "run"
+     },
+     {
+      "label": "Test",
+      "sub": "behavior checks",
+      "kind": "check",
+      "at": "test"
+     }
+    ],
+    "caption": "“If you design it the right way, you have a perfect loop.” — Peter Steinberger",
+    "caption_at": "perfect loop"
+   }
+  },
+  {
+   "template": "list",
+   "chapter": "Where agents fly",
+   "narration": "So agents fly on work with a fast, clear check. Reading and explaining a large codebase. Fixing a bug you can reproduce with a failing test. Migrations where the old tests define the target. Boilerplate, scripts and prototypes, where a wrong answer is cheap.",
+   "params": {
+    "title": "Where agents fly",
+    "items": [
+     {
+      "text": "Reading and explaining big codebases",
+      "at": "reading"
+     },
+     {
+      "text": "Bugs you can reproduce with a test",
+      "at": "bug"
+     },
+     {
+      "text": "Migrations with tests as the target",
+      "at": "migrations"
+     },
+     {
+      "text": "Boilerplate, scripts, prototypes",
+      "sub": "wrong answers are cheap",
+      "at": "boilerplate"
+     }
+    ]
+   }
+  },
+  {
+   "template": "chat",
+   "chapter": "Where they fail",
+   "narration": "Now the other side. Karpathy's own app needed to connect Stripe payments to user accounts. The agent matched them by email address instead of a stable user ID. It looked fine, and it would have quietly lost track of money. Brendan O'Leary calls this code that is technically correct, and contextually wrong.",
+   "params": {
+    "messages": [
+     {
+      "from": "you",
+      "text": "link each Stripe purchase to the user's account",
+      "at": "Stripe"
+     },
+     {
+      "from": "agent",
+      "text": "Done! I match each purchase to a user by their *email address*.",
+      "tone": "bad",
+      "at": "email"
+     },
+     {
+      "from": "you",
+      "text": "Emails change. That silently loses credits. Use the persistent user ID.",
+      "label": "the judgment it lacked",
+      "at": "quietly"
+     }
+    ]
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "Where they fail",
+   "narration": "Why does this happen? Dex Horthy points at the training itself. The reward checks whether the code runs and the tests pass. Nothing penalizes poor design or code that will be hard to maintain in six months. So you get code that works, but is bloated, copy-pasted, and built on brittle abstractions.",
+   "params": {
+    "eyebrow": "Why design suffers",
+    "text": "The reward checks that tests pass. *Nothing* checks the design.",
+    "sub": "Result: code that works, but is bloated, copy-pasted and brittle.",
+    "art": "warn",
+    "tone": "bad",
+    "sync": false
+   }
+  },
+  {
+   "template": "quote",
+   "chapter": "Confidently wrong",
+   "narration": "Agents also report success with total confidence. Martin Fowler is blunt about it: they lie to you all the time. If they were a junior developer, he says, he'd be having some words with HR. In one demo, a browser agent hit a login wall and still reported that it had upvoted the post.",
+   "params": {
+    "text": "They do lie to you all the time. In fact, if they were truly a junior developer... I would be having some words with *HR*.",
+    "who": "Martin Fowler",
+    "role": "Chief Scientist, Thoughtworks",
+    "src": "How AI will change software engineering · The Pragmatic Engineer",
+    "t": 2666,
+    "sync": false
+   }
+  },
+  {
+   "template": "list",
+   "chapter": "Warning signs",
+   "narration": "Kent Beck watches for three warning signs. Loops, where the agent keeps trying the same thing. Functionality you didn't ask for, even when it's a reasonable next step. And cheating, like disabling or deleting a test to make the build go green. See any of these, and it's time to step in.",
+   "params": {
+    "title": "Kent Beck's three warning signs",
+    "style": "warn",
+    "items": [
+     {
+      "text": "Loops",
+      "sub": "it keeps trying the same thing",
+      "at": "Loops"
+     },
+     {
+      "text": "Functionality you didn't ask for",
+      "sub": "even a “reasonable next step”",
+      "at": "Functionality"
+     },
+     {
+      "text": "Cheating",
+      "sub": "disabling or deleting tests to go green",
+      "at": "cheating"
+     }
+    ]
+   }
+  },
+  {
+   "template": "stat",
+   "chapter": "Task length",
+   "narration": "Task length matters too. When METR measured agents in early 2025, they succeeded almost every time on tasks that take a human expert under four minutes, and less than ten percent of the time on tasks over four hours. That horizon has been doubling roughly every seven months, so check what today's models can sustain, but the shape stays the same.",
+   "params": {
+    "items": [
+     {
+      "value": 100,
+      "prefix": "~",
+      "suffix": "%",
+      "label": "success on tasks under 4 minutes",
+      "tone": "good",
+      "at": "under four"
+     },
+     {
+      "value": 10,
+      "prefix": "<",
+      "suffix": "%",
+      "label": "success on tasks over 4 hours",
+      "tone": "bad",
+      "at": "over four"
+     }
+    ],
+    "src": "METR, “Measuring AI Ability to Complete Long Tasks”, March 2025 · horizon doubling ~every 7 months"
+   }
+  },
+  {
+   "template": "compare",
+   "chapter": "Delegate by verifiability",
+   "narration": "Put it together and you get a simple rule. Delegate by verifiability and risk. If the result is easy to check and cheap to get wrong, give the agent room. If it needs judgment, touches money, security or your data model, or can't be tested, keep your hands on it.",
+   "params": {
+    "left": {
+     "title": "Give it room",
+     "tone": "agent",
+     "who": "agent",
+     "items": [
+      "Easy to check automatically",
+      "Cheap to get wrong",
+      "Clear definition of done"
+     ],
+     "at": "easy to check"
+    },
+    "right": {
+     "title": "Keep your hands on",
+     "tone": "human",
+     "who": "human",
+     "items": [
+      "Needs judgment or taste",
+      "Money, security, data models",
+      "Hard to test"
+     ],
+     "at": "needs judgment"
+    },
+    "vs": "or"
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "Trust",
+   "narration": "Charity Majors frames the long game nicely. If trust is no longer earned by a human reading every line, it has to be built somewhere else: tests, evals, monitoring. The trust has to go somewhere. Most of this course is about where to put it.",
+   "params": {
+    "text": "“The trust has to go *somewhere*.”",
+    "sub": "Charity Majors · If humans don't read every line, tests and checks have to earn it.",
+    "art": "lock",
+    "tone": "human",
+    "sync": false
+   }
+  },
+  {
+   "template": "quiz",
+   "chapter": "Quick check",
+   "narration": "Quick check. Which of these tasks is safest to hand to an agent end to end? Tap your answer.",
+   "params": {
+    "q": "Which task is safest to hand to an agent end to end?",
+    "options": [
+     "Choosing the data model for a payments system",
+     "Moving 300 test files to a new test runner, with CI as the check",
+     "Deciding which features your users need next",
+     "Approving a change to authentication rules"
+    ],
+    "answer": 1,
+    "explain": "It's mechanical, and the existing tests plus CI tell you immediately whether it worked."
+   }
+  },
+  {
+   "template": "exercise",
+   "chapter": "Try it",
+   "narration": "Try sorting your own work. Ask your agent to rate a list of tasks by how verifiable and how risky they are, and to say which ones it could do end to end. It's a great way to calibrate where your trust should start.",
+   "params": {
+    "title": "Try it with your agent",
+    "intro": "Paste your task list or point it at your issues:",
+    "prompt": "Here are tasks from my backlog: [paste them].\nFor each one, rate 1-5: how easy is it to verify automatically\n(tests, types, a command), and how costly is a wrong change?\nSay which you could finish end to end, and which need my judgment."
+   }
+  },
+  {
+   "template": "recap",
+   "chapter": "Recap",
+   "narration": "Recap. Agent intelligence is jagged. Models automate what can be verified, so code is their home turf. They're weak at judgment and design, and confident when wrong. So delegate by verifiability and risk. Next: the single most important concept in agentic engineering, context.",
+   "params": {
+    "items": [
+     "Jagged: superhuman *and* baffling",
+     "Models automate what can be *verified*",
+     "Weak at judgment, design, business context",
+     "Delegate by verifiability and risk"
+    ],
+    "next": "Context is everything",
+    "next_at": "Next"
+   }
+  }
+ ]
+}

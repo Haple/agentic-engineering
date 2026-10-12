@@ -1,0 +1,348 @@
+{
+ "id": "19-codebase",
+ "number": 19,
+ "slug": "agent-friendly-codebases",
+ "module": "Quality, safety, teams",
+ "title": "Codebases agents can work in",
+ "short": "Agent-friendly codebases",
+ "summary": "Bad codebases make bad agents, and agents can make a codebase bad fast: they copy whatever patterns they find, good or bad. Learn the principles that keep a codebase agent-friendly: make the shortest path the right path, deep modules, one way to do each thing, enforced architecture, simple code, and continuous cleanup.",
+ "takeaways": [
+  "Agents copy the patterns they find. Garbage codebase in, garbage code out.",
+  "Without steering, agent-built codebases decay fast, sometimes within weeks.",
+  "Make the shortest path the right path: conventional structure, one way to do each thing.",
+  "Deep modules with thin interfaces, strong types and fast, reliable tests are agent superpowers.",
+  "Clean continuously: encode golden rules and let background agents open small refactor PRs."
+ ],
+ "practices": [
+  "Before writing new code, find and follow the existing pattern for this kind of change; if there are several, ask which is canonical.",
+  "Prefer simple, explicit code over clever abstractions; don't add a dependency when a few lines will do.",
+  "Don't introduce a new way of doing something the codebase already does one way.",
+  "Leave the code slightly cleaner: remove dead code you created and flag duplication you notice."
+ ],
+ "sources": [
+  {
+   "id": "-QFHIoCo-Ko",
+   "t": 2210
+  },
+  {
+   "id": "-QFHIoCo-Ko",
+   "t": 4694
+  },
+  {
+   "id": "article-openai-harness-engineering-mirror"
+  },
+  {
+   "id": "RjfbvDXpFls",
+   "t": 852
+  },
+  {
+   "id": "Ib5GBkD555M",
+   "t": 490
+  },
+  {
+   "id": "aSXaxOdVtAQ",
+   "t": 3068
+  },
+  {
+   "id": "PaPpyQocMww",
+   "t": 2634
+  },
+  {
+   "id": "EJyuu6zlQCg",
+   "t": 625
+  },
+  {
+   "id": "am_oeAoUhew",
+   "t": 466
+  },
+  {
+   "id": "am_oeAoUhew",
+   "t": 2065
+  },
+  {
+   "id": "article-ronacher-agentic-coding"
+  },
+  {
+   "id": "_IK18goX4X8",
+   "t": 901
+  },
+  {
+   "id": "HegqGzD-kvc",
+   "t": 1340
+  },
+  {
+   "id": "CQmI4XKTa0U",
+   "t": 3865
+  }
+ ],
+ "scenes": [
+  {
+   "template": "title",
+   "chapter": "Intro",
+   "narration": "Matt Pocock puts it bluntly: bad codebases make bad agents. If you have a garbage codebase, you'll get garbage out of the agent working in it. This lesson is about the codebase side of agentic engineering.",
+   "params": {
+    "kicker": "Lesson 19",
+    "module": "Module 5 · Quality, safety, teams",
+    "title": "Codebases agents can *work in*",
+    "subtitle": "Agents copy what they see. Make it worth copying.",
+    "bubble": "I learn from your code.",
+    "mood": "think"
+   }
+  },
+  {
+   "template": "quote",
+   "chapter": "Agents copy patterns",
+   "narration": "Why does the codebase matter so much? Because agents imitate it. OpenAI's harness team found their agent replicates patterns that already exist in the repository, even uneven or suboptimal ones. Over time, that inevitably leads to drift.",
+   "params": {
+    "text": "Codex replicates patterns that already exist in the repository — even uneven or suboptimal ones. Over time, this inevitably leads to *drift*.",
+    "who": "Ryan Lopopolo",
+    "role": "OpenAI",
+    "src": "Harness engineering"
+   }
+  },
+  {
+   "template": "stat",
+   "chapter": "Decay is fast",
+   "narration": "And drift is fast. Mario Zechner says agents, making local decisions, pile up abstractions, duplication and backwards-compatibility shims. You get enterprise-grade complexity within two weeks, with just two humans and ten agents. Dex Horthy finds agents start to struggle in a codebase after three to six months.",
+   "params": {
+    "items": [
+     {
+      "value": "2 weeks",
+      "label": "to “enterprise-grade complexity” with 2 humans + 10 agents",
+      "sub": "Mario Zechner",
+      "tone": "bad",
+      "at": "two weeks"
+     },
+     {
+      "value": "3–6 mo",
+      "label": "until agents start to struggle in a fast-moving codebase",
+      "sub": "Dex Horthy",
+      "tone": "bad",
+      "at": "three to six"
+     }
+    ]
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "Why it happens",
+   "narration": "Kent Beck names the mechanism. Agents are prone to decisions that cause disruption at a distance. They don't reduce coupling or increase cohesion unless you tell them to. Each change is locally reasonable, and together they make a mess.",
+   "params": {
+    "text": "Agents don't reduce coupling or increase cohesion *unless you tell them to*.",
+    "sub": "Kent Beck: “disruption at a distance”",
+    "art": "warn",
+    "tone": "bad",
+    "sync": false
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "The shortest path",
+   "narration": "The first principle comes from Lauren Tan: make the shortest path the best path. Agents love shortcuts. So structure your code so that the lazy route is the correct one. Put a feature's code together in one place, and keep one obvious way to do each thing.",
+   "params": {
+    "text": "Make the *shortest path* the right path.",
+    "sub": "Agents take shortcuts. Make the lazy route the correct one. — Lauren Tan",
+    "art": "target",
+    "tone": "good"
+   }
+  },
+  {
+   "template": "compare",
+   "chapter": "Deep modules",
+   "narration": "Second, prefer deep modules: a small interface hiding a lot of functionality. Left alone, agents tend to produce many tiny, shallow modules that are hard to navigate. Matt Pocock's approach: design the module interfaces yourself, and delegate the implementations, treating each module as a gray box with tests at its boundary.",
+   "params": {
+    "left": {
+     "title": "Shallow modules",
+     "items": [
+      "Dozens of tiny files",
+      "Logic leaks across boundaries",
+      "Hard to test as a unit"
+     ],
+     "at": "Left alone"
+    },
+    "right": {
+     "title": "Deep modules",
+     "items": [
+      "Small interface, lots inside",
+      "You design the interface",
+      "Tests at the boundary"
+     ],
+     "at": "prefer deep modules"
+    }
+   }
+  },
+  {
+   "template": "list",
+   "chapter": "Sameness",
+   "narration": "Third, sameness. Ryan Lopopolo's goal is to make the tokens needed for the job easy to predict, by making things the same as much as possible. One ORM, one language, one style of CI script, one way to do each shared thing. And with agents, finishing migrations is cheap, so don't leave two ways around for months.",
+   "params": {
+    "title": "One way to do each thing",
+    "items": [
+     {
+      "text": "One ORM, one language, one CI style",
+      "at": "One ORM"
+     },
+     {
+      "text": "One pattern per kind of change",
+      "sub": "endpoints, jobs, migrations",
+      "at": "shared thing"
+     },
+     {
+      "text": "Finish migrations",
+      "sub": "agents make the long tail cheap",
+      "at": "migrations"
+     }
+    ]
+   }
+  },
+  {
+   "template": "stack",
+   "chapter": "Enforced architecture",
+   "narration": "Fourth, enforce your architecture. OpenAI's team gives every domain the same fixed layers, from types, to config, to repositories, services, runtime and UI, with dependency directions checked by custom linters. They note that this kind of architecture is usually postponed until you have hundreds of engineers. With agents, it's an early prerequisite.",
+   "params": {
+    "title": "Fixed layers, checked by linters",
+    "sub": "Each layer may depend only on the layers below it.",
+    "layers": [
+     {
+      "label": "Types",
+      "tone": "ink",
+      "at": "types"
+     },
+     {
+      "label": "Config",
+      "tone": "paper",
+      "at": "config"
+     },
+     {
+      "label": "Repo",
+      "tone": "paper",
+      "at": "repositories"
+     },
+     {
+      "label": "Service",
+      "tone": "soft",
+      "at": "services"
+     },
+     {
+      "label": "Runtime",
+      "tone": "soft",
+      "at": "runtime"
+     },
+     {
+      "label": "UI",
+      "tone": "agent",
+      "at": "UI"
+     }
+    ]
+   }
+  },
+  {
+   "template": "quote",
+   "chapter": "Simple code",
+   "narration": "Fifth, keep code simple. Armin Ronacher's experience: simple code significantly outperforms complex code in agentic contexts. Ask for the dumbest thing that will work. Prefer plain functions with descriptive names over clever class hierarchies, and generating a few lines over adding a dependency.",
+   "params": {
+    "text": "Simple code significantly *outperforms* complex code in agentic contexts.",
+    "who": "Armin Ronacher",
+    "role": "creator of Flask",
+    "src": "Agentic Coding Recommendations"
+   }
+  },
+  {
+   "template": "list",
+   "chapter": "Strong feedback",
+   "narration": "And give the agent strong feedback built into the code itself. Matt Pocock's wish list: more tests, higher quality tests, non-flaky tests, and above all, types, types, types. Thorsten Ball adds that over time, your codebase should hold more and more of the how-to knowledge, so your prompts can get shorter.",
+   "params": {
+    "title": "Feedback built into the code",
+    "items": [
+     {
+      "text": "Types, types, types",
+      "at": "types, types"
+     },
+     {
+      "text": "Fast, non-flaky tests",
+      "at": "non-flaky"
+     },
+     {
+      "text": "How-to knowledge lives in the repo",
+      "sub": "so prompts get shorter",
+      "at": "how-to"
+     }
+    ]
+   }
+  },
+  {
+   "template": "flow",
+   "chapter": "Clean continuously",
+   "narration": "Finally, clean continuously. OpenAI's team first spent every Friday, a fifth of the week, cleaning up AI slop by hand. It didn't scale. So they encoded golden principles as rules, and scheduled background agents that scan for deviations and open small refactoring pull requests. Garbage collection for code.",
+   "params": {
+    "nodes": [
+     {
+      "label": "Fridays: manual cleanup",
+      "sub": "20% of the week, didn't scale",
+      "kind": "warn",
+      "at": "every Friday"
+     },
+     {
+      "label": "Golden principles",
+      "sub": "rules, written down",
+      "kind": "doc",
+      "at": "golden principles"
+     },
+     {
+      "label": "Background agents",
+      "sub": "scan for deviations",
+      "kind": "agent",
+      "at": "scan"
+     },
+     {
+      "label": "Small refactor PRs",
+      "sub": "garbage collection",
+      "kind": "check",
+      "at": "refactoring"
+     }
+    ]
+   }
+  },
+  {
+   "template": "quiz",
+   "chapter": "Quick check",
+   "narration": "Quick check. Your codebase has three different ways to query the database, and agents keep mixing them. What's the best fix? Tap your answer.",
+   "params": {
+    "q": "Three ways to query the database; agents keep mixing them. Best fix?",
+    "options": [
+     "Mention the preferred one in every prompt",
+     "Pick one, migrate the rest with agents, and ban the others with a lint rule",
+     "Add a fourth, cleaner way",
+     "Accept it, everything still works"
+    ],
+    "answer": 1,
+    "explain": "One way to do each thing, enforced by tooling, is something agents can't get wrong."
+   }
+  },
+  {
+   "template": "exercise",
+   "chapter": "Try it",
+   "narration": "Audit your codebase from an agent's point of view. This prompt finds the places most likely to mislead an agent, and suggests a fix for each.",
+   "params": {
+    "title": "Try it with your agent",
+    "intro": "Audit your repo for agent-friendliness:",
+    "prompt": "Audit this codebase from an agent's point of view. Find: several\nways of doing the same thing, shallow or tangled modules, weak types,\nflaky or slow tests, and patterns an agent would copy badly.\nRank the top 5 by how much they'd mislead an agent, with a fix each."
+   }
+  },
+  {
+   "template": "recap",
+   "chapter": "Recap",
+   "narration": "Recap. Agents copy what they see, so decay is fast. Make the shortest path the right path. Deep modules, one way to do each thing, enforced architecture, simple code and strong feedback. And clean continuously. Next: how to measure whether your agents are actually doing well, with evals.",
+   "params": {
+    "items": [
+     "Agents *copy* what they see",
+     "Shortest path = right path",
+     "Deep modules · sameness · enforced layers",
+     "Simple code; clean continuously"
+    ],
+    "next": "Evals: measure, don't vibe",
+    "next_at": "Next"
+   }
+  }
+ ]
+}

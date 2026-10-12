@@ -1,0 +1,132 @@
+{
+  "id": "15-subagents",
+  "number": 15,
+  "slug": "subagents",
+  "module": "Scaling up",
+  "title": "Subagents: delegate to a fresh context",
+  "short": "Subagents",
+  "summary": "A subagent is a fresh copy of your agent, sent off with its own context window to do messy work and report back only the answer. Used for context control, not role-play, subagents keep your main session sharp: exploring, running noisy tests, reviewing with fresh eyes, or trying several designs at once.",
+  "takeaways": [
+    "A subagent is a fresh copy of the agent with its own context window; only its summary comes back.",
+    "Subagents are for context control, not role-play personas.",
+    "Great uses: exploring a codebase, running verbose tests, fresh-eyes review, trying several designs in parallel.",
+    "Parallel subagents shine on breadth-first work; most coding tasks have fewer independent pieces.",
+    "Don't over-split: handoffs between agents are a common failure point."
+  ],
+  "practices": [
+    "Delegate token-heavy searching and reading to a subagent and keep only its summary in the main context.",
+    "Give subagents a complete, self-contained brief: goal, scope, what to return and in what format.",
+    "Use a fresh subagent with no stake in the code to review your own changes.",
+    "Have subagents write large outputs to files and return paths, not paste everything back."
+  ],
+  "sources": [
+    {"id": "article-willison-aep-subagents"},
+    {"id": "sX1GYDHaCiw", "t": 331},
+    {"id": "sX1GYDHaCiw", "t": 653},
+    {"id": "sX1GYDHaCiw", "t": 487},
+    {"id": "-QFHIoCo-Ko", "t": 1094},
+    {"id": "article-anthropic-context-engineering"},
+    {"id": "rmvDxxNubIg", "t": 412},
+    {"id": "IDSAMqip6ms", "t": 1446},
+    {"id": "IDSAMqip6ms", "t": 1380},
+    {"id": "mWvtOHlZM-I", "t": 2166},
+    {"id": "mWvtOHlZM-I", "t": 467},
+    {"id": "EJyuu6zlQCg", "t": 811},
+    {"id": "article-anthropic-multi-agent-research"},
+    {"id": "b2QkhmQ0sT0", "t": 795}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "What if your agent could clone itself, send the clone off to do the messy work, and get back just the answer? That's a subagent, and it's one of the best tools you have for keeping context clean.",
+      "params": {"kicker": "Lesson 15", "module": "Module 4 · Scaling up", "title": "Subagents: delegate to a *fresh context*", "subtitle": "Send a clone to do the messy work. Keep only the answer.", "bubble": "I'll send a copy of me.", "mood": "happy"}
+    },
+    {
+      "template": "quote", "chapter": "What it is",
+      "narration": "Simon Willison's definition: when a coding agent uses a subagent, it effectively dispatches a fresh copy of itself to achieve a specified goal, with a new context window that starts with a fresh prompt.",
+      "params": {"text": "It effectively dispatches a *fresh copy of itself* to achieve a specified goal, with a new context window that starts with a fresh prompt.", "who": "Simon Willison", "role": "Agentic Engineering Patterns", "src": "Subagents"}
+    },
+    {
+      "template": "flow", "chapter": "Context isolation",
+      "narration": "Here's why that matters. The main agent writes a short brief and hands it to the subagent. The subagent burns through tens of thousands of tokens, searching and reading files. Then it returns a compact summary, maybe a thousand or two thousand tokens. As Thorsten Ball puts it, all the garbage tokens stay out of your main context.",
+      "params": {"nodes": [
+        {"label": "Main agent", "sub": "writes a short brief", "kind": "agent", "at": "short brief"},
+        {"label": "Subagent", "sub": "tens of thousands of tokens of grep & reads", "kind": "agent", "at": "burns through"},
+        {"label": "Summary", "sub": "~1–2k tokens back", "kind": "doc", "at": "compact summary"},
+        {"label": "Main agent", "sub": "context still clean", "kind": "check", "at": "garbage tokens"}
+      ]}
+    },
+    {
+      "template": "stat", "chapter": "Context isolation",
+      "narration": "In one of Matt Pocock's sessions, an explore subagent used almost ninety-four thousand tokens of its own, and the main context barely moved. Thorsten calls this the multiplication of context windows: every subagent call is a whole new window.",
+      "params": {"items": [
+        {"value": 93.7, "decimals": 1, "suffix": "k", "label": "tokens used by one explore subagent", "tone": "agent", "at": "ninety-four"},
+        {"value": "≈0", "label": "growth of the main agent's context", "tone": "good", "at": "barely moved"}
+      ], "src": "Matt Pocock, “Full Walkthrough: Workflow for AI Coding” · Thorsten Ball, Amp"}
+    },
+    {
+      "template": "compare", "chapter": "Not role-play",
+      "narration": "There's a popular misconception. People build teams of personas: a front-end developer agent, a QA agent, a product manager agent. Dex Horthy is blunt about it: subagents are not for anthropomorphizing roles. They are for controlling context. Boris Cherny adds that the real value is uncorrelated context windows that don't know about each other.",
+      "params": {
+        "left": {"title": "Role-play", "items": ["“Senior frontend dev” agent", "“QA engineer” agent", "Agents chatting in character"], "at": "personas"},
+        "right": {"title": "Context control", "items": ["Explore and summarize", "Run noisy work, return results", "Fresh eyes with no shared history"], "at": "controlling context"}
+      }
+    },
+    {
+      "template": "list", "chapter": "Good uses",
+      "narration": "So what are subagents good for? Exploring: Claude Code often sends an explore subagent before touching an existing repo. Running a verbose test suite and reporting only the failures. Reviewing with fresh eyes, since an agent reviewing its own work tends to go easy on itself. And trying several designs at once: Matt Pocock spawns three subagents, each told to produce a radically different interface.",
+      "params": {"title": "What subagents are good for", "items": [
+        {"text": "Explore", "sub": "search a big codebase, return a map", "at": "Exploring"},
+        {"text": "Run noisy work", "sub": "a huge test suite → just the failures", "at": "verbose"},
+        {"text": "Fresh-eyes review", "sub": "no stake in the code it's judging", "at": "fresh eyes"},
+        {"text": "Explore alternatives", "sub": "3 radically different designs, side by side", "at": "radically different"}
+      ]}
+    },
+    {
+      "template": "agents", "chapter": "Fan out, then filter",
+      "narration": "Subagents also enable a powerful pattern: fan out, then filter. Boris describes a code review command that sends parallel subagents to look for problems from different angles. Then several more subagents check each finding for false positives, so you only see real issues.",
+      "params": {"title": "Fan out, then filter", "lanes": [
+        {"label": "Check against CLAUDE.md rules", "result": "2 findings", "at": "parallel"},
+        {"label": "Check git history context", "result": "1 finding"},
+        {"label": "Look for obvious bugs", "result": "4 findings", "at": "different angles"},
+        {"label": "Verify findings (false positives?)", "result": "3 confirmed", "at": "false positives"}
+      ], "merge": {"label": "3 real issues, no noise", "at": "only see"}}
+    },
+    {
+      "template": "stat", "chapter": "When parallel pays off",
+      "narration": "How much can this help? On Anthropic's internal research benchmark, a lead agent coordinating parallel subagents outperformed a single agent by ninety percent. But they're careful to add that most coding tasks have fewer truly independent pieces than research, and agents aren't yet great at coordinating each other in real time.",
+      "params": {"items": [
+        {"value": 90.2, "decimals": 1, "prefix": "+", "suffix": "%", "label": "multi-agent vs single agent on breadth-first research", "tone": "good", "at": "ninety percent"}
+      ], "src": "Anthropic, “How we built our multi-agent research system” (Opus 4 lead + Sonnet 4 subagents)"}
+    },
+    {
+      "template": "list", "chapter": "Pitfalls",
+      "narration": "A few pitfalls. Don't over-split: Simon Willison warns against dozens of specialist subagents. Watch the handoff: Will from Anthropic says a subagent can get its task right and still fail because the message back to the orchestrator lost something. And for big outputs, have subagents write to files and pass back a path, instead of a game of telephone.",
+      "params": {"title": "Pitfalls", "style": "warn", "items": [
+        {"text": "Over-splitting", "sub": "dozens of specialists = coordination overhead", "at": "over-split"},
+        {"text": "Lossy handoffs", "sub": "right answer, garbled report", "at": "handoff"},
+        {"text": "Telephone games", "sub": "write big outputs to files, pass paths", "at": "telephone"}
+      ]}
+    },
+    {
+      "template": "quiz", "chapter": "Quick check",
+      "narration": "Quick check. Which of these is the best use of a subagent? Tap your answer.",
+      "params": {"q": "Which is the best use of a subagent?", "options": [
+        "A “senior frontend developer” persona chatting with a “QA” persona",
+        "Searching a huge codebase and returning a short map to the main agent",
+        "Splitting a ten-line bug fix across five agents",
+        "Running every single tool call in its own agent"
+      ], "answer": 1, "explain": "Subagents are for context control: let one absorb the messy search and hand back only what matters."}
+    },
+    {
+      "template": "exercise", "chapter": "Try it",
+      "narration": "Try both classic uses in one go. One subagent explores and reports back a short map. A second, with no knowledge of your plans, reviews a file with fresh eyes.",
+      "params": {"title": "Try it with your agent", "intro": "In Claude Code, Codex or any agent with subagents:", "prompt": "Use a subagent to explore how [feature] works across the codebase\nand report back under 300 words, with file paths.\nThen use a second, fresh subagent with no knowledge of my plans to\nreview [file] for bugs. Tell me roughly how much context each used."}
+    },
+    {
+      "template": "recap", "chapter": "Recap",
+      "narration": "Recap. A subagent is a fresh copy with its own context window. Use it for context control, not role-play. Explore, run noisy work, review with fresh eyes, try alternatives. Fan out, then filter. And don't over-split. Next: running whole agents in parallel.",
+      "params": {"items": ["A fresh copy, its own *context window*", "Context control, not role-play", "Explore · noisy work · fresh eyes · alternatives", "Don't over-split; watch the handoff"], "next": "Running agents in parallel", "next_at": "Next"}
+    }
+  ]
+}

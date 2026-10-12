@@ -1,0 +1,153 @@
+{
+  "id": "17-long-running",
+  "number": 17,
+  "slug": "long-running-agents-ralph-loop",
+  "module": "Scaling up",
+  "title": "Long-running agents and loops",
+  "short": "Long-running agents and loops",
+  "summary": "Agents went from running thirty seconds before derailing to working for hours. The trick isn't one giant session; it's loops: fresh contexts, one task at a time, state kept in files and git, and a check the loop can't argue with. From the Ralph loop to nightly slow loops, here's how to let agents work while you're away.",
+  "takeaways": [
+    "Long runs work as loops of fresh sessions, not one giant session that rots.",
+    "The Ralph loop: run the same prompt again and again, one task per iteration, fresh context each time.",
+    "Keep state outside the context: a task list with pass/fail flags, a progress file, and git commits.",
+    "Loops need back pressure: tests, types and metrics the loop must satisfy.",
+    "Start with slow loops that make one small, verified improvement and open a PR."
+  ],
+  "practices": [
+    "In a loop, do exactly one task per iteration, verify it, commit it, and update the progress file.",
+    "At the start of each session, get your bearings: read the progress file and recent commits, and run a smoke test.",
+    "Never mark a task as passing until its verification actually ran and passed.",
+    "If the build breaks and you can't fix it in this iteration, stop and leave a clear note instead of piling on changes."
+  ],
+  "sources": [
+    {"id": "kwSVtQ7dziU", "t": 1016},
+    {"id": "kwSVtQ7dziU", "t": 1048},
+    {"id": "We7BZVKbCVw", "t": 4081},
+    {"id": "article-anthropic-2026-agentic-coding-trends"},
+    {"id": "article-huntley-ralph"},
+    {"id": "4Nna09dG_c0", "t": 590},
+    {"id": "4Nna09dG_c0", "t": 1852},
+    {"id": "article-anthropic-long-running-harnesses"},
+    {"id": "mR-WAvEPRwE", "t": 799},
+    {"id": "Usufn8IQJgw", "t": 2068},
+    {"id": "Usufn8IQJgw", "t": 2204},
+    {"id": "SlGRN8jh2RI", "t": 497},
+    {"id": "IDSAMqip6ms", "t": 2682},
+    {"id": "WjckELpzLOU", "t": 6338},
+    {"id": "8lF7HmQ_RgY", "t": 4190},
+    {"id": "article-openai-harness-engineering-mirror"}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "Karpathy says that to get the most out of these tools, you have to remove yourself as the bottleneck. You can't be there to prompt the next thing. So how do you let an agent work for hours without you?",
+      "params": {"kicker": "Lesson 17", "module": "Module 4 · Scaling up", "title": "Long-running agents and *loops*", "subtitle": "How agents work while you sleep.", "bubble": "Good night. I'll keep going.", "mood": "work"}
+    },
+    {
+      "template": "timeline", "chapter": "Longer runs",
+      "narration": "Run lengths have exploded. Boris Cherny recalls that early models could run fifteen or thirty seconds before going off the rails. By 2026, typical unattended runs lasted tens of minutes, some for hours or days. Anthropic's trends report describes a single seven-hour autonomous run that implemented a feature in a twelve-million-line codebase.",
+      "params": {"events": [
+        {"when": "2024", "label": "15–30 seconds", "sub": "before going off the rails", "at": "fifteen"},
+        {"when": "2026", "label": "10–30 minutes", "sub": "typical unattended runs", "at": "tens of minutes"},
+        {"when": "2026", "label": "7 hours", "sub": "one run, 12.5M-line codebase", "at": "seven-hour"},
+        {"when": "next", "label": "days", "sub": "with oversight at key points", "now": true, "at": "days"}
+      ]}
+    },
+    {
+      "template": "statement", "chapter": "Loops, not marathons",
+      "narration": "But long runs don't come from one giant session. A single session fills up, rots and compacts. Long runs come from loops: many fresh sessions in a row, each doing one piece of work, with the state of the project kept outside the context window.",
+      "params": {"text": "Long runs are *loops* of fresh sessions, not one marathon session.", "sub": "Each iteration starts clean. The project's state lives in files and git.", "art": "loop", "tone": "agent", "sync": false}
+    },
+    {
+      "template": "code", "chapter": "The Ralph loop",
+      "narration": "The most famous version is the Ralph loop, by Geoffrey Huntley. In its purest form, Ralph is a bash loop. It pipes the same prompt into a coding agent, again and again. Each run starts with a fresh context, studies the plan, picks the single most important task, does it, and exits. Huntley calls it low control, high oversight.",
+      "params": {"file": "ralph.sh", "lang": "sh", "lines": [
+        "while true; do",
+        "  cat PROMPT.md | claude -p",
+        "done",
+        "",
+        "# PROMPT.md (core idea)",
+        "# Study specs/ and fix_plan.md.",
+        "# Pick the ONE most important item. Do only that.",
+        "# Run the tests. Commit if green. Update fix_plan.md."
+      ], "hl": [
+        {"from": 1, "to": 3, "at": "bash loop", "label": "the whole loop", "tone": "agent"},
+        {"from": 7, "to": 7, "at": "single most important", "label": "one task", "tone": "good"}
+      ]}
+    },
+    {
+      "template": "quote", "chapter": "Engineers in shifts",
+      "narration": "Anthropic's engineers describe the core problem vividly. Imagine a software project staffed by engineers working in shifts, where each new engineer arrives with no memory of what happened on the previous shift. That's what a loop of fresh sessions is.",
+      "params": {"text": "Imagine a software project staffed by engineers working in shifts, where each new engineer arrives with *no memory* of what happened on the previous shift.", "who": "Justin Young", "role": "Anthropic", "src": "Effective harnesses for long-running agents"}
+    },
+    {
+      "template": "loop", "chapter": "The shift handoff",
+      "narration": "Their answer is a disciplined handoff. Every session gets its bearings first, from a progress file and the git log. It runs a quick smoke test. It implements exactly one failing feature, verifies it end to end, commits, and flips that feature's pass flag to true. Then the next shift begins.",
+      "params": {"title": "Every shift, the same routine", "steps": [
+        {"label": "Bearings", "sub": "progress file + git log", "icon": "search", "at": "bearings"},
+        {"label": "Smoke test", "sub": "is it still working?", "icon": "test", "at": "smoke test"},
+        {"label": "One feature", "sub": "the next failing one", "icon": "code", "at": "exactly one"},
+        {"label": "Verify + commit", "sub": "flip passes → true", "icon": "check", "at": "commits"}
+      ], "center": {"label": "next shift", "agent": true, "at": "next shift"}}
+    },
+    {
+      "template": "statement", "chapter": "Back pressure",
+      "narration": "Loops only work with back pressure: checks the loop has to satisfy, like tests, types and linters. Dex Horthy's lesson from Ralph: if you can make a problem very verifiable, you can treat it like a black box and loop on it. Karpathy's AutoResearch is the same idea. Give an agent an objective, a metric and boundaries. Overnight, it found tunings in his code that he'd missed.",
+      "params": {"text": "Make it *verifiable*, and you can loop on it.", "sub": "AutoResearch: “an objective, a metric, your boundaries. And go.” — Andrej Karpathy", "sub_at": "objective", "art": "gauge", "tone": "good", "sync": false}
+    },
+    {
+      "template": "list", "chapter": "Slow loops",
+      "narration": "You don't need an overnight swarm to start. Dex recommends slow loops: a nightly job that runs the linter, fixes one thing, and opens one small pull request, so you wake up to a slightly better codebase. Boris runs dozens of loops: one babysits his pull requests and fixes CI, another hunts flaky tests, another clusters user feedback.",
+      "params": {"title": "Loops worth running", "items": [
+        {"text": "Nightly: fix one lint issue → one small PR", "sub": "Dex Horthy's slow loop", "at": "nightly"},
+        {"text": "Babysit PRs: fix CI, rebase", "sub": "Boris Cherny", "at": "babysits"},
+        {"text": "Keep CI healthy: hunt flaky tests", "at": "flaky"},
+        {"text": "Triage feedback into themes", "at": "feedback"}
+      ]}
+    },
+    {
+      "template": "terminal", "chapter": "Headless",
+      "narration": "Loops run headless. Boris describes Claude's print mode as a Unix utility: give it a prompt, get JSON back, and pipe it into anything. And a stop hook can check the tests when the agent tries to finish, and simply tell it: keep going.",
+      "params": {"title": "ci · nightly-slow-loop", "lines": [
+        {"k": "cmd", "text": "npx eslint . --format json | head -c 4000 > lint.json", "at": "print mode"},
+        {"k": "cmd", "text": "claude -p \"Fix ONE issue from lint.json. Run tests. Commit.\" --output-format json", "at": "Unix utility"},
+        {"k": "dim", "text": "  stop hook: tests failing → \"keep going\"", "at": "stop hook"},
+        {"k": "ok", "text": "tests pass · committed 1 fix", "at": "keep going"},
+        {"k": "cmd", "text": "gh pr create --title \"nightly: fix one lint issue\" --fill"}
+      ]}
+    },
+    {
+      "template": "statement", "chapter": "Use the boundaries",
+      "narration": "Mitchell Hashimoto has a simple habit. He spends the boundaries of his day, when he wakes up and before he stops, deciding what slow task an agent can do while he's away: library research, edge case analysis, triage. Those agents write reports. They aren't allowed to respond to anyone.",
+      "params": {"text": "Before you stop for the day, ask: what can my agent be doing *while I'm away*?", "sub": "Mitchell Hashimoto: research, edge cases, triage reports, nothing that acts on its own.", "art": "moon", "tone": "human", "sync": false}
+    },
+    {
+      "template": "compare", "chapter": "Caveats",
+      "narration": "Some caveats. Geoffrey Huntley warns you'll sometimes wake up to a broken codebase, so commits and tags are your restore points. Peter Steinberger thinks heavy upfront plans for loops are waterfall in disguise. And OpenAI's harness team says their end-to-end autonomy depends heavily on their repo's structure and tooling, so don't assume it transfers for free.",
+      "params": {
+        "left": {"title": "Risks", "tone": "bad", "items": ["You'll wake up to a broken build", "Big upfront plans can be waterfall", "Autonomy depends on your tooling"], "at": "caveats"},
+        "right": {"title": "Mitigations", "tone": "good", "items": ["Commits and tags as restore points", "Small tasks, re-planned often", "Invest in checks before autonomy"], "at": "restore points"}
+      }
+    },
+    {
+      "template": "quiz", "chapter": "Quick check",
+      "narration": "Quick check. Which task is the best fit for an overnight loop? Tap your answer.",
+      "params": {"q": "Which task is the best fit for an overnight loop?", "options": [
+        "Redesign the onboarding flow based on vibes",
+        "Make the test suite run under 2 minutes without reducing coverage",
+        "Decide next quarter's roadmap",
+        "Rewrite the auth system, which has no tests"
+      ], "answer": 1, "explain": "It has a clear metric and a hard boundary the loop can check after every iteration."}
+    },
+    {
+      "template": "exercise", "chapter": "Try it",
+      "narration": "Design your first slow loop. This prompt has the agent propose a small, nightly improvement with a strict check, without scheduling anything yet.",
+      "params": {"title": "Try it with your agent", "intro": "Design (don't schedule yet) a slow loop:", "prompt": "Propose one nightly \"slow loop\" for this repo: a job that fixes\nexactly ONE small thing (a lint warning, a flaky test, a TODO) and\nopens one small PR. Write the prompt file, the verification it must\npass, and how it records progress. Don't schedule or run it yet."}
+    },
+    {
+      "template": "recap", "chapter": "Recap",
+      "narration": "Recap. Long runs are loops of fresh sessions. One task per iteration, with state kept in files and git. Loops need back pressure, so make the problem verifiable. Start with slow loops and restore points. Next: harness engineering, building the whole factory.",
+      "params": {"items": ["Loops of *fresh sessions*, not marathons", "One task per iteration; state in files + git", "Back pressure: verifiable checks", "Start with slow loops"], "next": "Harness engineering: build the factory", "next_at": "Next"}
+    }
+  ]
+}

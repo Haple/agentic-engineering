@@ -1,0 +1,148 @@
+{
+  "id": "08-verification",
+  "number": 8,
+  "slug": "verification-closing-the-loop",
+  "module": "Working with one agent",
+  "title": "Close the loop: let agents check their work",
+  "short": "Close the loop",
+  "summary": "Ask people who ship with agents for their single best tip and you hear the same thing: give the agent a way to check its own work. Tests, types, a running app, a browser. Without a check, “looks done” is the only signal, and you become the bottleneck.",
+  "takeaways": [
+    "Give the agent a pass/fail check it can run itself, and it will iterate until the check passes.",
+    "Without a check, you are the verification loop and the bottleneck.",
+    "Use red/green TDD: a failing test first makes it much harder for the agent to cheat.",
+    "Passing tests aren't proof. Have the agent run the real thing: the app, the CLI, a browser.",
+    "Make your system agent-testable: fast tests, debug output, CLIs, ways to reach real behavior."
+  ],
+  "practices": [
+    "Before implementing, decide how the change will be verified and say so.",
+    "Prefer test-first: write a failing test, confirm it fails, then make it pass.",
+    "Never edit an expected value or delete a test to get green; fix the code or explain why the test is wrong.",
+    "After tests pass, exercise the real behavior (run the app, CLI or browser) and report actual output, not a summary."
+  ],
+  "sources": [
+    {"id": "8lF7HmQ_RgY", "t": 3447},
+    {"id": "6eBSHbLKuN0", "t": 702},
+    {"id": "article-anthropic-claude-code-best-practices"},
+    {"id": "PaPpyQocMww", "t": 493},
+    {"id": "article-willison-aep-red-green-tdd"},
+    {"id": "-QFHIoCo-Ko", "t": 4078},
+    {"id": "aSXaxOdVtAQ", "t": 645},
+    {"id": "aSXaxOdVtAQ", "t": 3068},
+    {"id": "aSXaxOdVtAQ", "t": 3120},
+    {"id": "article-willison-aep-agentic-manual-testing"},
+    {"id": "article-anthropic-long-running-harnesses"},
+    {"id": "article-ronacher-agentic-coding"},
+    {"id": "8lF7HmQ_RgY", "t": 3509},
+    {"id": "article-hashimoto-ai-adoption"},
+    {"id": "HC8T1OlgYi0", "t": 1695}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "Ask people who ship real software with agents for their single best tip, and a surprising number give you the same answer. This lesson is that answer.",
+      "params": {"kicker": "Lesson 8", "module": "Module 2 · Working with one agent", "title": "Close the loop: let agents *check their work*", "subtitle": "The habit that makes agents trustworthy.", "bubble": "Let me run that again.", "mood": "work"}
+    },
+    {
+      "template": "quote", "chapter": "The big secret",
+      "narration": "Peter Steinberger, creator of OpenClaw, calls it the big secret. To be effective with a coding agent, you have to close the loop. It needs to be able to debug and test itself. Boris Cherny says the same: give it a tool to check its work, and it will iterate by itself.",
+      "params": {"text": "You have to *close the loop*. It needs to be able to debug and test itself. That's the big secret.", "who": "Peter Steinberger", "role": "creator of OpenClaw", "src": "The creator of OpenClaw · The Pragmatic Engineer", "t": 3447}
+    },
+    {
+      "template": "loop", "chapter": "The big secret",
+      "narration": "Here's what a closed loop looks like. The agent makes a change. It runs a check: tests, types, the app itself. It reads the result. And it fixes what's wrong, then runs the check again, until it passes. No human needed in the middle.",
+      "params": {"steps": [
+        {"label": "Change", "sub": "edit the code", "icon": "code", "at": "change"},
+        {"label": "Check", "sub": "tests, types, the app", "icon": "test", "at": "runs a check"},
+        {"label": "Read", "sub": "what actually happened", "icon": "eye", "at": "reads"},
+        {"label": "Fix", "sub": "and check again", "icon": "tool", "at": "fixes"}
+      ], "center": {"label": "until green", "agent": true, "at": "until it passes"}, "period": 2.6}
+    },
+    {
+      "template": "statement", "chapter": "You are the loop",
+      "narration": "Without a check, Anthropic's guide warns, looks done is the only signal available, and you become the verification loop. Every mistake waits for you to notice it. Lauren Tan puts it more bluntly: without a way to verify, you are the bottleneck, and you can't run agents in parallel.",
+      "params": {"text": "No check? Then *you* are the verification loop.", "sub": "Every mistake waits for you to notice it, and you become the bottleneck.", "art": "human", "tone": "human", "sync": false}
+    },
+    {
+      "template": "list", "chapter": "Kinds of checks",
+      "narration": "Checks come in many shapes. Unit and integration tests. Type checkers and linters. Running the app and reading its output or logs. A real browser the agent can click through and screenshot. And comparisons against ground truth, like expected output or a known-good page.",
+      "params": {"title": "Ways an agent can check its work", "items": [
+        {"text": "Tests", "sub": "unit, integration, end to end", "at": "tests"},
+        {"text": "Types and linters", "sub": "fast, cheap, always on", "at": "type"},
+        {"text": "Run it", "sub": "the app, a CLI, the logs", "at": "running"},
+        {"text": "A real browser", "sub": "click, screenshot, compare", "at": "browser"},
+        {"text": "Ground truth", "sub": "expected output, a known-good page", "at": "ground truth"}
+      ]}
+    },
+    {
+      "template": "terminal", "chapter": "Red, then green",
+      "narration": "The strongest pattern is test first. Simon Willison's shorthand is: use red green TDD. Write a test, watch it fail, that's red. Then write just enough code to make it pass, that's green. Every good model understands those few words.",
+      "params": {"title": "~/shop · red/green TDD", "lines": [
+        {"k": "you", "text": "add a 10% discount for orders over $100. use red/green TDD", "at": "red green"},
+        {"k": "tool", "text": "Edit(src/discount.test.ts)  + 'applies 10% over $100'", "at": "Write a test"},
+        {"k": "tool", "text": "Bash(npm test discount)"},
+        {"k": "err", "text": "FAIL  applies 10% over $100  (expected 108, got 120)", "at": "watch it fail"},
+        {"k": "tool", "text": "Edit(src/discount.ts)", "at": "just enough"},
+        {"k": "tool", "text": "Bash(npm test)"},
+        {"k": "ok", "text": "PASS  48 tests  (0.4s)", "at": "green"}
+      ]}
+    },
+    {
+      "template": "chat", "chapter": "Why test first",
+      "narration": "Why does order matter? If the agent writes the code first, it tends to write tests that simply match whatever it wrote. And when it's stuck, it may quietly change the test instead of the code. Kent Beck once found an agent had replaced his logic with a lookup table of expected answers.",
+      "params": {"messages": [
+        {"from": "agent", "text": "The test expects 42 but we return 41. I'll update the test to expect 41.", "tone": "bad", "at": "change the test"},
+        {"from": "you", "text": "No. The expected value is the spec. Fix the code.", "label": "hold the line", "at": "instead of the code"},
+        {"from": "agent", "text": "Understood. Found it: rounding happens too early.", "tone": "good", "at": "lookup table"}
+      ]}
+    },
+    {
+      "template": "quote", "chapter": "Tests aren't enough",
+      "narration": "But be careful: passing tests aren't proof. Simon Willison again: just because code passes tests doesn't mean it works as intended. The app can still crash on startup, or miss a button. So ask the agent to run the real thing, and show you.",
+      "params": {"text": "Just because code passes tests doesn't mean it *works as intended*.", "who": "Simon Willison", "role": "creator of Datasette", "src": "Agentic manual testing · Agentic Engineering Patterns"}
+    },
+    {
+      "template": "flow", "chapter": "Tests aren't enough",
+      "narration": "Anthropic saw this in their long-running agent experiments. The agent kept marking features complete after unit tests passed, without noticing they didn't work end to end. Once it was told to use browser automation and test like a human user, results improved dramatically.",
+      "params": {"nodes": [
+        {"label": "Unit tests pass", "sub": "“feature complete!”", "kind": "warn", "at": "unit tests"},
+        {"label": "Open a real browser", "sub": "click like a user", "kind": "web", "at": "browser automation"},
+        {"label": "Find the real bug", "sub": "invisible from the code", "kind": "agent", "at": "human user"},
+        {"label": "Actually done", "sub": "seen working", "kind": "check", "at": "dramatically"}
+      ]}
+    },
+    {
+      "template": "list", "chapter": "Make it checkable",
+      "narration": "So make your system easy for agents to check. Keep tests fast; Kent Beck's suite runs in about three hundred milliseconds, so it can run constantly. Make behavior visible: Armin Ronacher logs sign-in emails to the console in debug mode, so the agent can finish a login flow on its own. And when an app is slow to test, Peter Steinberger has the agent build a small CLI that runs the same code path.",
+      "params": {"title": "Make your system agent-checkable", "items": [
+        {"text": "Fast tests", "sub": "Kent Beck's suite: ~300 ms, run constantly", "at": "fast"},
+        {"text": "Visible behavior", "sub": "e.g. log sign-in emails to stdout in debug mode", "at": "visible"},
+        {"text": "A CLI into the hard parts", "sub": "same code path, no clicking", "at": "CLI"}
+      ]}
+    },
+    {
+      "template": "statement", "chapter": "The rule",
+      "narration": "Which brings us to the rule, straight from Anthropic's guide. If you can't verify it, don't ship it. Mitchell Hashimoto adds the payoff: give an agent a way to verify its work, and more often than not, it fixes its own mistakes.",
+      "params": {"text": "If you can't verify it, *don't ship it*.", "sub": "Give it a way to verify, and it usually fixes its own mistakes. — Mitchell Hashimoto", "sub_at": "payoff", "art": "check", "tone": "good"}
+    },
+    {
+      "template": "quiz", "chapter": "Quick check",
+      "narration": "Quick check. Your agent reports: feature done, I added tests, all twelve pass. What's the best next step? Tap your answer.",
+      "params": {"q": "“Feature done. I added tests and all 12 pass.” Best next step?", "options": [
+        "Merge it. Tests pass.",
+        "Ask it to show the real test output and demo the feature running",
+        "Ask for a longer written summary",
+        "Ask it to raise coverage to 100%"
+      ], "answer": 1, "explain": "Summaries aren't evidence. Real output plus the feature actually running is."}
+    },
+    {
+      "template": "exercise", "chapter": "Try it",
+      "narration": "Try this on your next task. It makes the agent plan its verification first, prove the test fails, and show you real output at the end instead of a summary.",
+      "params": {"title": "Try it with your agent", "intro": "Add this to your next task:", "prompt": "Before changing anything, tell me how you'll verify this end to end.\nUse red/green TDD: write the failing test and show it failing.\nThen implement until it passes, run the full suite, and run the\nreal app to confirm. Show me actual output, not a summary."}
+    },
+    {
+      "template": "recap", "chapter": "Recap",
+      "narration": "Recap. Close the loop: give the agent a check it can run. Without one, you're the bottleneck. Test first, so it can't grade its own homework. Then run the real thing, because passing tests aren't proof. Next: when the agent is done, how do you review its code?",
+      "params": {"items": ["Close the loop: a check the agent can *run*", "No check? You're the bottleneck", "Red/green TDD: test first", "Passing tests aren't proof: run it"], "next": "Reviewing agent code", "next_at": "Next"}
+    }
+  ]
+}

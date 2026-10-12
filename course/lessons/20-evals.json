@@ -1,0 +1,137 @@
+{
+  "id": "20-evals",
+  "number": 20,
+  "slug": "evals-for-agents",
+  "module": "Quality, safety, teams",
+  "title": "Evals: measure, don't vibe",
+  "short": "Evals",
+  "summary": "Did that new prompt, skill or model actually make things better? Most teams vibe-check. Evals turn that into a measurement. Start by reading traces and counting failure modes, then build small, binary checks from real failures, validate your judges, and read the transcripts before trusting any score.",
+  "takeaways": [
+    "An eval is a test for an AI system: an input plus grading logic for the output.",
+    "Start with error analysis: read traces, note the first failure in each, cluster, and count.",
+    "20 to 50 tasks drawn from real failures is a great start.",
+    "Prefer code-based graders; use binary LLM judges for subjective checks, and validate them against human labels.",
+    "Read the transcripts. Broken tasks and graders are common, and they hide real capability."
+  ],
+  "practices": [
+    "When changing a prompt, skill or model setting, check it against concrete examples before and after, not by impression.",
+    "Express evaluation criteria as binary pass/fail checks, scripted where possible.",
+    "When a test or eval fails, read the actual output before concluding whether the agent or the check is wrong.",
+    "Grade the outcome the user cares about, not whether a specific sequence of steps was followed."
+  ],
+  "sources": [
+    {"id": "article-anthropic-demystifying-evals"},
+    {"id": "BsWxPI9UM4c", "t": 263},
+    {"id": "BsWxPI9UM4c", "t": 791},
+    {"id": "BsWxPI9UM4c", "t": 849},
+    {"id": "BsWxPI9UM4c", "t": 1140},
+    {"id": "BsWxPI9UM4c", "t": 1700},
+    {"id": "BsWxPI9UM4c", "t": 2010},
+    {"id": "GL0XhAj5LPE", "t": 768},
+    {"id": "GL0XhAj5LPE", "t": 1136},
+    {"id": "RNJCfif1dPY", "t": 2213},
+    {"id": "PaPpyQocMww", "t": 1146},
+    {"id": "PaPpyQocMww", "t": 1299},
+    {"id": "article-hamel-evals-faq"}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "You changed a prompt, added a skill, or switched models. Did things actually get better? Most teams answer that with a vibe check. This lesson is about answering it with a measurement.",
+      "params": {"kicker": "Lesson 20", "module": "Module 5 · Quality, safety, teams", "title": "Evals: *measure*, don't vibe", "subtitle": "How to know whether a change made your agents better.", "bubble": "Did I get better? Prove it.", "mood": "think"}
+    },
+    {
+      "template": "formula", "chapter": "What an eval is",
+      "narration": "Anthropic's definition is refreshingly simple. An eval is a test for an AI system. Give it an input, then apply grading logic to its output. Hamel Husain adds that at its core, evals are just data analytics on your AI application.",
+      "params": {"parts": [
+        {"text": "Eval", "tone": "agent", "at": "eval is"},
+        {"op": "="},
+        {"text": "Input", "icon": "doc", "sub": "a realistic task", "at": "input"},
+        {"op": "+"},
+        {"text": "Grader", "icon": "check", "sub": "logic that scores the output", "at": "grading logic"}
+      ], "caption": "“At its core, data analytics on your LLM application.” — Hamel Husain", "caption_at": "analytics"}
+    },
+    {
+      "template": "list", "chapter": "Why bother",
+      "narration": "Why bother? Without evals, Anthropic warns, you get stuck in reactive loops, catching problems in production, where fixing one failure creates others. With them, Andrew Ng's team can test every new model the day it's released and switch if it scores better. And Lauren Tan uses evals as unit tests for her skills.",
+      "params": {"title": "What evals buy you", "items": [
+        {"text": "Escape reactive loops", "sub": "see regressions before users do", "at": "reactive loops"},
+        {"text": "Decide on model upgrades", "sub": "Andrew Ng: test the new model the day it ships", "at": "new model"},
+        {"text": "Unit tests for skills and prompts", "sub": "Lauren Tan", "at": "unit tests"}
+      ]}
+    },
+    {
+      "template": "flow", "chapter": "Error analysis first",
+      "narration": "Here's the surprise: don't start by writing tests. Hamel Husain and Shreya Shankar start with error analysis. Read real traces, the full logs of what the agent did. For each one, write down only the first thing that went wrong. Then cluster those notes into failure modes, and count them.",
+      "params": {"nodes": [
+        {"label": "Read traces", "sub": "real runs, start to end", "kind": "human", "at": "Read real traces"},
+        {"label": "Note the first error", "sub": "the most upstream one", "kind": "doc", "at": "first thing"},
+        {"label": "Cluster", "sub": "into failure modes", "kind": "agent", "at": "cluster"},
+        {"label": "Count", "sub": "fix or eval the top ones", "kind": "check", "at": "count"}
+      ], "caption": "“Basic counting is the most powerful analytical technique.” — Hamel Husain", "caption_at": "count them"}
+    },
+    {
+      "template": "statement", "chapter": "Error analysis first",
+      "narration": "One caution from Shreya: don't hand that first reading to an AI. It lacks your product context, so it tends to say the trace looks fine. You read; the AI can help you cluster. And you don't need thousands of traces. Often around thirty is enough before new ones stop revealing new problems.",
+      "params": {"text": "You read the traces. The AI helps you *cluster*.", "sub": "~30 traces often reveal most failure modes. — Shreya Shankar", "art": "eye", "tone": "human", "sync": false}
+    },
+    {
+      "template": "statement", "chapter": "Small and real",
+      "narration": "Then turn the failures that keep coming back into eval tasks. Anthropic's advice: twenty to fifty simple tasks drawn from real failures is a great start. Early changes have big effects, so small samples are enough, and evals get harder to build the longer you wait.",
+      "params": {"text": "Start with *20–50 tasks* drawn from real failures.", "sub": "Anthropic, “Demystifying evals for AI agents”", "art": "list", "tone": "agent", "sync": false}
+    },
+    {
+      "template": "compare", "chapter": "Graders",
+      "narration": "How should you grade? Prefer code: checking that tests pass, the JSON is valid, the output has the right shape. It's cheap and objective. For subjective qualities, use an LLM judge, but make it binary, pass or fail. Hamel calls one to five scales a weasel way of not making a decision. And give each failure mode its own narrow judge.",
+      "params": {
+        "left": {"title": "Weak grading", "items": ["One judge for “is this good?”", "1–5 scores nobody can interpret", "Never checked against humans"], "at": "weasel"},
+        "right": {"title": "Strong grading", "items": ["Code checks wherever possible", "Binary pass/fail judges", "One judge per failure mode"], "at": "Prefer code"}
+      }
+    },
+    {
+      "template": "stat", "chapter": "Validate your judges",
+      "narration": "Always check your judges against human labels, and beware of a trap. If real failures happen ten percent of the time, a judge that always says pass agrees with humans ninety percent of the time, while catching nothing. Look at what it gets wrong, not just the agreement rate.",
+      "params": {"items": [
+        {"value": 90, "suffix": "%", "label": "agreement from a judge that always says “pass”", "sub": "when only 10% of outputs actually fail", "tone": "bad", "at": "ninety percent"}
+      ], "src": "Hamel Husain on validating LLM judges"}
+    },
+    {
+      "template": "stat", "chapter": "Consistency",
+      "narration": "Also decide what success means. If one success out of several tries is enough, measure pass at k. If every run must succeed, like a customer-facing agent, measure pass to the power k. An agent that succeeds seventy-five percent of the time passes three runs in a row only about forty-two percent of the time.",
+      "params": {"items": [
+        {"value": 75, "suffix": "%", "label": "success on a single run", "tone": "good", "at": "seventy-five"},
+        {"value": 42, "suffix": "%", "label": "chance all 3 runs succeed (0.75³)", "tone": "bad", "at": "forty-two"}
+      ], "src": "Anthropic: pass@k (any success) vs pass^k (every run succeeds)"}
+    },
+    {
+      "template": "quote", "chapter": "Read the transcripts",
+      "narration": "Finally, read the transcripts. Anthropic found Claude Opus 4.5 scoring forty-two percent on one benchmark, until they fixed bugs in the grading and the tasks. Then it scored ninety-five percent. Broken graders hide real ability. And grade the outcome, not the exact path the agent took.",
+      "params": {"text": "You won't know if your graders are working well unless you *read the transcripts* and grades from many trials.", "who": "Anthropic", "role": "Demystifying evals for AI agents", "src": "anthropic.com/engineering"}
+    },
+    {
+      "template": "statement", "chapter": "They know",
+      "narration": "One last twist from Lauren Tan. When she evaluates skills, she runs the agents in neutrally named folders, because agents can tell when they're being evaluated, and when they do, they change their behavior.",
+      "params": {"text": "Agents can tell when they're being tested, and they *behave differently*.", "sub": "Lauren Tan runs evals in neutrally named folders.", "art": "eye", "tone": "agent", "sync": false}
+    },
+    {
+      "template": "quiz", "chapter": "Quick check",
+      "narration": "Quick check. Your LLM judge agrees with human labels ninety percent of the time, and real failures happen in about ten percent of cases. What should you check? Tap your answer.",
+      "params": {"q": "Your judge agrees with humans 90% of the time; real failures are ~10%. What do you check?", "options": [
+        "Nothing, 90% agreement is great",
+        "What it gets wrong: an always-pass judge also scores 90%",
+        "Switch the judge to a 1–5 scale",
+        "Add three more judges and average them"
+      ], "answer": 1, "explain": "With rare failures, agreement is misleading. Check whether it actually catches the failures."}
+    },
+    {
+      "template": "exercise", "chapter": "Try it",
+      "narration": "Build a tiny eval for something you use every day: a skill, a prompt or a memory file. Ten real tasks and a pass or fail check each is enough to start.",
+      "params": {"title": "Try it with your agent", "intro": "Pick a skill, prompt or memory file you rely on:", "prompt": "Help me build a tiny eval for [skill/prompt]. Collect 10 real past\ntasks from our history. For each, define a binary pass/fail check,\nscripted where possible. Run the current setup, report the pass rate,\nand show me the transcripts of the failures. Save it to evals/[name]/."}
+    },
+    {
+      "template": "recap", "chapter": "Recap",
+      "narration": "Recap. Measure, don't vibe. Start with error analysis and counting. Build twenty to fifty tasks from real failures. Prefer code graders and binary judges, and validate them. And read the transcripts. Next: the security risk every agent user needs to understand.",
+      "params": {"items": ["Measure, don't *vibe*", "Error analysis → count failure modes", "Code graders; binary, validated judges", "Read the transcripts"], "next": "Security: prompt injection and the lethal trifecta", "next_at": "Next"}
+    }
+  ]
+}

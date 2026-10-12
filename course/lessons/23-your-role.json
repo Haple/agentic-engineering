@@ -1,0 +1,128 @@
+{
+  "id": "23-your-role",
+  "number": 23,
+  "slug": "the-engineer-you-become",
+  "module": "The engineer you become",
+  "title": "The engineer you become",
+  "short": "The engineer you become",
+  "summary": "Kent Beck says 90% of his skills went to zero and 10% went up a thousandfold. Which 10%? Vision, judgment, design, domain knowledge, and real understanding. Here's how to keep learning when agents write the code, pay down cognitive debt, and build the skills that compound.",
+  "takeaways": [
+    "Syntax and API recall are worth less; vision, judgment, design and domain knowledge are worth far more.",
+    "The things agents can't do are your job now.",
+    "Cognitive debt is real: pay it down by making sure you understand the code, with walkthroughs and explanations.",
+    "Your judgment comes from understanding how things work. Keep building it on purpose.",
+    "Getting good takes practice. No tool made anyone faster in the first hour."
+  ],
+  "practices": [
+    "When you finish a non-trivial change, offer a short walkthrough of how it works and why.",
+    "Explain trade-offs and alternatives you considered, so the human keeps the design in their head.",
+    "When the user is learning, explain rather than just doing; point to the concept behind the fix.",
+    "Defer to the human on vision, product and taste decisions; surface them clearly instead of deciding silently."
+  ],
+  "sources": [
+    {"id": "aSXaxOdVtAQ", "t": 757},
+    {"id": "aSXaxOdVtAQ", "t": 772},
+    {"id": "kwSVtQ7dziU", "t": 3925},
+    {"id": "kwSVtQ7dziU", "t": 221},
+    {"id": "julbw1JuAz0", "t": 5557},
+    {"id": "RjfbvDXpFls", "t": 1022},
+    {"id": "SlGRN8jh2RI", "t": 1026},
+    {"id": "article-willison-aep-interactive-explanations"},
+    {"id": "article-willison-aep-linear-walkthroughs"},
+    {"id": "XyQ4ZTS5dGw", "t": 3079},
+    {"id": "article-anthropic-2026-agentic-coding-trends"},
+    {"id": "JiWgKRgdgpI", "t": 3354},
+    {"id": "CQmI4XKTa0U", "t": 5810},
+    {"id": "article-hashimoto-ai-adoption"},
+    {"id": "XyQ4ZTS5dGw", "t": 1870},
+    {"id": "RNJCfif1dPY", "t": 889}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "If agents write most of the code, what's left for you? More than you might think. But it's a different mix of skills than the one that got most of us here.",
+      "params": {"kicker": "Lesson 23", "module": "Module 6 · The engineer you become", "title": "The engineer *you become*", "subtitle": "Which skills lose value, which compound, and how to keep learning.", "bubble": "You lead. I'll type.", "mood": "happy", "human": true}
+    },
+    {
+      "template": "quote", "chapter": "90 and 10",
+      "narration": "Kent Beck, after decades of shaping how we build software, put it starkly. Ninety percent of my skills just went to zero dollars, and ten percent of my skills just went up a thousand times. The trick is knowing which ten percent.",
+      "params": {"text": "90% of my skills just went to zero dollars and 10% of my skills just went up a *1,000×*.", "who": "Kent Beck", "role": "creator of Extreme Programming, TDD pioneer", "src": "TDD, AI agents and coding · The Pragmatic Engineer", "t": 757}
+    },
+    {
+      "template": "compare", "chapter": "90 and 10",
+      "narration": "Here's how the sources sort them. Losing value: syntax and API details, memorizing commands, typing speed, and, as Boris Cherny says, very strong opinions about code style and frameworks. Gaining value: having a vision and setting milestones, controlling design and complexity, deep domain knowledge, being methodical and hypothesis-driven, and knowing what's worth building.",
+      "params": {
+        "left": {"title": "Worth less", "tone": "neutral", "items": ["Syntax and API details", "Memorizing commands", "Strong opinions on style and frameworks"], "at": "Losing value"},
+        "right": {"title": "Worth far more", "tone": "good", "items": ["Vision, milestones, taste", "Design and complexity control", "Domain knowledge; deciding what to build"], "at": "Gaining value"}
+      }
+    },
+    {
+      "template": "quote", "chapter": "Your job now",
+      "narration": "Karpathy gives the rule of thumb. The things that agents can't do are your job now. The things agents can do, they can probably do better than you, or very soon. So be strategic about where you spend your effort.",
+      "params": {"text": "The things that agents can't do is *your job now*.", "who": "Andrej Karpathy", "role": "on where to spend your effort", "src": "Skill Issue · No Priors", "t": 3925}
+    },
+    {
+      "template": "list", "chapter": "New core skills",
+      "narration": "Some of those skills are surprising. Mario Zechner says learning to say no is your most valuable capability right now: fewer features, but the ones that matter. Boris Cherny says the best person to write accounting software may be an accountant, because coding is now the easy part. And Martin Fowler reminds us that the core skill was always understanding what to write, which means talking to the people who use your software.",
+      "params": {"title": "Skills that compound", "items": [
+        {"text": "Saying no", "sub": "fewer features, the ones that matter", "at": "say no"},
+        {"text": "Domain expertise", "sub": "“the best person to write accounting software may be an accountant”", "at": "accountant"},
+        {"text": "Understanding users", "sub": "knowing what to write, not just how", "at": "use your software"}
+      ]}
+    },
+    {
+      "template": "statement", "chapter": "Cognitive debt",
+      "narration": "Now a risk. When agents write code faster than you can absorb it, you build up cognitive debt: the gap between what the code does and what you understand about it. Simon Willison's answer is to pay it down deliberately, by improving your understanding of how the code works.",
+      "params": {"text": "Code you don't understand is *cognitive debt*.", "sub": "“How do we pay down cognitive debt? By improving our understanding of how the code works.” — Simon Willison", "art": "brain", "tone": "agent", "sync": false}
+    },
+    {
+      "template": "flow", "chapter": "Pay it down",
+      "narration": "His favorite tools for that are made by the agent itself. A linear walkthrough: the agent explains the code in order, pasting real snippets rather than retyping them. And interactive explanations: animated, explorable pages that show how an algorithm works. He says reading one walkthrough taught him a great deal about SwiftUI.",
+      "params": {"nodes": [
+        {"label": "Agent writes code", "sub": "fast", "kind": "agent", "at": "made by the agent"},
+        {"label": "Linear walkthrough", "sub": "real snippets, in order", "kind": "doc", "at": "linear walkthrough"},
+        {"label": "Interactive explanation", "sub": "animated, explorable", "kind": "web", "at": "interactive explanations"},
+        {"label": "You understand it", "sub": "debt paid down", "kind": "human", "at": "taught him"}
+      ]}
+    },
+    {
+      "template": "quote", "chapter": "Keep building judgment",
+      "narration": "Why does understanding matter if you're not typing the code? Because judgment comes from it. One Anthropic engineer explained it in the company's trends report: I mostly use AI where I know what the answer should look like, and I developed that ability by doing software engineering the hard way. DHH adds that seniors gain the most from agents, because they can tell good output from bad.",
+      "params": {"text": "I'm primarily using AI in cases where I know what the answer should be or should look like. I developed that ability by doing software engineering *“the hard way.”*", "who": "An Anthropic engineer", "role": "quoted in the 2026 Agentic Coding Trends Report", "src": "Anthropic"}
+    },
+    {
+      "template": "list", "chapter": "Advice for juniors",
+      "narration": "That's a real challenge for people early in their careers. Martin Fowler's advice: use the tools, but find senior mentors, because you can't yet tell whether output is good. Probe the agent; ask why and for its sources. And Mitchell Hashimoto suggests challenging yourself to understand how things work, even when you're not the one writing them, because that knowledge transfers.",
+      "params": {"title": "Early in your career?", "items": [
+        {"text": "Use the tools, and find mentors", "sub": "you can't yet judge output alone", "at": "mentors"},
+        {"text": "Probe the agent", "sub": "“why this?” and “what's your source?”", "at": "Probe"},
+        {"text": "Understand how things work", "sub": "that knowledge transfers", "at": "understand how"}
+      ]}
+    },
+    {
+      "template": "statement", "chapter": "Practice",
+      "narration": "And give yourself time. When Mitchell Hashimoto started, he forced himself to do every task twice: once by hand, and once with an agent, aiming for the same quality. It was excruciating, but it built real skill. As he says, what tool have you ever adopted where you were immediately faster?",
+      "params": {"text": "“What tool have you ever adopted where you were *immediately faster*?”", "sub": "Mitchell Hashimoto did every task twice, by hand and with an agent, until he got good.", "art": "clock", "tone": "human", "sync": false}
+    },
+    {
+      "template": "quiz", "chapter": "Quick check",
+      "narration": "Quick check. As agents write more of the code, which of these skills becomes more valuable? Tap your answer.",
+      "params": {"q": "As agents write more of the code, which skill becomes MORE valuable?", "options": [
+        "Memorizing standard library APIs",
+        "Typing speed",
+        "Judging whether a design will hold up, and what's worth building",
+        "Strong opinions about tabs versus spaces"
+      ], "answer": 2, "explain": "Judgment about design and direction is exactly what agents can't do for you."}
+    },
+    {
+      "template": "exercise", "chapter": "Try it",
+      "narration": "Pay down some cognitive debt today. Ask your agent for a linear walkthrough of a recent change, with real snippets, and have it quiz you at the end.",
+      "params": {"title": "Try it with your agent", "intro": "Pick the most complex change from this week:", "prompt": "Write a linear walkthrough of [the change / file]: go through the\ncode in order and explain why each part exists and what would break\nwithout it. Paste real snippets using grep or cat, don't retype them.\nThen quiz me with 3 questions to check I understood it."}
+    },
+    {
+      "template": "recap", "chapter": "Recap",
+      "narration": "Recap. Ninety percent of skills lose value; ten percent compound: vision, judgment, design, domain knowledge. What agents can't do is your job now. Pay down cognitive debt on purpose. And give yourself time to get good. Last lesson next: what comes next.",
+      "params": {"items": ["90% of skills fade; 10% go up *1,000×*", "What agents can't do is your job", "Pay down cognitive debt", "Practice: nobody's faster on day one"], "next": "What comes next", "next_at": "Last lesson"}
+    }
+  ]
+}

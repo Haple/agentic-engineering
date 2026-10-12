@@ -1,0 +1,408 @@
+{
+ "id": "07-prompting",
+ "number": 7,
+ "slug": "prompting-coding-agents",
+ "module": "Working with one agent",
+ "title": "Talking to agents",
+ "short": "Talking to agents",
+ "summary": "Good prompts aren't clever. They answer one question: how is the model supposed to know what I mean? Learn the habits of people who prompt agents all day: point to where knowledge lives, show a gold standard, state constraints and exit criteria, and use the short phrases that carry a lot of discipline.",
+ "takeaways": [
+  "Ask of every prompt: how is the model supposed to know what I mean? Training data, the codebase, the context, or me?",
+  "Point to where knowledge lives: files, folders, docs, screenshots, a working example to imitate.",
+  "Describe the task, the guardrails and the exit criteria, then let the agent work. Don't script every step.",
+  "Short phrases like “first run the tests” or “use red/green TDD” carry a lot of built-in discipline.",
+  "You can just talk to it: ask why, push back, ask it to simplify, ask it to ask you questions."
+ ],
+ "practices": [
+  "At the start of a session in an existing project, find and run the test suite before changing code.",
+  "When a request points to a reference implementation or existing pattern, study it and match it.",
+  "If the request lacks information you can't find in the codebase, ask; don't invent the missing intent.",
+  "State explicit constraints back before starting (what must not change), and confirm the exit criteria."
+ ],
+ "sources": [
+  {
+   "id": "HegqGzD-kvc",
+   "t": 313
+  },
+  {
+   "id": "HegqGzD-kvc",
+   "t": 490
+  },
+  {
+   "id": "HegqGzD-kvc",
+   "t": 646
+  },
+  {
+   "id": "HegqGzD-kvc",
+   "t": 833
+  },
+  {
+   "id": "HegqGzD-kvc",
+   "t": 904
+  },
+  {
+   "id": "HegqGzD-kvc",
+   "t": 1124
+  },
+  {
+   "id": "qyPCVqFUyDo",
+   "t": 915
+  },
+  {
+   "id": "article-willison-aep-first-run-the-tests"
+  },
+  {
+   "id": "article-willison-aep-red-green-tdd"
+  },
+  {
+   "id": "article-willison-aep-adding-a-new-content-type"
+  },
+  {
+   "id": "IDSAMqip6ms",
+   "t": 2567
+  },
+  {
+   "id": "IDSAMqip6ms",
+   "t": 3122
+  },
+  {
+   "id": "o6oYc9-X9Iw",
+   "t": 661
+  },
+  {
+   "id": "IZAlq-V19U8",
+   "t": 1363
+  },
+  {
+   "id": "IZAlq-V19U8",
+   "t": 1911
+  }
+ ],
+ "scenes": [
+  {
+   "template": "title",
+   "chapter": "Intro",
+   "narration": "The best prompts for coding agents aren't clever. There are no magic words. They just answer one question better than most people bother to.",
+   "params": {
+    "kicker": "Lesson 7",
+    "module": "Module 2 · Working with one agent",
+    "title": "Talking to *agents*",
+    "subtitle": "How is the model supposed to know what you mean?",
+    "bubble": "Tell me more…",
+    "mood": "happy"
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "The kidnapped engineer",
+   "narration": "Thorsten Ball, who builds the Amp agent, uses this picture. Imagine a brilliant senior engineer, kidnapped and locked in a room, with only a computer and your note: fix the bug with the upload. What do they know? What are they missing?",
+   "params": {
+    "eyebrow": "Thorsten Ball's thought experiment",
+    "text": "A brilliant engineer, locked in a room, with a computer and your note: “*fix the bug with the upload*.”",
+    "sub": "What do they know? What are they missing?",
+    "sub_at": "missing",
+    "art": "agent",
+    "size": "m",
+    "sync": false
+   }
+  },
+  {
+   "template": "list",
+   "chapter": "Where knowledge comes from",
+   "narration": "His core question is: how is the model supposed to know what I mean? There are only four places the answer can come from. Its training data, which knows general programming. Your codebase, if it can find the right part. Whatever is already in its context. And your head, which it can only reach through your prompt.",
+   "params": {
+    "title": "Where the agent's knowledge comes from",
+    "style": "num",
+    "items": [
+     {
+      "text": "Training data",
+      "sub": "general programming, popular libraries",
+      "at": "training"
+     },
+     {
+      "text": "Your codebase",
+      "sub": "only if it finds the right part",
+      "at": "codebase"
+     },
+     {
+      "text": "Its context",
+      "sub": "what's already loaded",
+      "at": "context"
+     },
+     {
+      "text": "Your head",
+      "sub": "reachable only through your prompt",
+      "at": "head"
+     }
+    ],
+    "hnote": {
+     "text": "the intent lives here!",
+     "at": "only reach",
+     "p": [
+      62,
+      78
+     ],
+     "pp": [
+      55,
+      82
+     ]
+    }
+   }
+  },
+  {
+   "template": "chat",
+   "chapter": "A better prompt",
+   "narration": "Compare two prompts. The first is the note in the locked room. The second answers the question. It describes the symptom, points to the files, names a working example to copy, states the constraint, and says what done looks like.",
+   "params": {
+    "messages": [
+     {
+      "from": "you",
+      "text": "fix the bug with the upload",
+      "label": "the note",
+      "at": "first"
+     },
+     {
+      "from": "you",
+      "text": "Uploads over 10MB fail with a 413 in prod. Look at `api/upload.ts` and `nginx.conf`. The avatar uploader handles large files correctly, use it as the gold standard. Don't change the public API. Done when a 40MB upload works and the tests pass.",
+      "label": "the briefing",
+      "at": "second"
+     }
+    ]
+   }
+  },
+  {
+   "template": "code",
+   "chapter": "A better prompt",
+   "narration": "Look at what each part does. The symptom says what's wrong. The pointers save the agent from reading the whole repo. The gold standard shows what good looks like. The constraint closes a gap. And the exit criteria tell it when to stop.",
+   "params": {
+    "file": "a good prompt, annotated",
+    "lang": "text",
+    "lines": [
+     "Uploads over 10MB fail with a 413 in prod.",
+     "Look at api/upload.ts and nginx.conf.",
+     "The avatar uploader handles large files correctly:",
+     "use it as the gold standard.",
+     "Don't change the public API.",
+     "Done when a 40MB upload works and the tests pass."
+    ],
+    "hl": [
+     {
+      "from": 1,
+      "to": 1,
+      "at": "symptom",
+      "label": "symptom",
+      "tone": "bad"
+     },
+     {
+      "from": 2,
+      "to": 2,
+      "at": "pointers",
+      "label": "where to look",
+      "tone": "human"
+     },
+     {
+      "from": 3,
+      "to": 4,
+      "at": "gold standard",
+      "label": "what good looks like",
+      "tone": "good"
+     },
+     {
+      "from": 5,
+      "to": 5,
+      "at": "constraint",
+      "label": "a closed gap",
+      "tone": "agent"
+     },
+     {
+      "from": 6,
+      "to": 6,
+      "at": "exit criteria",
+      "label": "when to stop",
+      "tone": "good"
+     }
+    ]
+   }
+  },
+  {
+   "template": "flow",
+   "chapter": "The one-two punch",
+   "narration": "Thorsten's favorite trick is the one-two punch. Instead of cramming everything into the first prompt, he first asks the agent to find the relevant code. That loads the right files into its context. Then he makes the real request.",
+   "params": {
+    "nodes": [
+     {
+      "label": "Prompt 1: find it",
+      "sub": "“Find where we handle uploads and how the avatar uploader works.”",
+      "kind": "human",
+      "at": "first asks"
+     },
+     {
+      "label": "Context loads",
+      "sub": "the right files, read",
+      "kind": "agent",
+      "at": "loads"
+     },
+     {
+      "label": "Prompt 2: the ask",
+      "sub": "“Now make uploads work the same way.”",
+      "kind": "human",
+      "at": "real request"
+     }
+    ]
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "Show, don't describe",
+   "narration": "Notice how much work examples do. Simon Willison often tells the agent to imitate existing logic elsewhere in the project, instead of describing the rules. And Thorsten says ninety percent of his prompts include a screenshot: a bug, a design, a customer message. Pictures and examples are cheap, dense context.",
+   "params": {
+    "text": "Point at an *example*. Paste a *screenshot*. Skip the essay.",
+    "sub": "“90% of my prompts have screenshots in them.” — Thorsten Ball",
+    "sub_at": "ninety",
+    "art": "eye",
+    "tone": "human",
+    "sync": false
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "Guardrails and exit",
+   "narration": "How much detail is right? Boris Cherny warns against scripting every step. With modern models, describe the task, describe the guardrails, describe the exit criteria, and then let the model cook. He even suggests giving it tasks slightly harder than you think it can do.",
+   "params": {
+    "eyebrow": "Boris Cherny's advice",
+    "text": "Describe the task, the guardrails and the *exit criteria*. Then let the model cook.",
+    "sub": "Don't script every step. Try tasks slightly harder than you think it can do.",
+    "sub_at": "harder",
+    "art": "target",
+    "tone": "agent",
+    "size": "m",
+    "sync": false
+   }
+  },
+  {
+   "template": "terminal",
+   "chapter": "Phrases that pack a punch",
+   "narration": "Some short phrases carry a surprising amount of discipline, because the habits are already baked into the models. Simon Willison starts sessions with: first run the tests. That's four words, and the agent will keep running them. Use red green TDD. Ask me questions if anything is unclear, because agents rarely ask on their own. And copy how another part of the code does it.",
+   "params": {
+    "title": "prompts that punch above their weight",
+    "typing": true,
+    "lines": [
+     {
+      "k": "you",
+      "text": "First run the tests.",
+      "at": "first run"
+     },
+     {
+      "k": "dim",
+      "text": "  # it learns the suite exists, and keeps using it"
+     },
+     {
+      "k": "you",
+      "text": "Use red/green TDD.",
+      "at": "TDD"
+     },
+     {
+      "k": "dim",
+      "text": "  # write a failing test first, then make it pass"
+     },
+     {
+      "k": "you",
+      "text": "Ask me questions if anything is unclear.",
+      "at": "questions"
+     },
+     {
+      "k": "dim",
+      "text": "  # agents rarely ask on their own"
+     },
+     {
+      "k": "you",
+      "text": "Do it the way the billing module does.",
+      "at": "copy"
+     },
+     {
+      "k": "dim",
+      "text": "  # an example beats a paragraph of rules"
+     }
+    ]
+   }
+  },
+  {
+   "template": "list",
+   "chapter": "Just talk to it",
+   "narration": "And remember you can just talk to it. Cat Wu from the Claude Code team says even experts forget this. Output too complicated? Say: simplify it. Something looks off? Ask why it made that choice. Airbnb's engineers found that after a few rounds of pushing back, the agent often admits it was wrong. You can even dictate by voice. What matters is how much information you give, not how polished it sounds.",
+   "params": {
+    "title": "You can just talk to it",
+    "items": [
+     {
+      "text": "“Simplify it.”",
+      "sub": "when the output is overbuilt",
+      "at": "simplify"
+     },
+     {
+      "text": "“Why did you do it this way?”",
+      "sub": "push back on anything odd",
+      "at": "why"
+     },
+     {
+      "text": "Ramble by voice",
+      "sub": "information beats polish",
+      "at": "voice"
+     }
+    ]
+   }
+  },
+  {
+   "template": "quote",
+   "chapter": "Executive communication",
+   "narration": "Thariq Shihipar from the Claude Code team sums it up. Sufficiently advanced prompting is indistinguishable from sufficiently advanced executive communication. Clear context, clear goal, clear constraints. The same things that make a great brief for a human.",
+   "params": {
+    "text": "Sufficiently advanced prompting is indistinguishable from sufficiently advanced *executive communication*.",
+    "who": "Thariq Shihipar",
+    "role": "Claude Code team, Anthropic",
+    "src": "Claude Code's Bitter Lesson · Latent Space",
+    "t": 1911
+   }
+  },
+  {
+   "template": "quiz",
+   "chapter": "Quick check",
+   "narration": "Quick check. Which addition would most improve the prompt: fix the flaky checkout test? Tap your answer.",
+   "params": {
+    "q": "Which addition most improves “fix the flaky checkout test”?",
+    "options": [
+     "“Please, this is really urgent!”",
+     "Writing it in ALL CAPS",
+     "The failing output, the file to look at, and a test that's known to be stable",
+     "“You are a world-class senior engineer.”"
+    ],
+    "answer": 2,
+    "explain": "It answers “how is the model supposed to know?” Urgency, caps and role-play add no information."
+   }
+  },
+  {
+   "template": "exercise",
+   "chapter": "Try it",
+   "narration": "Try this with a prompt you'd normally send. Instead of running it, ask the agent what it would be missing and where it would look. You'll quickly learn which parts of your intent never made it out of your head.",
+   "params": {
+    "title": "Try it with your agent",
+    "intro": "Take a prompt you'd normally fire off:",
+    "prompt": "Here's a request: \"[your usual one-liner]\"\nDon't do it yet. Tell me what information you'd be missing\nto do it well, where in the codebase you'd look for it,\nand ask me up to 3 questions to fill the gaps."
+   }
+  },
+  {
+   "template": "recap",
+   "chapter": "Recap",
+   "narration": "Recap. Ask how the model is supposed to know what you mean. Point it at files, examples and screenshots. Give guardrails and exit criteria, then let it cook. And talk to it like a colleague. Next: the habit that makes agents trustworthy. Giving them a way to check their own work.",
+   "params": {
+    "items": [
+     "“How is it supposed to *know* what I mean?”",
+     "Point at files, examples, screenshots",
+     "Task + guardrails + exit criteria",
+     "Talk to it: simplify, why, ask me"
+    ],
+    "next": "Close the loop: let agents check their work",
+    "next_at": "Next"
+   }
+  }
+ ]
+}

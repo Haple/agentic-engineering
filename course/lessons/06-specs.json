@@ -1,0 +1,356 @@
+{
+ "id": "06-specs",
+ "number": 6,
+ "slug": "writing-specs-for-agents",
+ "module": "Working with one agent",
+ "title": "Specs agents can execute",
+ "short": "Specs agents can execute",
+ "summary": "A coding agent fills every gap in your request with its best guess, drawn from average code on the internet. A good spec closes the gaps that matter: the goal, what done looks like, the constraints and what's out of scope. Here's how to write one, without writing it yourself.",
+ "takeaways": [
+  "Whatever your spec leaves blank, the model fills in with average patterns from its training data.",
+  "Spec the goal, acceptance criteria, constraints and out-of-scope. Leave low-level decisions to the agent.",
+  "Make 'done' checkable: concrete steps and a pass or fail for each feature.",
+  "Don't hand-write specs. Let the agent interview you, generate the spec, then edit it.",
+  "Keep specs small and current. Prototype to discover what you want, then spec what you'll keep."
+ ],
+ "practices": [
+  "Before building a feature, confirm the goal, acceptance criteria, constraints (stack, dependencies, performance) and what's out of scope; ask if any are missing.",
+  "Search for existing patterns and modules to reuse before proposing new ones, and say which you'll reuse.",
+  "Never add a new dependency without stating why and checking that the spec allows it.",
+  "Express acceptance criteria as concrete, checkable steps, and track each as passing or failing."
+ ],
+ "sources": [
+  {
+   "id": "RjfbvDXpFls",
+   "t": 856
+  },
+  {
+   "id": "am_oeAoUhew",
+   "t": 549
+  },
+  {
+   "id": "article-github-agentic-engineering-system"
+  },
+  {
+   "id": "hy8UstR2NEg",
+   "t": 27
+  },
+  {
+   "id": "hy8UstR2NEg",
+   "t": 576
+  },
+  {
+   "id": "BEKc4P87XKo",
+   "t": 611
+  },
+  {
+   "id": "bKrAcTf2pL4",
+   "t": 1708
+  },
+  {
+   "id": "article-anthropic-long-running-harnesses"
+  },
+  {
+   "id": "4Nna09dG_c0",
+   "t": 524
+  },
+  {
+   "id": "article-anthropic-claude-code-best-practices"
+  },
+  {
+   "id": "CQmI4XKTa0U",
+   "t": 2820
+  },
+  {
+   "id": "julbw1JuAz0",
+   "t": 3600
+  },
+  {
+   "id": "RNJCfif1dPY",
+   "t": 383
+  },
+  {
+   "id": "Usufn8IQJgw",
+   "t": 3894
+  }
+ ],
+ "scenes": [
+  {
+   "template": "title",
+   "chapter": "Intro",
+   "narration": "Every request you give an agent has gaps. The agent will fill every one of them. The question is whether you choose what goes there, or the internet does.",
+   "params": {
+    "kicker": "Lesson 6",
+    "module": "Module 2 · Working with one agent",
+    "title": "Specs agents can *execute*",
+    "subtitle": "Close the gaps that matter. Leave the rest to the agent.",
+    "bubble": "What did you mean by “nice”?",
+    "mood": "think"
+   }
+  },
+  {
+   "template": "quote",
+   "chapter": "Gaps get filled",
+   "narration": "Mario Zechner, who builds the Pi coding agent, puts it like this. You know what we call a sufficiently detailed spec? It's a program. So if you leave blanks in your spec, the model fills them with the patterns it learned from average code on the internet.",
+   "params": {
+    "text": "You know what we call a sufficiently detailed spec? *It's a program.* So if you leave blanks in your spec, what do you think happens?",
+    "who": "Mario Zechner",
+    "role": "creator of the Pi coding agent",
+    "src": "Building Pi in a World of Slop · AI Engineer",
+    "t": 856
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "Gaps get filled",
+   "narration": "OpenAI's Ryan Lopopolo estimates a good patch involves around five hundred small decisions that nobody wrote down. Naming, error handling, logging, performance. The model has seen every possible choice. Your job is to write down what good looks like here.",
+   "params": {
+    "text": "A good patch hides ~*500 small decisions* nobody wrote down.",
+    "sub": "Ryan Lopopolo, OpenAI · Your job: write down what “good” means in this codebase.",
+    "art": "list",
+    "tone": "agent",
+    "sync": false
+   }
+  },
+  {
+   "template": "chat",
+   "chapter": "The intern problem",
+   "narration": "Brendan O'Leary learned this before agents existed. As a new manager, he gave interns a rough wireframe with placeholder emoji and Comic Sans. They built exactly that, Comic Sans and all. It wasn't their fault, he says. He never told them what mattered. Agents work the same way.",
+   "params": {
+    "messages": [
+     {
+      "from": "you",
+      "text": "here's the wireframe 🎉 build the prototype",
+      "label": "the brief",
+      "at": "wireframe"
+     },
+     {
+      "from": "agent",
+      "text": "Done! Pixel-perfect, including the *Comic Sans* and the 🎉 placeholders.",
+      "tone": "bad",
+      "at": "exactly that",
+      "label": "the interns (or your agent)"
+     },
+     {
+      "from": "you",
+      "text": "The fonts and emoji were placeholders. I never said that. My fault.",
+      "label": "the lesson",
+      "at": "never told"
+     }
+    ]
+   }
+  },
+  {
+   "template": "code",
+   "chapter": "Anatomy of a spec",
+   "narration": "So what goes in a spec? Start with the goal and who it's for. Then what done looks like, as criteria you can check. Then the constraints: the stack, which dependencies are allowed, any performance limits. What's out of scope. And existing code the agent should reuse instead of reinventing.",
+   "params": {
+    "file": "specs/csv-export.md",
+    "lang": "md",
+    "lines": [
+     "# CSV export for reports",
+     "## Goal: analysts can take report data into Excel",
+     "## Done when",
+     "- Export button downloads exactly the filtered rows",
+     "- 50k rows export in under 5 seconds",
+     "## Constraints: no new dependencies, stream, don't buffer",
+     "## Out of scope: PDF, scheduled exports",
+     "## Reuse: src/api/stream.ts, ReportTable filters"
+    ],
+    "hl": [
+     {
+      "from": 2,
+      "to": 2,
+      "at": "goal",
+      "label": "why",
+      "tone": "human"
+     },
+     {
+      "from": 3,
+      "to": 5,
+      "at": "done looks like",
+      "label": "checkable",
+      "tone": "good"
+     },
+     {
+      "from": 6,
+      "to": 6,
+      "at": "constraints",
+      "label": "limits",
+      "tone": "agent"
+     },
+     {
+      "from": 7,
+      "to": 8,
+      "at": "out of scope",
+      "label": "boundaries",
+      "tone": "bad"
+     }
+    ]
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "The right altitude",
+   "narration": "Notice what's missing: function names, file layouts, how to write the loop. The JetBrains course on spec-driven development calls it the architect and the builder. Give lots of context about goals and constraints, and leave the low-level decisions to the agent.",
+   "params": {
+    "text": "Lots of context on *goals and constraints*. Little on low-level decisions.",
+    "sub": "Like an architect briefing a builder: say what and why, not how to hold the hammer.",
+    "art": "target",
+    "tone": "human",
+    "sync": false
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "Constraints matter",
+   "narration": "Constraints are the gaps that bite hardest. When Cursor's Wilson Lin pointed thousands of agents at building a web browser, they pulled in existing parsers and a JavaScript engine. That wasn't misbehavior. His instructions never said what to build from scratch.",
+   "params": {
+    "eyebrow": "Cursor's agent swarm built a browser",
+    "text": "The agents pulled in dependencies, because the spec *never said not to*.",
+    "sub": "Wilson Lin: an omission in the instructions, not agent misbehavior.",
+    "art": "box",
+    "tone": "bad",
+    "sync": false
+   }
+  },
+  {
+   "template": "code",
+   "chapter": "Checkable done",
+   "narration": "The best specs make done machine-checkable. In Anthropic's long-running agent experiments, every feature gets concrete steps and a passes flag that starts as false. The agent only flips it to true after it has actually verified the behavior.",
+   "params": {
+    "file": "features.json",
+    "lang": "js",
+    "lines": [
+     "{",
+     "  \"description\": \"New chat button creates a fresh conversation\",",
+     "  \"steps\": [",
+     "    \"Navigate to main interface\",",
+     "    \"Click the 'New Chat' button\",",
+     "    \"Verify a new conversation is created\"",
+     "  ],",
+     "  \"passes\": false",
+     "}"
+    ],
+    "hl": [
+     {
+      "from": 3,
+      "to": 7,
+      "at": "concrete steps",
+      "label": "how to check",
+      "tone": "human"
+     },
+     {
+      "from": 8,
+      "to": 8,
+      "at": "passes flag",
+      "label": "starts false",
+      "tone": "agent"
+     }
+    ],
+    "caption": "From Anthropic's “Effective harnesses for long-running agents”"
+   }
+  },
+  {
+   "template": "flow",
+   "chapter": "Don't write it yourself",
+   "narration": "Here's the good news: you don't have to write specs by hand. Geoffrey Huntley's workflow: I don't create my specs, I generate them. Have the agent interview you, let it write the spec, then review and edit it yourself before any code gets written.",
+   "params": {
+    "nodes": [
+     {
+      "label": "Describe it",
+      "sub": "a few rough sentences",
+      "kind": "human",
+      "at": "workflow"
+     },
+     {
+      "label": "Get interviewed",
+      "sub": "one question at a time",
+      "kind": "agent",
+      "at": "interview"
+     },
+     {
+      "label": "Agent writes spec",
+      "sub": "specs/feature.md",
+      "kind": "doc",
+      "at": "write the spec"
+     },
+     {
+      "label": "You edit",
+      "sub": "then build",
+      "kind": "check",
+      "at": "edit"
+     }
+    ],
+    "caption": "“I don't create my specs. I generate them.” — Geoffrey Huntley",
+    "caption_at": "generate"
+   }
+  },
+  {
+   "template": "compare",
+   "chapter": "Small and current",
+   "narration": "Two cautions. Martin Fowler warns against recreating waterfall: write the smallest spec that makes forward progress, then build in thin slices. And specs drift. Dex Horthy's team throws away plans after each task. The code is the source of truth. Even Boris Cherny's team often skips documents and prototypes instead. Prototype to learn what you want, then spec what you'll keep.",
+   "params": {
+    "left": {
+     "title": "Spec trap",
+     "items": [
+      "One giant spec up front",
+      "Kept forever, slowly wrong",
+      "Written before you know"
+     ],
+     "at": "waterfall"
+    },
+    "right": {
+     "title": "Spec habit",
+     "items": [
+      "Smallest spec that moves forward",
+      "Thrown away after the task",
+      "Prototype first, then spec"
+     ],
+     "at": "smallest spec"
+    }
+   }
+  },
+  {
+   "template": "quiz",
+   "chapter": "Quick check",
+   "narration": "Quick check. Your agent added three new dependencies to build a CSV parser you expected it to write itself. What went wrong? Tap your answer.",
+   "params": {
+    "q": "The agent added 3 dependencies for a CSV parser you expected it to write. What went wrong?",
+    "options": [
+     "The agent ignored the spec",
+     "The spec never said which dependencies were allowed",
+     "Agents always overuse dependencies",
+     "Nothing, dependencies are always fine"
+    ],
+    "answer": 1,
+    "explain": "Unstated constraints are gaps, and gaps get filled with defaults. Put dependency rules in the spec."
+   }
+  },
+  {
+   "template": "exercise",
+   "chapter": "Try it",
+   "narration": "Try it on your next feature. This prompt makes the agent interview you and produce a one-page spec with a goal, checkable criteria, constraints, scope and code to reuse. Edit it, then build from it.",
+   "params": {
+    "title": "Try it with your agent",
+    "intro": "For your next feature:",
+    "prompt": "I want to build [feature]. Interview me one question at a time\n(with your recommended answer) to write a one-page spec:\ngoal and who it's for, acceptance criteria I can check,\nconstraints (stack, dependencies, performance), out of scope,\nand existing code to reuse. Save it to specs/[name].md."
+   }
+  },
+  {
+   "template": "recap",
+   "chapter": "Recap",
+   "narration": "Recap. Every gap gets filled, so close the ones that matter. Spec the goal, checkable done, constraints and scope, at the right altitude. Let the agent interview you and write it. And keep specs small and disposable. Next: how to talk to agents, prompt by prompt.",
+   "params": {
+    "items": [
+     "Every gap gets filled, so *close the ones that matter*",
+     "Goal · checkable done · constraints · scope",
+     "Let the agent interview you and write it",
+     "Small, current, disposable specs"
+    ],
+    "next": "Talking to agents",
+    "next_at": "Next"
+   }
+  }
+ ]
+}

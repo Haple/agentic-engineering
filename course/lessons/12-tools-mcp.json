@@ -1,0 +1,384 @@
+{
+ "id": "12-tools-mcp",
+ "number": 12,
+ "slug": "tools-clis-and-mcp",
+ "module": "Your toolkit",
+ "title": "Tools, CLIs and MCP",
+ "short": "Tools, CLIs and MCP",
+ "summary": "An agent is only as capable as its tools, but more tools isn't better: every tool definition costs context. Learn why the shell is the universal adapter, what MCP is for, when a CLI beats an MCP server, and how to design tools that agents actually use well.",
+ "takeaways": [
+  "Bash is the universal adapter: agents are excellent with well-known CLIs like git, gh and psql.",
+  "MCP standardizes how agents connect to tools and data, so one server works with many clients.",
+  "Every tool definition costs context. Dozens of tools crowd out the actual work.",
+  "Climb the tool ladder: built-in tools first, then local scripts, and MCP when many clients need the same tools.",
+  "Design tools for agents: consolidated actions, high-signal output, and actionable errors."
+ ],
+ "practices": [
+  "Prefer a well-known, documented CLI (git, gh, psql, docker) over adding a new integration.",
+  "Read a CLI's --help before using it, instead of guessing flags.",
+  "Keep tool output small: filter with grep, jq or head instead of dumping everything into context.",
+  "Suggest disabling MCP servers that aren't relevant to the current task."
+ ],
+ "sources": [
+  {
+   "id": "RFKCzGlAU6Q",
+   "t": 957
+  },
+  {
+   "id": "julbw1JuAz0",
+   "t": 3085
+  },
+  {
+   "id": "JiWgKRgdgpI",
+   "t": 3105
+  },
+  {
+   "id": "CQywdSdi5iA",
+   "t": 57
+  },
+  {
+   "id": "CQywdSdi5iA",
+   "t": 296
+  },
+  {
+   "id": "shZgedW15vg",
+   "t": 2237
+  },
+  {
+   "id": "4GiqzUHD5AA",
+   "t": 495
+  },
+  {
+   "id": "gv0WHhKelSE",
+   "t": 788
+  },
+  {
+   "id": "iQyg-KypKAA",
+   "t": 1000
+  },
+  {
+   "id": "8lF7HmQ_RgY",
+   "t": 4964
+  },
+  {
+   "id": "article-ronacher-agentic-coding"
+  },
+  {
+   "id": "mWvtOHlZM-I",
+   "t": 1936
+  },
+  {
+   "id": "article-anthropic-writing-tools-for-agents"
+  },
+  {
+   "id": "article-anthropic-building-effective-agents"
+  },
+  {
+   "id": "article-willison-aep-agentic-manual-testing"
+  },
+  {
+   "id": "article-willison-lethal-trifecta"
+  }
+ ],
+ "scenes": [
+  {
+   "template": "title",
+   "chapter": "Intro",
+   "narration": "An agent is only as capable as its tools. But here's the twist: giving it more tools often makes it worse. This lesson is about choosing tools well.",
+   "params": {
+    "kicker": "Lesson 12",
+    "module": "Module 3 · Your toolkit",
+    "title": "Tools, CLIs and *MCP*",
+    "subtitle": "The right tools, not the most tools.",
+    "bubble": "Is there a CLI for that?",
+    "mood": "happy"
+   }
+  },
+  {
+   "template": "terminal",
+   "chapter": "Bash is the adapter",
+   "narration": "Start with the most powerful tool of all: the shell. Models have seen enormous amounts of shell usage, so they're excellent with well-known command line tools. Git, the GitHub CLI, a database client. The Claude Code team even dropped their search index, because, as Boris Cherny puts it, plain glob and grep outperformed everything.",
+   "params": {
+    "title": "~/shop · the shell does everything",
+    "lines": [
+     {
+      "k": "tool",
+      "text": "Bash(gh pr view 482 --comments)",
+      "at": "GitHub CLI"
+     },
+     {
+      "k": "tool",
+      "text": "Bash(psql $DB -c \"select count(*) from orders where total < 0\")",
+      "at": "database"
+     },
+     {
+      "k": "out",
+      "text": "count: 3"
+     },
+     {
+      "k": "tool",
+      "text": "Bash(git log -S \"applyDiscount\" --oneline | head)",
+      "at": "Git"
+     },
+     {
+      "k": "tool",
+      "text": "Bash(rg \"applyDiscount\" src/ -n)",
+      "at": "grep"
+     },
+     {
+      "k": "agent",
+      "text": "Found it: commit 7f0b13d made discounts negative."
+     }
+    ]
+   }
+  },
+  {
+   "template": "flow",
+   "chapter": "What MCP is",
+   "narration": "So what's MCP, the Model Context Protocol? Its creators describe it simply: a standard way to give context to any app that uses an LLM, whether that's tools or raw data. You build a server once, and it works with every client that speaks the protocol: Claude Code, Codex, Cursor and many more.",
+   "params": {
+    "nodes": [
+     {
+      "label": "Your agent",
+      "sub": "Claude Code, Codex, Cursor…",
+      "kind": "agent",
+      "at": "any app"
+     },
+     {
+      "label": "MCP",
+      "sub": "one standard protocol",
+      "kind": "tool",
+      "at": "standard way"
+     },
+     {
+      "label": "Servers",
+      "sub": "GitHub, Sentry, your DB, a browser",
+      "kind": "db",
+      "at": "build a server"
+     }
+    ],
+    "caption": "Build a server once; it works with every client that speaks the protocol.",
+    "caption_at": "every client"
+   }
+  },
+  {
+   "template": "context",
+   "chapter": "The hidden cost",
+   "narration": "But tools aren't free. Every tool's name, description and schema sits in the context window, before you've typed a word. Daisy Hollman from Anthropic gives the math: twenty servers with fifteen tools each, and your context is mostly tool descriptions, with very little room left to work.",
+   "params": {
+    "title": "20 MCP servers × 15 tools",
+    "cap": "context window",
+    "blocks": [
+     {
+      "label": "system",
+      "kind": "sys",
+      "w": 0.06
+     },
+     {
+      "label": "300 tool definitions",
+      "kind": "tool",
+      "w": 0.5,
+      "at": "name, description"
+     },
+     {
+      "label": "your task",
+      "kind": "you",
+      "w": 0.04,
+      "at": "typed a word"
+     },
+     {
+      "label": "room to work",
+      "kind": "file",
+      "w": 0.12,
+      "at": "little room"
+     }
+    ],
+    "note": "Research cited by LangChain's Lance Martin: tool use degrades past ~30 tools.",
+    "note_at": "math"
+   }
+  },
+  {
+   "template": "stat",
+   "chapter": "CLI or MCP?",
+   "narration": "That's why many practitioners reach for command line tools first. Cal from the Claude Code team recommends: if there's a well-known, well-documented CLI, use it instead of an MCP server. Kun Chen measured it: for the same GitHub tasks, the GitHub MCP server used about three times the tokens, and more than twice the latency, of the GitHub CLI.",
+   "params": {
+    "items": [
+     {
+      "value": "~3×",
+      "label": "tokens: GitHub MCP server vs the gh CLI",
+      "tone": "bad",
+      "at": "three times"
+     },
+     {
+      "value": ">2×",
+      "label": "latency for the same tasks",
+      "tone": "bad",
+      "at": "twice"
+     }
+    ],
+    "src": "Kun Chen's benchmark, “L8 Principal's Agentic Engineering Workflow”"
+   }
+  },
+  {
+   "template": "stack",
+   "chapter": "The tool ladder",
+   "narration": "Will from Anthropic suggests a tool ladder. Start with the built-in tools: read, write, edit, bash. Then add small local scripts for your own agent. Only reach for an MCP server when several clients need the same standardized, governed set of tools. Running to MCP first creates a chaos of overlapping servers.",
+   "params": {
+    "title": "The tool ladder",
+    "sub": "Climb only as high as you need.",
+    "layers": [
+     {
+      "label": "Built-in tools",
+      "sub": "read, edit, bash, search",
+      "tone": "good",
+      "icon": "terminal",
+      "at": "built-in"
+     },
+     {
+      "label": "CLIs you already have",
+      "sub": "git, gh, psql, docker",
+      "tone": "paper",
+      "icon": "tool",
+      "at": "bash"
+     },
+     {
+      "label": "Local scripts",
+      "sub": "small tools for your own agent",
+      "tone": "soft",
+      "icon": "code",
+      "at": "own agent"
+     },
+     {
+      "label": "MCP server",
+      "sub": "when many clients need the same tools",
+      "tone": "agent",
+      "icon": "plug",
+      "at": "several clients"
+     }
+    ]
+   }
+  },
+  {
+   "template": "compare",
+   "chapter": "Design tools for agents",
+   "narration": "If you do build tools, design them for agents, not like an API for developers. Anthropic's guidance: don't just wrap every endpoint. Consolidate steps that always go together, like a single schedule event tool instead of three. Return names, not opaque IDs. And make error messages tell the agent what to do next.",
+   "params": {
+    "left": {
+     "title": "An API wrapper",
+     "items": [
+      "list_users, list_events, create_event",
+      "Returns raw UUIDs and every field",
+      "Error: 400 Bad Request"
+     ],
+     "at": "wrap every endpoint"
+    },
+    "right": {
+     "title": "A tool for agents",
+     "items": [
+      "schedule_event(attendees, time)",
+      "Returns names and only key fields",
+      "Error: “Alice is busy at 3pm; try 4pm”"
+     ],
+     "at": "Consolidate"
+    }
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "Design tools for agents",
+   "narration": "Small details matter a lot. When Anthropic tuned their agent for a coding benchmark, it kept making mistakes with relative file paths. They changed the tool to require absolute paths, and the model used it flawlessly. Armin Ronacher's rule: protect your tools against an LLM chaos monkey. There's no such thing as user error.",
+   "params": {
+    "text": "Protect your tools against an *LLM chaos monkey*.",
+    "sub": "There's no such thing as user error. — Armin Ronacher",
+    "art": "tool",
+    "tone": "agent",
+    "sync": false
+   }
+  },
+  {
+   "template": "terminal",
+   "chapter": "Help text for agents",
+   "narration": "A neat trick from Simon Willison: write your tool's help output for agents. His browser tool's help text teaches an agent everything it needs. So the prompt can just say: run it with help, then use it to test the page. The agent bootstraps itself.",
+   "params": {
+    "title": "~/blog · a tool that teaches itself",
+    "lines": [
+     {
+      "k": "you",
+      "text": "use `uvx rodney --help`, then test the new page in a real browser",
+      "at": "run it with help"
+     },
+     {
+      "k": "tool",
+      "text": "Bash(uvx rodney --help)"
+     },
+     {
+      "k": "dim",
+      "text": "  (help text written for agents: everything needed to drive a browser)"
+     },
+     {
+      "k": "tool",
+      "text": "Bash(uvx rodney … http://localhost:8000/newsletter)",
+      "at": "bootstraps"
+     },
+     {
+      "k": "ok",
+      "text": "page checked in a real browser"
+     }
+    ]
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "A warning",
+   "narration": "One warning before we move on. Simon Willison points out that MCP makes it easy to mix tools from different sources, and some of them read private data while others touch content attackers can influence. That combination is dangerous, and it gets its own lesson later.",
+   "params": {
+    "text": "Mixing tools from many sources can quietly create a *security hole*.",
+    "sub": "More in lesson 21: the lethal trifecta.",
+    "art": "warn",
+    "tone": "bad",
+    "sync": false
+   }
+  },
+  {
+   "template": "quiz",
+   "chapter": "Quick check",
+   "narration": "Quick check. You want your agent to work with GitHub issues and pull requests. What's the best first step? Tap your answer.",
+   "params": {
+    "q": "You want your agent to work with GitHub issues and PRs. Best first step?",
+    "options": [
+     "Install several GitHub MCP servers to be safe",
+     "Make sure the gh CLI is installed and logged in, and mention it in your memory file",
+     "Paste GitHub's API docs into every prompt",
+     "Build your own MCP server for GitHub"
+    ],
+    "answer": 1,
+    "explain": "A well-known CLI the model already understands is cheaper in tokens and simpler to run."
+   }
+  },
+  {
+   "template": "exercise",
+   "chapter": "Try it",
+   "narration": "Audit your agent's toolbox. This prompt finds the useful CLIs you already have, checks your MCP servers, and estimates how much context their definitions cost.",
+   "params": {
+    "title": "Try it with your agent",
+    "intro": "Audit your toolbox:",
+    "prompt": "Check which CLIs that matter for this project are installed and\nauthenticated (git, gh, psql, docker, etc.). Then list the MCP\nservers enabled in this session, roughly how much context their\ntool definitions use, and which ones I could disable for this repo."
+   }
+  },
+  {
+   "template": "recap",
+   "chapter": "Recap",
+   "narration": "Recap. The shell is the universal adapter. MCP standardizes connections, but every tool costs context. Prefer well-known CLIs, climb the tool ladder only as far as you need, and design tools for agents. Next: skills, commands and hooks, the way to teach your agent your team's know-how.",
+   "params": {
+    "items": [
+     "Bash + well-known CLIs go far",
+     "MCP: one server, many clients",
+     "Every tool definition costs *context*",
+     "Built-in → CLI → scripts → MCP"
+    ],
+    "next": "Skills, commands and hooks",
+    "next_at": "Next"
+   }
+  }
+ ]
+}

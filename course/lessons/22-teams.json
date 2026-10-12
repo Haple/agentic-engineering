@@ -1,0 +1,131 @@
+{
+  "id": "22-teams",
+  "number": 22,
+  "slug": "agentic-engineering-in-teams",
+  "module": "Quality, safety, teams",
+  "title": "Agentic engineering in teams",
+  "short": "Agentic engineering in teams",
+  "summary": "Individuals can rewire their workflow overnight; teams can't. The teams that win with agents change how they work rather than sprinkling AI on top, share their know-how as skills and memory, keep humans accountable, and measure honestly: speed and quality together.",
+  "takeaways": [
+    "Results vary wildly. The difference is rarely the tool; it's whether the team changed how it works.",
+    "Expect to slow down before you speed up, while you make the codebase and process agent-ready.",
+    "Share know-how: checked-in memory files and skills mean every new teammate's agent knows your practices.",
+    "You own the loop. Never send something you haven't read.",
+    "Measure honestly: speed should rise while escaped defects stay flat or fall. Aim for 2–3×, then compound."
+  ],
+  "practices": [
+    "Follow the team's shared conventions, memory files and skills over your own defaults.",
+    "Make your work easy for teammates to review: small changes, clear descriptions, evidence it works.",
+    "When you discover something teammates' agents would need to know, propose adding it to the shared memory file or a skill.",
+    "Be explicit about uncertainty and risk in summaries so the accountable human can make the call."
+  ],
+  "sources": [
+    {"id": "9UAxrdcDjjU", "t": 4065},
+    {"id": "9UAxrdcDjjU", "t": 5892},
+    {"id": "IDSAMqip6ms", "t": 3718},
+    {"id": "pqlWNihgdjI", "t": 84},
+    {"id": "pqlWNihgdjI", "t": 430},
+    {"id": "pqlWNihgdjI", "t": 574},
+    {"id": "article-github-agentic-engineering-system"},
+    {"id": "rmvDxxNubIg", "t": 1181},
+    {"id": "HC8T1OlgYi0", "t": 1920},
+    {"id": "HC8T1OlgYi0", "t": 2099},
+    {"id": "HC8T1OlgYi0", "t": 2640},
+    {"id": "CEvIs9y1uog", "t": 755},
+    {"id": "6eBSHbLKuN0", "t": 289},
+    {"id": "JiWgKRgdgpI", "t": 4879},
+    {"id": "JiWgKRgdgpI", "t": 5900},
+    {"id": "vKT59uoByXc", "t": 1240}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "A solo developer can rebuild their workflow over a weekend. A team can't. And it's in teams, with shared code, reviews and production on-call, that agentic engineering gets genuinely hard.",
+      "params": {"kicker": "Lesson 22", "module": "Module 5 · Quality, safety, teams", "title": "Agentic engineering in *teams*", "subtitle": "Change the way you work, not just the tools.", "bubble": "Team player, reporting in.", "mood": "happy", "human": true}
+    },
+    {
+      "template": "stat", "chapter": "Wildly different results",
+      "narration": "Team results vary wildly. Amazon's Clare Liguori reports pilots with a median four and a half times productivity improvement. Boris Cherny says productivity per engineer at Anthropic rose almost seventy percent, measured mostly by pull requests. Yet Armin Ronacher finds agents work much better on side projects than at work, and that token spending grows faster than measurable productivity.",
+      "params": {"items": [
+        {"value": "4.5×", "label": "median productivity in AWS pilots", "sub": "Clare Liguori", "tone": "good", "at": "four and a half"},
+        {"value": "+70%", "label": "productivity per engineer at Anthropic", "sub": "Boris Cherny, mostly by PRs", "tone": "good", "at": "seventy percent"},
+        {"value": "?", "label": "“more success with side projects than work”", "sub": "Armin Ronacher", "tone": "ink", "at": "side projects"}
+      ]}
+    },
+    {
+      "template": "quote", "chapter": "Change how you work",
+      "narration": "So what separates them? In a pilot with fifty teams, Liguori found the difference wasn't the tools; nearly all used the same one. The teams with step-function improvements intentionally changed the way they worked. The others sprinkled AI on top of their existing process.",
+      "params": {"text": "The teams that achieved step function improvements *intentionally changed the way that they worked*, and the others simply sprinkled [AI tools] on top.", "who": "Clare Liguori", "role": "AWS", "src": "From AI-Assisted to AI-Native · AI Engineer", "t": 430}
+    },
+    {
+      "template": "chart", "chapter": "Slow down to speed up",
+      "narration": "And almost every successful team reported the same shape. Productivity went down first, while they did deliberate work to make their codebase and process ready for agents. Then came the hockey stick. GitHub adds a warning: pilots often fail to scale because organizations copy the tool, but not the conditions that made the pilot work.",
+      "params": {"title": "The adoption curve teams report", "kind": "line", "data": [
+        {"x": "before", "y": 100, "label": "baseline", "at": "shape"},
+        {"x": "month 1", "y": 80, "label": "dip", "at": "went down"},
+        {"x": "month 2", "y": 95, "label": "agent-ready", "at": "ready"},
+        {"x": "month 3", "y": 190, "label": "", "at": "hockey"},
+        {"x": "month 4", "y": 320, "label": "hockey stick", "hl": true}
+      ], "src": "Illustrative shape, based on teams interviewed by Clare Liguori (AWS)"}
+    },
+    {
+      "template": "compare", "chapter": "The rift",
+      "narration": "Teams also split. Dex Horthy describes a growing rift: staff engineers who don't adopt because it doesn't speed them up, junior engineers who use agents heavily and ship slop, and seniors who spend their weeks cleaning it up. Charity Majors says both camps are seeing real things. Her advice: when you share wins, tell the whole story, including the costs.",
+      "params": {
+        "left": {"title": "Enthusiasts see", "tone": "agent", "who": "agent", "items": ["Huge speedups", "Work that never got done, done", "A race they can't sit out"], "at": "both camps"},
+        "right": {"title": "Skeptics see", "tone": "human", "who": "human", "items": ["Slop to clean up", "Reliability getting worse", "Eroding mental models"], "at": "real things"},
+        "vs": "&"
+      }
+    },
+    {
+      "template": "quote", "chapter": "You own the loop",
+      "narration": "Whatever your process, accountability doesn't move. Charity Majors puts it perfectly: there is no human in the loop. You own the loop. And her rule for AI-assisted communication: never send anyone something you haven't read. If it would take them longer to read it than it took you to make it, it's probably slop.",
+      "params": {"text": "There is no human in the loop. *You own the loop.* The loop is yours.", "who": "Charity Majors", "role": "co-founder, Honeycomb", "src": "Stop being skeptical about AI · The Pragmatic Engineer", "t": 1920}
+    },
+    {
+      "template": "list", "chapter": "Shared know-how",
+      "narration": "The big team advantage is shared know-how. Check in your memory files, skills and permission settings, so every lesson benefits everyone. Anthropic's Mahesh Murag describes the goal: when someone joins your team, their agent already knows what your team cares about. Anthropic says technical onboarding dropped from two or three weeks to two or three days. And OpenAI's harness team held a weekly garbage collection day to turn the week's slop into durable rules.",
+      "params": {"title": "Share the know-how", "items": [
+        {"text": "Check in memory files, skills, settings", "at": "Check in"},
+        {"text": "A new teammate's agent knows your practices", "sub": "Mahesh Murag, Anthropic", "at": "joins your team"},
+        {"text": "Onboarding: weeks → days", "sub": "2–3 weeks to 2–3 days at Anthropic", "at": "onboarding"},
+        {"text": "A weekly “garbage collection day”", "sub": "turn the week's slop into rules", "at": "garbage collection"}
+      ]}
+    },
+    {
+      "template": "statement", "chapter": "Deciding is the bottleneck",
+      "narration": "As implementation gets cheap, the bottleneck moves. DHH says the constraint now is figuring out what to build, how it should be built, and which customers to talk to. Clare Liguori sees frontier teams spending more time making decisions than writing code. So invest in fast, reversible decisions.",
+      "params": {"text": "When code is cheap, *deciding* becomes the bottleneck.", "sub": "What to build, how, for whom. Favor fast, reversible decisions.", "art": "target", "tone": "agent", "sync": false}
+    },
+    {
+      "template": "list", "chapter": "Measure honestly",
+      "narration": "Finally, measure honestly. Remember the study where developers felt faster while measuring slower: self-reports aren't enough. GitHub's health test: as agent use grows, escaped defects should stay flat or fall while delivery speeds up. Dex Horthy's realistic target is two to three times faster, then two to three times on top of that. And watch out for burnout: DHH says the people most all-in on agents are working harder than ever.",
+      "params": {"title": "Measure honestly", "items": [
+        {"text": "Don't trust self-reports", "sub": "people feel faster even when they aren't", "at": "self-reports"},
+        {"text": "Speed up, defects flat or down", "sub": "GitHub's health test", "at": "escaped defects"},
+        {"text": "Aim for 2–3×, then compound", "sub": "Dex Horthy", "at": "two to three"},
+        {"text": "Watch for burnout", "sub": "the all-in crowd works harder than ever", "at": "burnout"}
+      ]}
+    },
+    {
+      "template": "quiz", "chapter": "Quick check",
+      "narration": "Quick check. Since your team adopted agents, pull requests per engineer tripled, but defects reaching production doubled. What does that tell you? Tap your answer.",
+      "params": {"q": "PRs per engineer tripled, but escaped defects doubled. What does that tell you?", "options": [
+        "It's working: ship even faster",
+        "The operating model needs work: speed without quality isn't progress",
+        "Switch to a different agent",
+        "Ban agents from production code"
+      ], "answer": 1, "explain": "Healthy adoption raises speed while defects stay flat or fall. Fix the system: context, checks, review."}
+    },
+    {
+      "template": "exercise", "chapter": "Try it",
+      "narration": "Draft a one-page agent charter for your team. Let your agent propose it from your repo and history, then argue about it with your teammates. That conversation is the real value.",
+      "params": {"title": "Try it with your agent", "intro": "Draft a team agent charter:", "prompt": "Draft a one-page agent charter for our team, based on this repo and\nour recent history: what we delegate to agents, what humans always\nreview, how we share memory files and skills, our security rules,\nand how we'll measure success (speed AND escaped defects)."}
+    },
+    {
+      "template": "recap", "chapter": "Recap",
+      "narration": "Recap. Change how you work, don't just add tools, and expect a dip first. Share know-how through checked-in memory and skills. You own the loop. And measure speed and quality together. Next, our final module: the engineer you become.",
+      "params": {"items": ["Change how you work, not just tools", "Expect a dip, then the hockey stick", "Share know-how; *you own the loop*", "Speed up, defects flat or down"], "next": "The engineer you become", "next_at": "Next"}
+    }
+  ]
+}

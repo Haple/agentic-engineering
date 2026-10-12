@@ -1,0 +1,6 @@
+site/dist/
+site/static/audio/
+node_modules/
+.serve/
+*.raw.png
+__pycache__/

@@ -1,0 +1,45 @@
+{
+  "title": "Agentic Engineering",
+  "site": "https://learn-agentic-engineering.pages.dev",
+  "repo": "https://github.com/Haple/agentic-engineering",
+  "tagline": "A free, animated course on building software with AI coding agents.",
+  "description": "Learn agentic engineering: how professionals build real software with coding agents like Claude Code, Codex and Cursor. 24 short animated lessons distilled from 80+ talks and 40+ articles by the people who build these tools. Free and open source — and your agent can take it too.",
+  "modules": [
+    {"id": "m1", "title": "The shift", "blurb": "What changed, and how a coding agent actually works.", "lessons": [
+      {"id": "01-vibe-to-agentic", "slug": "vibe-coding-to-agentic-engineering", "title": "From vibe coding to agentic engineering"},
+      {"id": "02-how-agents-work", "slug": "how-coding-agents-work", "title": "How a coding agent actually works"},
+      {"id": "03-jagged", "slug": "what-agents-are-good-at", "title": "What agents are great at, and where they fail"}
+    ]},
+    {"id": "m2", "title": "Working with one agent", "blurb": "The core workflow that every other technique builds on.", "lessons": [
+      {"id": "04-context", "slug": "context-engineering", "title": "Context is everything"},
+      {"id": "05-core-loop", "slug": "explore-plan-implement-verify", "title": "The core loop: explore, plan, implement, verify"},
+      {"id": "06-specs", "slug": "writing-specs-for-agents", "title": "Specs agents can execute"},
+      {"id": "07-prompting", "slug": "prompting-coding-agents", "title": "Talking to agents"},
+      {"id": "08-verification", "slug": "verification-closing-the-loop", "title": "Close the loop: let agents check their work"},
+      {"id": "09-code-review", "slug": "reviewing-agent-code", "title": "Reviewing agent code"},
+      {"id": "10-course-correcting", "slug": "when-agents-go-wrong", "title": "When the agent goes off the rails"}
+    ]},
+    {"id": "m3", "title": "Your toolkit", "blurb": "Memory files, tools, skills, hooks and git.", "lessons": [
+      {"id": "11-memory-files", "slug": "claude-md-agents-md-memory-files", "title": "CLAUDE.md and AGENTS.md: memory files that work"},
+      {"id": "12-tools-mcp", "slug": "tools-clis-and-mcp", "title": "Tools, CLIs and MCP"},
+      {"id": "13-skills-hooks", "slug": "skills-commands-hooks", "title": "Skills, commands and hooks"},
+      {"id": "14-git", "slug": "git-for-coding-agents", "title": "Git is your safety net"}
+    ]},
+    {"id": "m4", "title": "Scaling up", "blurb": "Subagents, parallel agents, long runs and harness engineering.", "lessons": [
+      {"id": "15-subagents", "slug": "subagents", "title": "Subagents: delegate to a fresh context"},
+      {"id": "16-parallel", "slug": "parallel-agents-worktrees", "title": "Running agents in parallel"},
+      {"id": "17-long-running", "slug": "long-running-agents-ralph-loop", "title": "Long-running agents and loops"},
+      {"id": "18-harness", "slug": "harness-engineering", "title": "Harness engineering: build the factory"}
+    ]},
+    {"id": "m5", "title": "Quality, safety, teams", "blurb": "Keep the bar high when code is cheap.", "lessons": [
+      {"id": "19-codebase", "slug": "agent-friendly-codebases", "title": "Codebases agents can work in"},
+      {"id": "20-evals", "slug": "evals-for-agents", "title": "Evals: measure, don't vibe"},
+      {"id": "21-security", "slug": "prompt-injection-lethal-trifecta", "title": "Security: prompt injection and the lethal trifecta"},
+      {"id": "22-teams", "slug": "agentic-engineering-in-teams", "title": "Agentic engineering in teams"}
+    ]},
+    {"id": "m6", "title": "The engineer you become", "blurb": "Your role, your skills, and what comes next.", "lessons": [
+      {"id": "23-your-role", "slug": "the-engineer-you-become", "title": "The engineer you become"},
+      {"id": "24-whats-next", "slug": "what-comes-next", "title": "What comes next"}
+    ]}
+  ]
+}

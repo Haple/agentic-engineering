@@ -1,0 +1,21 @@
+{
+  "name": "agentic-engineering",
+  "owner": {
+    "name": "Agentic Engineering course",
+    "url": "https://github.com/Haple/agentic-engineering"
+  },
+  "metadata": {
+    "description": "Free course on building software with AI coding agents, packaged as skills.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "agentic-engineering",
+      "source": "./",
+      "description": "Working practices for coding agents + interactive course tutor + repo audit, from the free Agentic Engineering course.",
+      "version": "1.0.0",
+      "category": "development",
+      "homepage": "https://learn-agentic-engineering.pages.dev"
+    }
+  ]
+}

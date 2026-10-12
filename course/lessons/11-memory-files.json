@@ -1,0 +1,357 @@
+{
+ "id": "11-memory-files",
+ "number": 11,
+ "slug": "claude-md-agents-md-memory-files",
+ "module": "Your toolkit",
+ "title": "CLAUDE.md and AGENTS.md: memory files that work",
+ "short": "Memory files that work",
+ "summary": "Your agent starts every session with amnesia. A memory file, CLAUDE.md or AGENTS.md, is how it learns your project: commands, conventions and gotchas. The best ones are short, grown from real mistakes, pruned as models improve, and shared with the team.",
+ "takeaways": [
+  "AGENTS.md (or CLAUDE.md) is a README for agents, loaded at the start of every session.",
+  "Put in what the agent can't infer: build and test commands, conventions, gotchas, where things live.",
+  "Keep it short. For each line ask: would removing this cause mistakes? If not, cut it.",
+  "Grow it from real mistakes, and prune it as models improve.",
+  "Make it a map, not an encyclopedia: link to deeper docs and use nested files in subprojects."
+ ],
+ "practices": [
+  "Read the project's memory file (AGENTS.md / CLAUDE.md) and any nested ones before working in a directory.",
+  "When the user corrects a repeated mistake, propose a one-line addition to the memory file.",
+  "Keep memory-file additions short and specific; prefer linking to docs over pasting them.",
+  "Point out memory-file instructions that seem outdated or contradictory instead of silently ignoring them."
+ ],
+ "sources": [
+  {
+   "id": "article-agents-md"
+  },
+  {
+   "id": "6eBSHbLKuN0",
+   "t": 767
+  },
+  {
+   "id": "6eBSHbLKuN0",
+   "t": 813
+  },
+  {
+   "id": "6eBSHbLKuN0",
+   "t": 1058
+  },
+  {
+   "id": "article-anthropic-claude-code-best-practices"
+  },
+  {
+   "id": "YwZR6tc7qYg",
+   "t": 479
+  },
+  {
+   "id": "article-hashimoto-ai-adoption"
+  },
+  {
+   "id": "IDSAMqip6ms",
+   "t": 1912
+  },
+  {
+   "id": "IZAlq-V19U8",
+   "t": 1814
+  },
+  {
+   "id": "article-openai-harness-engineering-mirror"
+  },
+  {
+   "id": "HegqGzD-kvc",
+   "t": 1313
+  },
+  {
+   "id": "article-fowler-context-engineering-coding-agents"
+  },
+  {
+   "id": "BEKc4P87XKo",
+   "t": 1175
+  }
+ ],
+ "scenes": [
+  {
+   "template": "title",
+   "chapter": "Intro",
+   "narration": "Your agent wakes up with amnesia at the start of every session. It doesn't remember your build command, your conventions, or the mistake it made yesterday. One small file fixes that.",
+   "params": {
+    "kicker": "Lesson 11",
+    "module": "Module 3 · Your toolkit",
+    "title": "CLAUDE.md and AGENTS.md: *memory files* that work",
+    "subtitle": "Short, specific, grown from real mistakes.",
+    "bubble": "Who am I? Where's the test command?",
+    "mood": "think"
+   }
+  },
+  {
+   "template": "filetree",
+   "chapter": "What it is",
+   "narration": "The community standard calls AGENTS.md a README for agents: a predictable place for the instructions a coding agent needs. Claude Code reads CLAUDE.md the same way. It's loaded automatically at the start of every session. Big repos can add nested files in subfolders, and you can keep a personal one for your own preferences.",
+   "params": {
+    "title": "A README for agents",
+    "sub": "Loaded automatically, every session.",
+    "root": "my-app/",
+    "items": [
+     {
+      "path": "AGENTS.md",
+      "note": "the project's memory",
+      "hl": true,
+      "at": "README for agents"
+     },
+     {
+      "path": "CLAUDE.md",
+      "note": "same idea, for Claude Code",
+      "at": "Claude Code"
+     },
+     {
+      "path": "packages/",
+      "at": "Big repos"
+     },
+     {
+      "path": "packages/billing/AGENTS.md",
+      "note": "nested, local rules",
+      "at": "nested"
+     },
+     {
+      "path": "~/.claude/CLAUDE.md",
+      "note": "your personal one",
+      "at": "personal"
+     }
+    ]
+   }
+  },
+  {
+   "template": "code",
+   "chapter": "What goes in",
+   "narration": "What goes in it? Only what the agent can't figure out by itself. How to build and test, including how to run a single test. Conventions you can't infer from the code. Gotchas that have bitten you before. And pointers to where things live.",
+   "params": {
+    "file": "AGENTS.md",
+    "lang": "md",
+    "lines": [
+     "# Shop API",
+     "## Commands",
+     "- Test one file: `pnpm test path/to/file`",
+     "- Typecheck before committing: `pnpm tsc --noEmit`",
+     "## Conventions",
+     "- Money is integer cents. Never floats.",
+     "- New endpoints go through `src/api/router.ts`",
+     "## Gotchas",
+     "- Never edit generated files in `src/gen/`",
+     "- Architecture notes: docs/ARCHITECTURE.md"
+    ],
+    "hl": [
+     {
+      "from": 2,
+      "to": 4,
+      "at": "build and test",
+      "label": "how to verify",
+      "tone": "good"
+     },
+     {
+      "from": 5,
+      "to": 7,
+      "at": "Conventions",
+      "label": "can't be inferred",
+      "tone": "human"
+     },
+     {
+      "from": 8,
+      "to": 9,
+      "at": "Gotchas",
+      "label": "learned the hard way",
+      "tone": "bad"
+     },
+     {
+      "from": 10,
+      "to": 10,
+      "at": "pointers",
+      "label": "a map",
+      "tone": "agent"
+     }
+    ]
+   }
+  },
+  {
+   "template": "quote",
+   "chapter": "Keep it short",
+   "narration": "The most common mistake is making it too long. Anthropic's guide suggests a brutal test. For each line, ask: would removing this cause the agent to make mistakes? If not, cut it. Bloated files cause the agent to ignore your actual instructions.",
+   "params": {
+    "text": "For each line, ask: “Would removing this cause Claude to make mistakes?” *If not, cut it.*",
+    "who": "Anthropic",
+    "role": "Best practices for Claude Code",
+    "src": "code.claude.com docs"
+   }
+  },
+  {
+   "template": "stat",
+   "chapter": "Keep it short",
+   "narration": "There's a reason. Dex Horthy notes that frontier models can only follow roughly a hundred and fifty to two hundred instructions with good consistency. Beyond that, they're half attending to all of them. And your memory file shares that budget with the system prompt, the tools and your request.",
+   "params": {
+    "items": [
+     {
+      "value": "~150–200",
+      "label": "instructions a frontier model follows consistently",
+      "sub": "system prompt, tools, memory file and your prompt all share this budget",
+      "tone": "agent",
+      "at": "hundred and fifty"
+     }
+    ],
+    "src": "Dex Horthy, “Everything We Got Wrong About Research-Plan-Implement”"
+   }
+  },
+  {
+   "template": "chat",
+   "chapter": "Grow it from mistakes",
+   "narration": "So how do you write a good one? Don't write it all up front. Grow it from real mistakes. Mitchell Hashimoto says every line in Ghostty's agents file is based on a bad agent behavior, and together they almost completely resolved them. Boris Cherny's habit is the same: when the agent slips, tell it to add the lesson to the file.",
+   "params": {
+    "messages": [
+     {
+      "from": "agent",
+      "text": "Added the new endpoint in `src/server.ts`.",
+      "tone": "bad",
+      "at": "mistakes"
+     },
+     {
+      "from": "you",
+      "text": "Endpoints go through `src/api/router.ts`. Fix it, then add that rule to AGENTS.md so you remember next time.",
+      "at": "Boris"
+     },
+     {
+      "from": "agent",
+      "text": "Fixed, and added: “New endpoints go through src/api/router.ts.”",
+      "tone": "good",
+      "at": "add the lesson"
+     }
+    ]
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "Prune it",
+   "narration": "Then prune it, because models keep improving. A rule that was essential six months ago can over-constrain today's model. Thariq Shihipar from the Claude Code team expects memory files to shrink over time, and the team itself cut most of Claude Code's own system prompt for newer models.",
+   "params": {
+    "text": "Yesterday's workaround can be today's *handcuff*. Prune as models improve.",
+    "sub": "The Claude Code team cut most of its own system prompt for newer models.",
+    "art": "pen",
+    "tone": "agent",
+    "sync": false
+   }
+  },
+  {
+   "template": "stack",
+   "chapter": "A map, not an encyclopedia",
+   "narration": "For big projects, think of the file as a map. OpenAI's harness engineering team keeps a top-level agents file of about a hundred lines that works as a table of contents, pointing to deeper documents like architecture and design notes. The agent reads those only when it needs them.",
+   "params": {
+    "title": "A map, not an encyclopedia",
+    "sub": "OpenAI's harness engineering setup",
+    "layers": [
+     {
+      "label": "AGENTS.md",
+      "sub": "~100 lines: the table of contents",
+      "tone": "agent",
+      "icon": "list",
+      "at": "hundred lines"
+     },
+     {
+      "label": "ARCHITECTURE.md",
+      "sub": "read when touching structure",
+      "tone": "paper",
+      "icon": "layers",
+      "at": "architecture"
+     },
+     {
+      "label": "DESIGN.md",
+      "sub": "read when touching UI",
+      "tone": "paper",
+      "icon": "pen",
+      "at": "design"
+     },
+     {
+      "label": "plans/, references/",
+      "sub": "read when needed",
+      "tone": "paper",
+      "icon": "doc",
+      "at": "only when"
+     }
+    ]
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "Trails",
+   "narration": "Thorsten Ball calls nested files trails. Drop a small agents file into a subfolder, and the agent picks it up when it works there. The billing package can carry its own rules without cluttering everything else.",
+   "params": {
+    "text": "Nested memory files leave *trails* for the agent.",
+    "sub": "Rules for packages/billing live in packages/billing. — Thorsten Ball",
+    "art": "branch",
+    "tone": "human",
+    "sync": false
+   }
+  },
+  {
+   "template": "compare",
+   "chapter": "Team habits",
+   "narration": "Two team habits. Check the file into the repo, so everyone benefits from every lesson; Boris calls it a network effect. And don't copy a stranger's giant setup. Birgitta Böckeler warns you'll inherit contradictions you can't see, and then blame the agent for following them.",
+   "params": {
+    "left": {
+     "title": "Don't",
+     "items": [
+      "Paste a stranger's 800-line setup",
+      "Front-load rules “just in case”",
+      "Keep rules the model no longer needs"
+     ],
+     "at": "don't copy"
+    },
+    "right": {
+     "title": "Do",
+     "items": [
+      "Check it in: one team, one memory",
+      "Add a line per real mistake",
+      "Prune after model upgrades"
+     ],
+     "at": "Check the file"
+    }
+   }
+  },
+  {
+   "template": "quiz",
+   "chapter": "Quick check",
+   "narration": "Quick check. Your memory file has grown to nine hundred lines, and the agent seems to ignore half of it. What's the best fix? Tap your answer.",
+   "params": {
+    "q": "Your memory file is 900 lines and the agent ignores half of it. Best fix?",
+    "options": [
+     "Add IMPORTANT to every rule",
+     "Cut it to what prevents real mistakes; link out to deeper docs",
+     "Split it into three files that all load at startup",
+     "Switch to a model with a bigger context window"
+    ],
+    "answer": 1,
+    "explain": "Too much guidance becomes no guidance. Keep what prevents mistakes; load the rest only when needed."
+   }
+  },
+  {
+   "template": "exercise",
+   "chapter": "Try it",
+   "narration": "Let your agent audit its own memory file. This prompt asks it to justify every line and propose a short version that links out to deeper docs.",
+   "params": {
+    "title": "Try it with your agent",
+    "intro": "Audit (or create) your memory file:",
+    "prompt": "Read our AGENTS.md / CLAUDE.md (create one if missing).\nFor each line, say whether removing it would make you err.\nPropose a version under 60 lines: commands (incl. single test),\nconventions you can't infer, gotchas. Link out to deeper docs."
+   }
+  },
+  {
+   "template": "recap",
+   "chapter": "Recap",
+   "narration": "Recap. A memory file is a README for agents. Fill it with what the agent can't infer. Keep it short, grow it from real mistakes, and prune it as models improve. Make it a map, and share it with your team. Next: giving your agent new abilities with tools and MCP.",
+   "params": {
+    "items": [
+     "A README for agents, loaded every session",
+     "Only what it *can't infer*",
+     "Short: grown from mistakes, pruned over time",
+     "A map with links; checked in for the team"
+    ],
+    "next": "Tools, CLIs and MCP",
+    "next_at": "Next"
+   }
+  }
+ ]
+}

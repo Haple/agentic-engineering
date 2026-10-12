@@ -1,0 +1,179 @@
+{
+  "id": "02-how-agents-work",
+  "number": 2,
+  "slug": "how-coding-agents-work",
+  "module": "The shift",
+  "title": "How a coding agent actually works",
+  "short": "How a coding agent works",
+  "summary": "Claude Code, Codex, Cursor and Amp look different, but underneath they're the same thing: a model, a few tools, and a while loop. Once you see the loop, you'll understand why agents succeed, why they fail, and what you control.",
+  "takeaways": [
+    "An agent is a model using tools in a loop: it asks for a tool, the harness runs it, the result goes back in, repeat until done.",
+    "Tool calls are just JSON. The model never runs anything itself; ordinary code (the harness) does.",
+    "The model is stateless. Everything it knows about your task is in its context window: system prompt, tools, memory files, your messages and every tool result.",
+    "Errors compound over steps. At 95% accuracy per step, a 10-step task succeeds about 60% of the time.",
+    "Agents don't push back on vague requests. They guess confidently, so what you put in the context decides what comes out."
+  ],
+  "practices": [
+    "Before acting on a conclusion like 'this doesn't exist yet', double-check with a broader search; a narrow search result is not proof of absence.",
+    "Keep the context relevant: read what the task needs, not everything.",
+    "Prefer small, verifiable steps over long unverified chains; check results between steps because errors compound.",
+    "When a request is ambiguous, ask a clarifying question instead of guessing."
+  ],
+  "sources": [
+    {"id": "RFKCzGlAU6Q", "t": 725},
+    {"id": "RFKCzGlAU6Q", "t": 376},
+    {"id": "article-ball-how-to-build-an-agent"},
+    {"id": "8kMaTybvDUw", "t": 295},
+    {"id": "6eBSHbLKuN0", "t": 488},
+    {"id": "IDSAMqip6ms", "t": 264},
+    {"id": "article-willison-aep-how-coding-agents-work"},
+    {"id": "HegqGzD-kvc", "t": 333},
+    {"id": "HegqGzD-kvc", "t": 424},
+    {"id": "D7_ipDqhtwk", "t": 501},
+    {"id": "article-huyen-agents"},
+    {"id": "article-huntley-ralph"},
+    {"id": "gv0WHhKelSE", "t": 243}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "Claude Code, Codex, Cursor and Amp all look different. Under the hood, they're almost the same program. Once you see it, a lot of agent behavior suddenly makes sense.",
+      "params": {"kicker": "Lesson 2", "module": "Module 1 · The shift", "title": "How a coding agent *actually* works", "subtitle": "A model, some tools, and a while loop.", "bubble": "Let me show you my insides.", "mood": "happy"}
+    },
+    {
+      "template": "formula", "chapter": "The recipe",
+      "narration": "Anthropic's definition fits in one line. An agent is a model, using tools, in a loop. The model decides what to do next. The tools let it act on the world. And the loop keeps it going until the job is done.",
+      "params": {"parts": [
+        {"text": "Agent", "tone": "agent", "at": "agent is"},
+        {"op": "="},
+        {"text": "Model", "icon": "brain", "sub": "decides the next step", "at": "model"},
+        {"op": "+"},
+        {"text": "Tools", "icon": "tool", "sub": "read, edit, run", "at": "tools"},
+        {"op": "+"},
+        {"text": "Loop", "icon": "loop", "sub": "until it's done", "at": "loop"}
+      ]}
+    },
+    {
+      "template": "quote", "chapter": "The recipe",
+      "narration": "Thorsten Ball, who builds the Amp agent, put it bluntly. It's an LLM, a loop, and enough tokens. Everything else that makes a great agent feel magical is elbow grease.",
+      "params": {"text": "It's an LLM, a loop, and enough tokens. The rest? *Elbow grease.*", "who": "Thorsten Ball", "role": "engineer at Amp", "src": "How to Build an Agent"}
+    },
+    {
+      "template": "code", "chapter": "Tools are JSON",
+      "narration": "So what is a tool call, really? The model never runs anything itself. It replies with a little bit of JSON that names a tool and its input. Then the harness, which is ordinary code, runs the command and sends the output back. As Dex Horthy says: there's nothing special about tools. It's just JSON and code.",
+      "params": {"file": "one tool call", "lang": "js", "lines": [
+        "// 1. the model replies with JSON, not magic",
+        "{ \"type\": \"tool_use\",",
+        "  \"name\": \"bash\",",
+        "  \"input\": { \"command\": \"npm test\" } }",
+        "",
+        "// 2. the harness runs it and sends back the output",
+        "{ \"type\": \"tool_result\",",
+        "  \"content\": \"FAIL  1 test failed: total()\" }"
+      ], "hl": [
+        {"from": 2, "to": 4, "at": "JSON", "label": "the model asks", "tone": "agent"},
+        {"from": 7, "to": 8, "at": "output", "label": "the harness answers", "tone": "human"}
+      ]}
+    },
+    {
+      "template": "code", "chapter": "The loop",
+      "narration": "And here's the loop that ties it together. Send the conversation to the model. If it asked for tools, run them and append the results. Then go around again, until the model stops asking for tools and answers you. That's the core of Claude Code, Codex and Cursor alike.",
+      "params": {"file": "agent.py", "lang": "py", "lines": [
+        "messages = [system_prompt, user_request]",
+        "",
+        "while True:",
+        "    reply = llm(messages, tools=TOOLS)",
+        "    messages.append(reply)",
+        "    if not reply.tool_calls:",
+        "        break                  # done: answer the user",
+        "    for call in reply.tool_calls:",
+        "        result = run(call)     # read, edit, bash...",
+        "        messages.append(result)"
+      ], "hl": [
+        {"from": 3, "to": 3, "at": "loop", "label": "the loop", "tone": "agent"},
+        {"from": 9, "to": 10, "at": "append the results", "label": "context grows", "tone": "human"},
+        {"from": 6, "to": 7, "at": "stops asking", "label": "the exit", "tone": "good"}
+      ]}
+    },
+    {
+      "template": "terminal", "chapter": "The loop",
+      "narration": "In a real session, the loop looks like this. You ask for a fix. The agent searches, reads a file, runs the tests, edits the code and runs the tests again. You didn't tell it which tools to use. It chained them on its own.",
+      "params": {"title": "~/shop · coding agent", "lines": [
+        {"k": "you", "text": "the checkout total is off by a cent, fix it"},
+        {"k": "tool", "text": "Grep(\"total(\", src/)", "at": "searches"},
+        {"k": "tool", "text": "Read(src/checkout.ts)", "at": "reads"},
+        {"k": "tool", "text": "Bash(npm test)", "at": "runs the tests"},
+        {"k": "err", "text": "FAIL  expected 42.00, got 41.99"},
+        {"k": "agent", "text": "Rounding happens before tax. Moving it after."},
+        {"k": "tool", "text": "Edit(src/checkout.ts)", "at": "edits"},
+        {"k": "tool", "text": "Bash(npm test)", "at": "again"},
+        {"k": "ok", "text": "PASS  14 tests"},
+        {"k": "agent", "text": "Fixed: tax is applied before rounding."}
+      ]}
+    },
+    {
+      "template": "statement", "chapter": "Few tools, big reach",
+      "narration": "Boris Cherny says Claude Code gives the model a surprisingly small set of tools: edit files, search files, run shell commands. But a shell is everything an engineer has at a terminal. When the team first gave the model tools, he says, the model just wanted to use them.",
+      "params": {"eyebrow": "Boris Cherny, creator of Claude Code", "text": "“The model just *wants* to use tools.”", "sub": "A few tools (edit, search, bash) give it everything you have at a terminal.", "art": "terminal", "tone": "agent", "sync": false}
+    },
+    {
+      "template": "context", "chapter": "What it sees",
+      "narration": "Here's the part most people miss. The model is stateless. It remembers nothing between calls, so the harness replays the whole conversation every time. Everything the agent knows about your task sits in this context window: the system prompt, tool definitions, your memory files, your messages, and every tool result it has collected.",
+      "params": {"title": "Everything the agent knows", "cap": "the context window", "blocks": [
+        {"label": "system prompt", "kind": "sys", "w": 0.08, "at": "system prompt"},
+        {"label": "tool definitions", "kind": "tool", "w": 0.07, "at": "tool definitions"},
+        {"label": "memory files", "kind": "mem", "w": 0.05, "at": "memory"},
+        {"label": "your messages", "kind": "you", "w": 0.05, "at": "your messages"},
+        {"label": "every tool result", "kind": "out", "w": 0.38, "at": "every tool result"}
+      ], "note": "If it isn't in here, the agent doesn't know it.", "note_at": "everything the agent knows"}
+    },
+    {
+      "template": "stack", "chapter": "The harness",
+      "narration": "Simon Willison calls a coding agent a harness for an LLM. The model sits at the bottom. The harness wraps it with prompts, tools, permissions and memory. The tools reach into your repo. And on top, there's you, deciding what goes in and what counts as done.",
+      "params": {"title": "A coding agent, layer by layer", "sub": "“A harness for an LLM” — Simon Willison", "layers": [
+        {"label": "Model", "sub": "predicts the next token", "tone": "ink", "icon": "brain", "at": "model sits"},
+        {"label": "Harness", "sub": "prompts, loop, permissions, memory", "tone": "agent", "icon": "layers", "at": "harness wraps"},
+        {"label": "Tools", "sub": "files, shell, web, MCP", "tone": "soft", "icon": "tool", "at": "tools reach"},
+        {"label": "You", "sub": "what goes in, what counts as done", "tone": "human", "icon": "user", "at": "there's you"}
+      ]}
+    },
+    {
+      "template": "chat", "chapter": "Why it matters",
+      "narration": "This explains a classic failure. A human colleague would push back on a vague request. A model won't. As Thorsten Ball points out, it says: you're absolutely right, I'll fix the bug with the upload. Then it guesses. Barry Zhang from Anthropic gives the antidote: put yourself in the agent's context window.",
+      "params": {"messages": [
+        {"from": "you", "text": "fix the upload bug", "label": "vague"},
+        {"from": "agent", "text": "You're absolutely right! I'll fix the bug with the upload.", "tone": "bad", "at": "absolutely"},
+        {"from": "you", "text": "Uploads over 10MB fail with a 413 in prod. Find where the size limit is set, raise it to 50MB, and add a test.", "label": "what it actually needed", "at": "antidote"}
+      ]}
+    },
+    {
+      "template": "chart", "chapter": "Errors compound",
+      "narration": "There's one more consequence of the loop. Every step is a chance to be wrong, and errors compound. Chip Huyen's arithmetic: at ninety-five percent accuracy per step, a ten-step task succeeds about sixty percent of the time. A hundred-step task, almost never. So keep tasks scoped and verify along the way.",
+      "params": {"title": "Success at 95% accuracy per step", "kind": "bar", "suffix": "%", "data": [
+        {"x": "1 step", "y": 95, "label": "95%", "at": "per step"},
+        {"x": "10 steps", "y": 60, "label": "60%", "hl": true, "at": "sixty"},
+        {"x": "100 steps", "y": 0.6, "label": "0.6%", "at": "hundred"}
+      ], "src": "Chip Huyen, “Agents” (2025): 0.95¹⁰ ≈ 0.60, 0.95¹⁰⁰ ≈ 0.006"}
+    },
+    {
+      "template": "quiz", "chapter": "Quick check",
+      "narration": "Quick check. Your agent decides a helper function doesn't exist and writes a duplicate. What most likely happened? Tap your answer.",
+      "params": {"q": "Your agent decides a helper doesn't exist and writes a duplicate. What most likely happened?", "options": [
+        "The model got lazy and skipped the search",
+        "A narrow search came back empty, and it acted on what was in its context",
+        "It can't read files it didn't create",
+        "The harness hid the file on purpose"
+      ], "answer": 1, "explain": "The agent only knows what lands in its context. An empty search result looked like proof. Geoffrey Huntley calls this a classic failure."}
+    },
+    {
+      "template": "exercise", "chapter": "Try it",
+      "narration": "Now watch the loop yourself. Ask your agent to list its tools and plan the exact tool calls it would make for a small question about your code, without running them. You'll start to see your codebase the way it does.",
+      "params": {"title": "Try it with your agent", "intro": "See the loop from the inside:", "prompt": "List the tools you have in this session and what each one does.\nMark which ones can change files or run commands.\nThen, without running anything, show me the exact sequence\nof tool calls you'd make to find where we handle user login."}
+    },
+    {
+      "template": "recap", "chapter": "Recap",
+      "narration": "Recap. An agent is a model using tools in a loop. Tool calls are just JSON that ordinary code executes. The model only knows what's in its context. And errors compound, so keep steps small and verified. Next: what agents are brilliant at, and where they reliably fail.",
+      "params": {"items": ["Agent = model + tools + *loop*", "Tool calls are JSON; the harness runs them", "It only knows what's in its context", "Errors compound: small, verified steps"], "next": "What agents are great at, and where they fail", "next_at": "Next"}
+    }
+  ]
+}

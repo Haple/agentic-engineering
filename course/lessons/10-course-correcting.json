@@ -1,0 +1,368 @@
+{
+ "id": "10-course-correcting",
+ "number": 10,
+ "slug": "when-agents-go-wrong",
+ "module": "Working with one agent",
+ "title": "When the agent goes off the rails",
+ "short": "When agents go off the rails",
+ "summary": "Every agent goes off the rails sometimes. The skill isn't avoiding it; it's noticing early and recovering cheaply. Learn the warning signs, the recovery ladder from a quick interrupt to throwing the work away, and the habits that make recovery cheap.",
+ "takeaways": [
+  "Interrupt early. Escape is always safe, and fixing one wrong line now beats untangling twenty later.",
+  "Climb the recovery ladder: redirect, rewind, revert to a commit, start fresh, or throw it away.",
+  "Commit after every working step. Commits are save points for you and for the agent.",
+  "When stuck, change the approach, not just the prompt.",
+  "Code is cheap now. Throwing work away and re-planning is often the fastest path."
+ ],
+ "practices": [
+  "Commit after each verified step with a descriptive message so work can be rolled back.",
+  "If the same fix has failed twice, stop and report what you've learned instead of trying again.",
+  "Don't widen the scope to make a failing approach work; propose a different approach instead.",
+  "Never take destructive actions (deleting files, resetting branches, editing secrets) to get unstuck without asking."
+ ],
+ "sources": [
+  {
+   "id": "9UAxrdcDjjU",
+   "t": 5313
+  },
+  {
+   "id": "6eBSHbLKuN0",
+   "t": 1210
+  },
+  {
+   "id": "IDSAMqip6ms",
+   "t": 1073
+  },
+  {
+   "id": "article-anthropic-long-running-harnesses"
+  },
+  {
+   "id": "BEKc4P87XKo",
+   "t": 663
+  },
+  {
+   "id": "Usufn8IQJgw",
+   "t": 4421
+  },
+  {
+   "id": "article-beck-augmented-coding"
+  },
+  {
+   "id": "aSXaxOdVtAQ",
+   "t": 4411
+  },
+  {
+   "id": "JiWgKRgdgpI",
+   "t": 4240
+  },
+  {
+   "id": "IDSAMqip6ms",
+   "t": 976
+  },
+  {
+   "id": "We7BZVKbCVw",
+   "t": 4081
+  },
+  {
+   "id": "article-hashimoto-ai-adoption"
+  },
+  {
+   "id": "article-anthropic-claude-code-best-practices"
+  }
+ ],
+ "scenes": [
+  {
+   "template": "title",
+   "chapter": "Intro",
+   "narration": "Every agent goes off the rails sometimes. The skill isn't avoiding it. It's noticing early, and recovering cheaply.",
+   "params": {
+    "kicker": "Lesson 10",
+    "module": "Module 2 · Working with one agent",
+    "title": "When the agent goes *off the rails*",
+    "subtitle": "Warning signs, the recovery ladder, and cheap do-overs.",
+    "bubble": "Oops. Rewind?",
+    "mood": "alert"
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "It's normal",
+   "narration": "Ben Vinegar makes a provocative point. If your agent never seems subtly wrong, if you never have to stop and scrutinize, that's a bad sign. It probably means you're just pressing go and merging.",
+   "params": {
+    "text": "Never catching your agent being subtly wrong is a *bad sign*.",
+    "sub": "It probably means you're just pressing go. — Ben Vinegar",
+    "art": "eye",
+    "tone": "human",
+    "sync": false
+   }
+  },
+  {
+   "template": "list",
+   "chapter": "Warning signs",
+   "narration": "Here are the warning signs we've met so far. It loops, trying the same thing again. It does work you didn't ask for. It weakens a test to get green. It agrees with you enthusiastically and keeps failing. Or its attempts get more and more extreme. Any one of these means: stop.",
+   "params": {
+    "title": "Stop when you see",
+    "style": "warn",
+    "items": [
+     {
+      "text": "Loops",
+      "sub": "the same attempt, again and again",
+      "at": "loops"
+     },
+     {
+      "text": "Work you didn't ask for",
+      "at": "didn't ask"
+     },
+     {
+      "text": "Weakened or deleted tests",
+      "at": "weakens"
+     },
+     {
+      "text": "“You're absolutely right!”… then failure",
+      "at": "enthusiastically"
+     },
+     {
+      "text": "Increasingly extreme attempts",
+      "at": "extreme"
+     }
+    ]
+   }
+  },
+  {
+   "template": "terminal",
+   "chapter": "Interrupt early",
+   "narration": "The first tool is the escape key. Boris Cherny's advice: no matter what the agent is doing, you can always safely hit escape. It won't corrupt anything. If nineteen of twenty lines look right, stop it, correct the one, and let it continue.",
+   "params": {
+    "title": "~/app · interrupt and redirect",
+    "lines": [
+     {
+      "k": "tool",
+      "text": "Edit(src/db/users.ts)"
+     },
+     {
+      "k": "agent",
+      "text": "I'll also migrate the sessions table to UUIDs while I'm here…",
+      "at": "agent is doing"
+     },
+     {
+      "k": "warn",
+      "text": "⎋ interrupted by user",
+      "at": "hit escape"
+     },
+     {
+      "k": "you",
+      "text": "no migrations in this task. keep the user fix only.",
+      "at": "nineteen"
+     },
+     {
+      "k": "agent",
+      "text": "Got it. Reverting the sessions change, keeping the user fix.",
+      "at": "correct the one"
+     },
+     {
+      "k": "ok",
+      "text": "PASS  31 tests",
+      "at": "continue"
+     }
+    ]
+   }
+  },
+  {
+   "template": "stack",
+   "chapter": "The recovery ladder",
+   "narration": "When interrupting isn't enough, climb the recovery ladder. Each rung costs a bit more. Redirect with a quick correction. Rewind to an earlier point in the conversation. Revert the code to your last good commit. Start a fresh session from a summary. Or throw the work away and re-plan.",
+   "params": {
+    "title": "The recovery ladder",
+    "sub": "Cheapest at the bottom.",
+    "layers": [
+     {
+      "label": "Redirect",
+      "sub": "Esc + a one-line correction",
+      "tone": "good",
+      "icon": "chat",
+      "at": "Redirect"
+     },
+     {
+      "label": "Rewind",
+      "sub": "jump back in the conversation",
+      "tone": "paper",
+      "icon": "clock",
+      "at": "Rewind"
+     },
+     {
+      "label": "Revert",
+      "sub": "back to the last good commit",
+      "tone": "soft",
+      "icon": "branch",
+      "at": "Revert"
+     },
+     {
+      "label": "Restart",
+      "sub": "fresh session from a summary",
+      "tone": "agent",
+      "icon": "loop",
+      "at": "fresh session"
+     },
+     {
+      "label": "Throw away",
+      "sub": "re-plan with what you learned",
+      "tone": "ink",
+      "icon": "x",
+      "at": "throw"
+     }
+    ]
+   }
+  },
+  {
+   "template": "code",
+   "chapter": "Save points",
+   "narration": "Reverting only works if there's something to revert to. In Anthropic's long-running agent experiments, the best behavior came from asking the model to commit its progress to git with descriptive messages after each step. That let it roll back bad changes and recover a working state on its own.",
+   "params": {
+    "file": "git log --oneline",
+    "lang": "text",
+    "lines": [
+     "a41c2e9  add CSV export endpoint (tests pass)",
+     "7f0b13d  stream rows instead of buffering (tests pass)",
+     "c9e2a71  respect report filters (tests pass)",
+     "e13d55f  WIP: rewrite pagination  ← tests failing"
+    ],
+    "hl": [
+     {
+      "from": 3,
+      "to": 3,
+      "at": "working state",
+      "label": "last good commit",
+      "tone": "good"
+     },
+     {
+      "from": 4,
+      "to": 4,
+      "at": "bad changes",
+      "label": "revert this",
+      "tone": "bad"
+     }
+    ],
+    "caption": "Commit after every step that passes. Every commit is a save point."
+   }
+  },
+  {
+   "template": "chat",
+   "chapter": "Start fresh",
+   "narration": "And when a session has gone sour, don't argue with it. As we saw in lesson four, a history full of failures invites more failures. Ask for a summary of what was learned, clear the session, and start over with a better prompt.",
+   "params": {
+    "messages": [
+     {
+      "from": "agent",
+      "text": "You're absolutely right! Let me try another approach…",
+      "tone": "bad",
+      "at": "gone sour"
+     },
+     {
+      "from": "you",
+      "text": "Stop. Summarize what we tried, what failed and why, for a fresh agent.",
+      "at": "summary"
+     },
+     {
+      "from": "you",
+      "text": "/clear  → paste summary + a better prompt",
+      "label": "fresh start",
+      "at": "start over"
+     }
+    ]
+   }
+  },
+  {
+   "template": "quote",
+   "chapter": "Change the approach",
+   "narration": "Sometimes the fix is to change the problem, not the prompt. Kent Beck's agent stalled on an algorithm in Rust. So he had it write a Python version first, with the same tests, in a less constraining language. Once the algorithm worked, he told it to erase the Rust code and transliterate the Python.",
+   "params": {
+    "text": "I had the genie write a version for *Python*. Same tests, just a new, less constraining language.",
+    "who": "Kent Beck",
+    "role": "creator of Extreme Programming",
+    "src": "Augmented Coding: Beyond the Vibes"
+   }
+  },
+  {
+   "template": "statement",
+   "chapter": "Throw it away",
+   "narration": "The top rung is the one people resist most: throwing the work away. But the economics have flipped. DHH says the cost of exploring a hunch has dropped a thousandfold. Kent Beck predicts teams will generate ten times as many experiments and keep one. Throwing away a failed attempt and re-planning is often the fastest path.",
+   "params": {
+    "text": "Code is cheap now. *Throwing it away* is a strategy, not a failure.",
+    "sub": "“The cost of exploring a hunch has dropped by a thousandfold.” — DHH",
+    "sub_at": "thousandfold",
+    "art": "x",
+    "tone": "bad",
+    "sync": false
+   }
+  },
+  {
+   "template": "list",
+   "chapter": "Make recovery cheap",
+   "narration": "A few habits make all of this cheaper. Commit after every working step. Keep tasks small, so a do-over costs minutes, not hours. Plan first, so mistakes surface in a document instead of a diff. And Mitchell Hashimoto suggests turning off agent notifications, so you decide when to check in, instead of being pulled away every few minutes.",
+   "params": {
+    "title": "Make recovery cheap",
+    "items": [
+     {
+      "text": "Commit after every working step",
+      "at": "Commit"
+     },
+     {
+      "text": "Small tasks",
+      "sub": "a do-over costs minutes",
+      "at": "small"
+     },
+     {
+      "text": "Plan first",
+      "sub": "mistakes surface in a doc, not a diff",
+      "at": "Plan first"
+     },
+     {
+      "text": "Notifications off",
+      "sub": "you choose when to check in",
+      "at": "notifications"
+     }
+    ]
+   }
+  },
+  {
+   "template": "quiz",
+   "chapter": "Quick check",
+   "narration": "Quick check. Your agent has spent twenty minutes trying fixes. The diff keeps growing, and it just told you you're absolutely right, for the third time. What's the best move? Tap your answer.",
+   "params": {
+    "q": "20 minutes of failed fixes, a growing diff, a third “You're absolutely right!”. Best move?",
+    "options": [
+     "Let it keep going, it must be close",
+     "Stop, revert to the last good commit, restart with a better prompt",
+     "Tell it to try harder and think carefully",
+     "Accept the diff now and clean up later"
+    ],
+    "answer": 1,
+    "explain": "The session is poisoned and the diff is suspect. Roll back to a save point and restart with what you learned."
+   }
+  },
+  {
+   "template": "exercise",
+   "chapter": "Try it",
+   "narration": "Build recovery into your next task from the start. This prompt makes the agent leave save points, and tells it to stop and report instead of flailing.",
+   "params": {
+    "title": "Try it with your agent",
+    "intro": "Add this to your next task (or your memory file):",
+    "prompt": "Commit after each step that passes the tests, with a descriptive\nmessage, so we can roll back. If a fix fails twice, stop and tell\nme what you learned instead of trying a third time. Never delete\nfiles, reset branches, or touch secrets to get unstuck."
+   }
+  },
+  {
+   "template": "recap",
+   "chapter": "Recap",
+   "narration": "Recap. Interrupt early; escape is always safe. Climb the ladder: redirect, rewind, revert, restart, throw away. Commit save points as you go. And when you're stuck, change the approach. That completes the core workflow. Next module: your toolkit, starting with memory files.",
+   "params": {
+    "items": [
+     "Interrupt early: *Esc is always safe*",
+     "Redirect → rewind → revert → restart → throw away",
+     "Commits are save points",
+     "Stuck? Change the approach"
+    ],
+    "next": "CLAUDE.md and AGENTS.md: memory files that work",
+    "next_at": "Next module"
+   }
+  }
+ ]
+}

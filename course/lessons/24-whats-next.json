@@ -1,0 +1,121 @@
+{
+  "id": "24-whats-next",
+  "number": 24,
+  "slug": "what-comes-next",
+  "module": "The engineer you become",
+  "title": "What comes next",
+  "short": "What comes next",
+  "summary": "Agents went from finishing your lines to working for hours in about two years, and the curve hasn't flattened. Here's where the people building these tools think it's heading, why the bottleneck is moving from “can we build it” to “should it exist”, and a simple playbook for staying current.",
+  "takeaways": [
+    "It's the decade of agents, not the year: progress is fast but uneven, and humans stay in the loop.",
+    "Task lengths agents can handle have doubled roughly every seven months for years.",
+    "Agents are moving into the cloud and into team tools, and starting to propose work, not just do it.",
+    "The bottleneck moves from “can we build this?” to “should this exist, and can we answer for it?”",
+    "Stay current: retry failed tasks with each new model, build for the next model, and think bigger."
+  ],
+  "practices": [
+    "Don't assume a task is impossible because an earlier model failed at it; try, and report honestly.",
+    "Surface product questions (should this exist? for whom?) when they matter, instead of only implementing.",
+    "Prefer reversible, well-verified changes so humans can keep up as you move faster.",
+    "Keep the human informed with concise, decision-ready summaries rather than raw transcripts."
+  ],
+  "sources": [
+    {"id": "LCEmiRjPEtQ", "t": 1650},
+    {"id": "article-metr-long-tasks"},
+    {"id": "IDSAMqip6ms", "t": 2776},
+    {"id": "9UAxrdcDjjU", "t": 2860},
+    {"id": "We7BZVKbCVw", "t": 1065},
+    {"id": "shZgedW15vg", "t": 3443},
+    {"id": "n97BCfyFIvw", "t": 1038},
+    {"id": "julbw1JuAz0", "t": 5362},
+    {"id": "CQmI4XKTa0U", "t": 6050},
+    {"id": "owmJyKVu5f8", "t": 1330},
+    {"id": "We7BZVKbCVw", "t": 3951},
+    {"id": "xUnRQ9vLXxo", "t": 215}
+  ],
+  "scenes": [
+    {
+      "template": "title", "chapter": "Intro",
+      "narration": "Nobody knows exactly where this goes. But the people building these tools agree on a few things, and those are worth knowing. Welcome to the last lesson.",
+      "params": {"kicker": "Lesson 24", "module": "Module 6 · The engineer you become", "title": "What comes *next*", "subtitle": "Where this is heading, and how to keep up.", "bubble": "See you next model.", "mood": "happy", "human": true}
+    },
+    {
+      "template": "statement", "chapter": "A decade, not a year",
+      "narration": "First, temper the hype. When people called 2025 the year of agents, Karpathy pushed back. This is the decade of agents, he said. Software, like driving, is tricky, and humans need to stay in the loop while the technology matures.",
+      "params": {"text": "Not the year of agents. The *decade* of agents.", "sub": "Andrej Karpathy: software is tricky, like driving. Keep humans in the loop.", "art": "clock", "tone": "agent", "sync": false}
+    },
+    {
+      "template": "timeline", "chapter": "The curve",
+      "narration": "But the curve is steep. METR found that the length of tasks agents can complete has doubled roughly every seven months for six years. If that continues for a few more years, they project agents handling week-long tasks. Boris Cherny says Anthropic's recent models already ran for around thirty hours on their own.",
+      "params": {"events": [
+        {"when": "2019–2023", "label": "Seconds → minutes", "sub": "autocomplete and chat", "at": "length of tasks"},
+        {"when": "2025", "label": "Hours", "sub": "agents in your repo", "at": "doubled"},
+        {"when": "2026", "label": "~30 hours", "sub": "a single autonomous run", "at": "thirty hours"},
+        {"when": "if the trend holds", "label": "Weeks", "sub": "METR's projection", "now": true, "at": "week-long"}
+      ]}
+    },
+    {
+      "template": "list", "chapter": "Where it's heading",
+      "narration": "Where is it heading? Agents are moving into the cloud, where they're easier to sandbox, and into the tools teams already use, like chat and issue trackers. They're starting to propose work, not just do it: Boris describes Claude reading feedback, bug reports and telemetry, and suggesting what to fix. And Daisy Hollman expects the next bottleneck to be getting information from the model to you, because your attention is the scarce part.",
+      "params": {"title": "Where it's heading", "items": [
+        {"text": "Into the cloud", "sub": "easier to sandbox, runs while you sleep", "at": "cloud"},
+        {"text": "Into team tools", "sub": "chat, issue trackers, multiplayer agents", "at": "tools teams"},
+        {"text": "From doing work to proposing it", "sub": "reading feedback, bugs, telemetry", "at": "propose"},
+        {"text": "Your attention is the bottleneck", "sub": "the model has to brief you well", "at": "attention"}
+      ]}
+    },
+    {
+      "template": "quote", "chapter": "The real question",
+      "narration": "Addy Osmani describes the deeper shift. Every time software got cheaper to build, demand grew. Agents won't remove engineering work. They'll move the bottleneck, from can we build this, to should this exist, and can we answer for it?",
+      "params": {"text": "It's going to move the bottleneck from *can we build this* to *should this exist* and can we answer for it?", "who": "Addy Osmani", "role": "engineer and author", "src": "The engineer of the future · AI Engineer", "t": 1038}
+    },
+    {
+      "template": "statement", "chapter": "Scribes and authors",
+      "narration": "Boris Cherny reaches for the printing press. Scribes stopped being scribes, but an enormous new world of writers and authors appeared. Martin Fowler, who has seen more shifts than most, doesn't think AI will wipe out software development. He expects a change as big as the move from assembly to high-level languages.",
+      "params": {"text": "Scribes became *authors*.", "sub": "Boris Cherny's printing-press analogy · Martin Fowler: a shift like assembly → high-level languages", "art": "pen", "tone": "human", "sync": false}
+    },
+    {
+      "template": "list", "chapter": "Staying current",
+      "narration": "So how do you keep up? Three habits from the people building this. Simon Willison: whenever a model fails at something, tuck it away and try again in six months. Sometimes it suddenly works. Boris Cherny: build for the model six months from now, not today's. And Theo Browne: the models are getting better faster than we are, so instead of only getting better, go bigger.",
+      "params": {"title": "Staying current", "style": "num", "items": [
+        {"text": "Retry failures every few months", "sub": "Simon Willison", "at": "tuck it away"},
+        {"text": "Build for the next model", "sub": "Boris Cherny", "at": "six months from now"},
+        {"text": "Go bigger", "sub": "Theo Browne", "at": "go bigger"}
+      ]}
+    },
+    {
+      "template": "list", "chapter": "The whole course",
+      "narration": "Let's bring the whole course together. Agentic engineering keeps the quality bar while agents do the typing. Context is everything. Explore, plan, implement, verify. Close the loop, so agents check their own work. Encode what you learn into memory files, skills, hooks and checks. Scale with isolation and care. Guard against the lethal trifecta. And remember: you own the loop.",
+      "params": {"title": "The course in eight lines", "style": "num", "items": [
+        {"text": "Keep the quality bar; agents type", "at": "quality bar"},
+        {"text": "Context is everything", "at": "Context"},
+        {"text": "Explore → plan → implement → verify", "at": "Explore"},
+        {"text": "Close the loop", "at": "Close the loop"},
+        {"text": "Encode lessons: memory, skills, hooks, checks", "at": "Encode"},
+        {"text": "Scale with isolation and care", "at": "Scale"},
+        {"text": "Break the lethal trifecta", "at": "trifecta"},
+        {"text": "You own the loop", "at": "own the loop"}
+      ]}
+    },
+    {
+      "template": "quiz", "chapter": "Final check",
+      "narration": "One last check. An agent failed at a task you tried last spring. What does this course recommend? Tap your answer.",
+      "params": {"q": "An agent failed at a task you tried last spring. What now?", "options": [
+        "Conclude agents can't do that kind of task",
+        "Note it, and retry with newer models every few months",
+        "Never delegate that kind of task again",
+        "Only ever do it by hand"
+      ], "answer": 1, "explain": "Capabilities shift with every release. Yesterday's failure is today's retry."}
+    },
+    {
+      "template": "exercise", "chapter": "Your agent's turn",
+      "narration": "Here's your final exercise, and it's a fun one. Install this course as a skill, so your agent follows the same practices you just learned. Then ask it to audit your project against them and pick the top three improvements.",
+      "params": {"title": "Your agent's turn", "intro": "Install the course as a skill, then ask for an audit:", "prompt": "npx skills add Haple/agentic-engineering\n\nThen ask your agent:\n\"Audit this repo against the agentic-engineering skill: memory\nfile, verification, skills and hooks, git habits, security.\nGive me the top 3 improvements, with the first steps.\""}
+    },
+    {
+      "template": "recap", "chapter": "Thank you",
+      "narration": "That's the course. Thank you for taking it. If it helped, share it with a teammate, and let your agent take it too. Keep the quality bar high, keep learning, and enjoy building. You own the loop.",
+      "params": {"kicker": "Thanks for learning with us", "items": ["Decade of agents, not the year", "The bottleneck moves to “should this exist?”", "Retry, build for the next model, go bigger", "*You own the loop*"], "next": "Share the course with a teammate", "next_at": "share it"}
+    }
+  ]
+}
