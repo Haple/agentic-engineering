@@ -1,4 +1,4 @@
-<p align="center"><a href="https://learn-agentic-engineering.pages.dev"><img src="site/static/img/og/og-default.png" alt="Agentic Engineering — free animated course" width="760"></a></p>
+<p align="center"><a href="https://learn-agentic-engineering.pages.dev"><img src="docs/course-preview.gif" alt="Agentic Engineering: a preview of the animated lessons" width="760"></a></p>
 
 <h1 align="center">Agentic Engineering</h1>
 <p align="center"><b>A free, animated course on building real software with AI coding agents.</b><br>
@@ -33,6 +33,8 @@ Each lesson is a 3–5 minute animated video, a full transcript, a quiz, a hands
 ## Your agent can take this course too
 
 The course ships as **agent skills**, so your coding agent follows the same practices you learn:
+
+<img src="docs/agent-install.gif" alt="Installing the course as agent skills with npx skills add" width="640">
 
 ```bash
 npx skills add Haple/agentic-engineering

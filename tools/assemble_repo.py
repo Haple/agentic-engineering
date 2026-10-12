@@ -13,6 +13,8 @@ def copytree(src, dst, ignore=None):
 copytree(f"{W}/site/static", f"{P}/site/static", ignore=shutil.ignore_patterns("audio", "media"))
 shutil.copy(f"{W}/site/build.mjs", f"{P}/site/build.mjs")
 copytree(f"{W}/site/dev", f"{P}/site/dev")
+# --- README media ---
+if os.path.isdir(f"{W}/docs"): copytree(f"{W}/docs", f"{P}/docs")
 # --- course sources ---
 copytree(f"{W}/course", f"{P}/course", ignore=shutil.ignore_patterns("test"))
 os.makedirs(f"{P}/research", exist_ok=True); shutil.copy(f"{W}/research/sources.json", f"{P}/research/sources.json")
@@ -59,7 +61,7 @@ for mi, m in enumerate(course["modules"], 1):
 speakers = []
 for name in ["Andrej Karpathy", "Boris Cherny", "Simon Willison", "Kent Beck", "Mitchell Hashimoto", "Martin Fowler", "Dex Horthy", "Matt Pocock", "Thorsten Ball", "Cat Wu", "Thariq Shihipar", "Ryan Lopopolo", "Peter Steinberger", "Armin Ronacher", "Geoffrey Huntley", "Hamel Husain", "Shreya Shankar", "Charity Majors", "DHH", "Lauren Tan", "Barry Zhang", "Addy Osmani", "Andrew Ng", "Steve Yegge", "Clare Liguori", "Daisy Hollman", "Mario Zechner", "Theo Browne"]:
     speakers.append(name)
-readme = f"""<p align="center"><a href="{SITE}"><img src="site/static/img/og/og-default.png" alt="Agentic Engineering — free animated course" width="760"></a></p>
+readme = f"""<p align="center"><a href="{SITE}"><img src="docs/course-preview.gif" alt="Agentic Engineering: a preview of the animated lessons" width="760"></a></p>
 
 <h1 align="center">Agentic Engineering</h1>
 <p align="center"><b>A free, animated course on building real software with AI coding agents.</b><br>
@@ -94,6 +96,8 @@ Each lesson is a 3–5 minute animated video, a full transcript, a quiz, a hands
 ## Your agent can take this course too
 
 The course ships as **agent skills**, so your coding agent follows the same practices you learn:
+
+<img src="docs/agent-install.gif" alt="Installing the course as agent skills with npx skills add" width="640">
 
 ```bash
 npx skills add Haple/agentic-engineering
