@@ -1,5 +1,6 @@
 site/dist/
 site/static/audio/
+site/static/media/
 node_modules/
 .serve/
 *.raw.png

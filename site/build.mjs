@@ -17,7 +17,7 @@ const fmtT = (s) => { s = Math.max(0, Math.round(s || 0)); return Math.floor(s /
 const fmtMin = (s) => Math.max(1, Math.round((s || 0) / 60)) + " min";
 
 rmSync(DIST, { recursive: true, force: true }); mkdirSync(DIST, { recursive: true });
-for (const d of ["css", "js", "fonts", "audio", "data", "img"]) if (existsSync(join(STATIC, d))) cpSync(join(STATIC, d), join(DIST, d), { recursive: true });
+for (const d of ["css", "js", "fonts", "audio", "data", "img", "media"]) if (existsSync(join(STATIC, d))) cpSync(join(STATIC, d), join(DIST, d), { recursive: true });
 // files served at the site root (e.g. IndexNow key)
 if (existsSync(join(STATIC, "root"))) cpSync(join(STATIC, "root"), DIST, { recursive: true });
 // cache-bust assets
@@ -240,7 +240,7 @@ writeFileSync(join(DIST, "agents", "index.html"), page({
   <p>In Claude Code you can also add it as a plugin marketplace:</p>
   <div class="code-card copyable"><button class="copy" type="button">Copy</button><pre>/plugin marketplace add Haple/agentic-engineering
 /plugin install agentic-engineering@agentic-engineering</pre></div>
-  <p>This installs two skills: <b>agentic-engineering</b>, the practices from the course that your agent applies while it works (explore before editing, plan, verify, keep context clean, stay safe), and <b>agentic-engineering-tutor</b>, which teaches you the course interactively. Try: <code>teach me lesson 1 of agentic engineering</code>.</p>
+  <p>This installs three skills: <b>agentic-engineering</b>, the practices from the course that your agent applies while it works (explore before editing, plan, verify, keep context clean, stay safe); <b>agentic-engineering-tutor</b>, which teaches you the course interactively (try <code>teach me lesson 1 of agentic engineering</code>); and <b>agentic-engineering-audit</b>, which checks how ready your repo is for coding agents and fixes the top gaps (try <code>audit this repo for coding agents</code>).</p>
   <h2>2. Read the course directly</h2>
   <ul><li><a href="/llms.txt">/llms.txt</a> — index of every lesson in Markdown</li><li><a href="/llms-full.txt">/llms-full.txt</a> — the entire course in one file</li><li><code>/lessons/&lt;slug&gt;.md</code> — one lesson, with transcript, takeaways, practices and sources</li><li><a href="/api/course.json">/api/course.json</a> — structured course data</li></ul>
   <h2>3. Paste this into any agent</h2>
