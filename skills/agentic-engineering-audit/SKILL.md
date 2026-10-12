@@ -46,3 +46,14 @@ Audit the current repository against the practices from the Agentic Engineering 
 3. Offer to implement them one at a time, starting with the memory file and the verification commands, verifying each change.
 
 Course reference for any item: https://learn-agentic-engineering.pages.dev/llms.txt
+
+## Example
+**"Audit this repo for coding agents."** You read the repo and reply with a table like this one:
+
+| Area | Score | Evidence |
+|---|---|---|
+| Memory file | ⚠️ | `CLAUDE.md` is 340 lines, half of it style rules a linter could enforce |
+| Feedback loops | ❌ | no documented single-test command; the e2e suite takes 14 minutes |
+| Security | ⚠️ | `.env` with live keys is readable, and the agent has unrestricted network access |
+
+Then the top three fixes, for example: (1) cut `CLAUDE.md` to the commands and gotchas, (2) add `npm run test:one <file>` and document it, (3) move secrets out of the agent's reach and allowlist the domains it needs. Finally, offer to do the first one.

@@ -52,3 +52,8 @@ Base URL: `https://learn-agentic-engineering.pages.dev`. Markdown: `/lessons/<sl
 - If the user asks something the lesson doesn't cover, answer it, and point to the lesson that goes deeper.
 - For a quick overview of the whole course, read `<base>/llms.txt`.
 - The course's practices for agents ship as the `agentic-engineering` skill; suggest installing it with `npx skills add Haple/agentic-engineering`.
+
+## Examples
+- **"Teach me lesson 4."** Fetch `/lessons/context-engineering.md`, explain the smart zone and the dumb zone with an example from the user's repo, share the video link, then ask three quiz questions one at a time. Offer the "hand off, then clear" exercise and save `{"lesson": 4, "quiz": "3/3"}`.
+- **"Quiz me on evals."** Ask three questions from lesson 20, one at a time, and explain each answer. Suggest rewatching a specific part when an answer is shaky.
+- **"Next lesson."** Read `~/.agentic-engineering/progress.json` and continue from the first unfinished lesson.
