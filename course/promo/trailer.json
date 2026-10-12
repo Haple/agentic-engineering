@@ -1,0 +1,203 @@
+{
+ "id": "trailer",
+ "number": null,
+ "slug": "trailer",
+ "title": "Agentic Engineering · free course",
+ "short": "Free course",
+ "summary": "Trailer for the free Agentic Engineering course.",
+ "scenes": [
+  {
+   "template": "title",
+   "chapter": "Intro",
+   "narration": "Coding agents got good. They write code, run it, and fix it. But getting real, reliable software out of them is a skill. Andrej Karpathy calls it agentic engineering.",
+   "params": {
+    "kicker": "Free course · 24 animated lessons",
+    "title": "Learn *agentic engineering*",
+    "subtitle": "Build real software with AI coding agents.",
+    "bubble": "Let's build.",
+    "bubble_at": "skill",
+    "mood": "happy",
+    "human": true
+   }
+  },
+  {
+   "template": "quote",
+   "chapter": "A learnable craft",
+   "narration": "Engineering, he says, because there's an art and a science to it. It's something you can learn, and get better at.",
+   "params": {
+    "text": "…“engineering” to emphasize that there is an art & science and expertise to it. It's something you can *learn and become better at*…",
+    "who": "Andrej Karpathy",
+    "role": "on naming agentic engineering",
+    "src": "Vibe coding, one year later · X"
+   }
+  },
+  {
+   "template": "wall",
+   "chapter": "Sources",
+   "narration": "So this free course distills a hundred and twenty-six talks and articles, from the people who build these tools and use them every day, into twenty-four short animated lessons.",
+   "params": {
+    "title": "Distilled from the people building it",
+    "items": [
+     {
+      "name": "Boris Cherny",
+      "role": "creator of Claude Code"
+     },
+     {
+      "name": "Andrej Karpathy",
+      "role": "AI researcher"
+     },
+     {
+      "name": "Simon Willison",
+      "role": "creator of Datasette"
+     },
+     {
+      "name": "Kent Beck",
+      "role": "creator of XP"
+     },
+     {
+      "name": "Mitchell Hashimoto",
+      "role": "creator of Ghostty"
+     },
+     {
+      "name": "Martin Fowler",
+      "role": "Thoughtworks"
+     },
+     {
+      "name": "Thorsten Ball",
+      "role": "Amp"
+     },
+     {
+      "name": "Dex Horthy",
+      "role": "HumanLayer"
+     },
+     {
+      "name": "Cat Wu",
+      "role": "Anthropic"
+     },
+     {
+      "name": "Ryan Lopopolo",
+      "role": "OpenAI"
+     },
+     {
+      "name": "Armin Ronacher",
+      "role": "creator of Flask"
+     },
+     {
+      "name": "Charity Majors",
+      "role": "Honeycomb"
+     }
+    ],
+    "count": {
+     "value": 126,
+     "label": "talks and articles",
+     "at": "hundred and twenty-six"
+    }
+   }
+  },
+  {
+   "template": "list",
+   "chapter": "What you'll learn",
+   "narration": "You'll learn context engineering, the explore, plan, implement, verify loop, memory files, skills and hooks, subagents and parallel agents, evals, and how to stay safe from prompt injection.",
+   "params": {
+    "title": "What you'll learn",
+    "items": [
+     {
+      "text": "Context engineering",
+      "at": "context engineering"
+     },
+     {
+      "text": "Explore → plan → implement → verify",
+      "at": "explore"
+     },
+     {
+      "text": "Memory files, skills, hooks",
+      "at": "memory files"
+     },
+     {
+      "text": "Subagents and parallel agents",
+      "at": "subagents"
+     },
+     {
+      "text": "Evals",
+      "at": "evals"
+     },
+     {
+      "text": "Prompt injection and the lethal trifecta",
+      "at": "prompt injection"
+     }
+    ]
+   }
+  },
+  {
+   "template": "terminal",
+   "chapter": "Your agent too",
+   "narration": "And here's the twist: your agent can take the course too. One command installs it as a skill, so your agent follows the same practices you learn.",
+   "params": {
+    "title": "~/your-project",
+    "lines": [
+     {
+      "k": "cmd",
+      "text": "npx skills add Haple/agentic-engineering",
+      "at": "One command"
+     },
+     {
+      "k": "ok",
+      "text": "agentic-engineering · practices",
+      "at": "as a skill"
+     },
+     {
+      "k": "ok",
+      "text": "agentic-engineering-tutor · teaches you"
+     },
+     {
+      "k": "ok",
+      "text": "agentic-engineering-audit · checks your repo",
+      "at": "same practices"
+     }
+    ]
+   }
+  },
+  {
+   "template": "stat",
+   "chapter": "The course",
+   "narration": "Every lesson takes about four minutes, with a quiz, a hands-on exercise for your own agent, and a link to every source.",
+   "params": {
+    "items": [
+     {
+      "value": 24,
+      "label": "animated lessons",
+      "tone": "agent",
+      "at": "Every lesson"
+     },
+     {
+      "value": 4,
+      "prefix": "~",
+      "label": "minutes each, with a quiz",
+      "tone": "human",
+      "at": "four minutes"
+     },
+     {
+      "value": 126,
+      "label": "sources, all linked",
+      "tone": "good",
+      "at": "link",
+      "d": 0.8
+     }
+    ]
+   }
+  },
+  {
+   "template": "title",
+   "chapter": "Start",
+   "narration": "It's free, and open source. Start with lesson one today.",
+   "params": {
+    "kicker": "Free · open source · no sign-up",
+    "title": "Start *lesson 1*",
+    "subtitle": "learn-agentic-engineering.pages.dev",
+    "bubble": "See you there.",
+    "mood": "happy",
+    "human": true
+   }
+  }
+ ]
+}

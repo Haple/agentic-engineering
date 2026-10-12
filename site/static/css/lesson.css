@@ -444,3 +444,12 @@
 .stage.landscape .lp.has-title { padding-right: 200px; }
 .stage.landscape .lp.has-title .lp-box { margin-left: 240px; }
 .stage.landscape .lp.has-title .side-h { font-size: 56px; }
+
+/* portrait code: fit long lines, labels as a legend under the card; long kickers truncate before the brand */
+.stage.portrait .cl { font-size: var(--code-fs, 25px); }
+.stage .hl-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 30px; margin-top: 30px; }
+.stage .hl-chip { display: inline-flex; align-items: center; gap: 12px; font: 700 40px var(--f-hand); color: var(--agent-deep); }
+.stage .hl-chip::before { content: ""; width: 24px; height: 24px; border-radius: 7px; background: var(--agent); border: 3px solid var(--ink); }
+.stage .hl-chip.tone-human::before { background: var(--human); } .stage .hl-chip.tone-bad::before { background: var(--bad); } .stage .hl-chip.tone-good::before { background: var(--good); }
+.stage.portrait .kicker { max-width: 600px; }
+.stage.portrait .kicker .kt { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

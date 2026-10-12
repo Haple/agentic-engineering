@@ -17,7 +17,7 @@
   document.querySelectorAll(".copyable .copy").forEach((b) => b.addEventListener("click", () => {
     const pre = b.parentElement.querySelector("pre"); navigator.clipboard?.writeText(pre.innerText.trim()); b.textContent = "Copied"; setTimeout(() => (b.textContent = "Copy"), 1400);
   }));
-  // hero mini player: silent loop through the first minute of lesson 1
+  // hero mini player: silent loop of the trailer (or the first minute of lesson 1)
   const mini = document.getElementById("mini");
   if (mini) {
     const start = async () => {
@@ -28,7 +28,7 @@
       const L = new AE.Lesson(stage, data, { mode: "web", portrait: false });
       const fit = () => { stage.style.transform = `scale(${mini.clientWidth / 1920})`; };
       fit(); new ResizeObserver(fit).observe(mini);
-      const loopEnd = Math.min(L.total, (data.scenes[6] ? data.scenes[6].start : 60));
+      const loopEnd = data.id === "trailer" ? L.total + 2 : Math.min(L.total, (data.scenes[6] ? data.scenes[6].start : 60));
       let t0 = performance.now(), vis = true;
       new IntersectionObserver((e) => (vis = e[0].isIntersecting)).observe(mini);
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

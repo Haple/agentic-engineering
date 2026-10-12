@@ -129,7 +129,7 @@ const home = page({
     <div class="cta"><a class="btn primary" href="${ready[0] ? url(ready[0]) : "#lessons"}">Start lesson 1 →</a><a class="btn" href="/agents/">Let your agent take it</a></div>
     <ul class="facts"><li><b>${ready.length ? totalMin + " min" : "—"}</b> of lessons</li><li><b>${talkCount + articleCount}</b> sources</li><li><b>0</b> sign-ups</li></ul>
   </div>
-  <div class="hero-play"><div class="mini" id="mini" data-src="/data/${ready[0]?.id}.json"><div class="stage"></div></div><p class="mini-cap">Not a video file: every lesson is animated live by code in your browser.</p></div>
+  <div class="hero-play"><div class="mini" id="mini" data-src="/data/${existsSync(join(STATIC, "data", "trailer.json")) ? "trailer" : ready[0]?.id}.json"><div class="stage"></div></div><p class="mini-cap">Not a video file: every lesson is animated live by code in your browser.</p></div>
 </div></section>
 <section class="band"><div class="wrap band-in">
   <div><h3>For developers</h3><p>Go from “AI writes some snippets” to running agents that ship reviewed, tested work.</p></div>

@@ -124,6 +124,9 @@
       <div class="code-body"><div class="code-hls"></div>${rows}</div>
     </div>`);
     if (p.caption) S.add(`<div class="term-cap">${S.md(p.caption)}</div>`);
+    // portrait: shrink long lines to fit instead of clipping them; highlight labels move to a legend below the card
+    if (S.portrait) { const maxLen = Math.max(...lines.map((l) => String(l).length)); if (maxLen > 56) root.style.setProperty("--code-fs", Math.max(17, (25 * 56) / maxLen).toFixed(1) + "px"); }
+    const legend = S.portrait && (p.hl || []).some((h) => h.label) ? S.add(`<div class="hl-legend"></div>`) : null;
     S.rise(S.t0 + 0.02, root, 0.55, 30);
     const cls = root.querySelectorAll(".cl");
     const tLines = S.cue(p.at, 0.04) + 0.25;
@@ -132,9 +135,11 @@
     if (p.caption) S.rise(S.cue(p.caption_at, 0.15), S.cam.querySelector(".term-cap"));
     const LH = S.portrait ? 46 : 50;
     (p.hl || []).forEach((h, k) => {
-      const band = S.h(`<div class="hlb tone-${h.tone || "agent"}" style="top:${(h.from - 1) * LH + 14}px;height:${(h.to - h.from + 1) * LH}px">${h.label ? `<span class="hlb-l">${S.esc(h.label)}</span>` : ""}</div>`);
+      const band = S.h(`<div class="hlb tone-${h.tone || "agent"}" style="top:${(h.from - 1) * LH + 14}px;height:${(h.to - h.from + 1) * LH}px">${h.label && !legend ? `<span class="hlb-l">${S.esc(h.label)}</span>` : ""}</div>`);
       root.querySelector(".code-hls").appendChild(band);
-      S.inn(S.cue(h.at, 0.45 + k * 0.15), band, { scaleX: 0.2 }, 0.4);
+      const th = S.cue(h.at, 0.45 + k * 0.15);
+      S.inn(th, band, { scaleX: 0.2 }, 0.4);
+      if (legend && h.label) { const chip = S.h(`<span class="hl-chip tone-${h.tone || "agent"}">${S.esc(h.label)}</span>`); legend.appendChild(chip); S.pop(th + 0.2, chip, 0.35); }
     });
   };
 

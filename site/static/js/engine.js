@@ -68,7 +68,7 @@
       if (sc.params && sc.params.hnote) S.note(sc.params.hnote);
       if (sc.params && sc.params.punch) S.punch(sc.params.punch);
       if (sc.template !== "title" && data_kicker(this.data)) {
-        const k = h(`<div class="kicker"><b>${String(this.data.number).padStart(2, "0")}</b>${esc(this.data.short || this.data.title)}</div>`);
+        const k = h(`<div class="kicker"><b>${String(this.data.number).padStart(2, "0")}</b><span class="kt">${esc(this.data.short || this.data.title)}</span></div>`);
         el.appendChild(k);
       }
       this.scenes.push(S);

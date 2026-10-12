@@ -18,7 +18,7 @@ copytree(f"{W}/course", f"{P}/course", ignore=shutil.ignore_patterns("test"))
 os.makedirs(f"{P}/research", exist_ok=True); shutil.copy(f"{W}/research/sources.json", f"{P}/research/sources.json")
 # --- tools ---
 os.makedirs(f"{P}/tools", exist_ok=True)
-for f in ["voice.mjs", "stills.mjs", "og.mjs", "shot.mjs", "fake_timing.mjs", "make_lesson.sh", "search_sources.py", "extract_insights.py", "topic_index.py", "brief.py", "assemble_repo.py", "capture.mjs"]:
+for f in ["voice.mjs", "stills.mjs", "og.mjs", "shot.mjs", "fake_timing.mjs", "make_lesson.sh", "search_sources.py", "extract_insights.py", "topic_index.py", "brief.py", "assemble_repo.py", "capture.mjs", "clip.mjs", "render_all.sh"]:
     if os.path.exists(f"{W}/tools/{f}"): shutil.copy(f"{W}/tools/{f}", f"{P}/tools/{f}")
 # --- lessons markdown (from the built site) ---
 os.makedirs(f"{P}/lessons", exist_ok=True)
