@@ -101,7 +101,7 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script
 <main id="main">${body}</main>
 <footer class="foot"><div class="wrap foot-in">
   <div><a class="brandlink" href="/">${LOGO}<span>Agentic Engineering</span></a><p>A free, open-source course. Content <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, code MIT.</p></div>
-  <div class="foot-links"><a href="/#lessons">All lessons</a><a href="/agents/">For agents</a><a href="/sources/">Sources</a><a href="/about/">How this was made</a><a href="/llms.txt">llms.txt</a><a href="${course.repo}">GitHub</a></div>
+  <div class="foot-links"><a href="/#lessons">All lessons</a><a href="/agents/">For agents</a><a href="/sources/">Sources</a><a href="/notes/what-builders-agree-on/">12 things builders agree on</a><a href="/about/">How this was made</a><a href="/llms.txt">llms.txt</a><a href="${course.repo}">GitHub</a></div>
 </div></footer>
 <script src="${V["js/site.js"]}" defer></script>
 ${scripts}
@@ -147,7 +147,7 @@ const home = page({
 </section>
 <section class="wrap people">
   <h2>Distilled from the people building it</h2>
-  <p class="sub">Talks, interviews and essays from engineers at Anthropic, OpenAI, Cursor, Factory, Airbnb, AWS and independent practitioners. <a href="/sources/">See all ${talkCount + articleCount} sources →</a></p>
+  <p class="sub">Talks, interviews and essays from engineers at Anthropic, OpenAI, Cursor, Factory, Airbnb, AWS and independent practitioners. <a href="/sources/">See all ${talkCount + articleCount} sources →</a> · <a href="/notes/what-builders-agree-on/">12 things they agree on →</a></p>
   <div class="names">${speakers.slice(0, 42).map((p) => `<span>${esc(p.name)}</span>`).join("")}</div>
   <p class="fine">Not affiliated with or endorsed by any of the people or companies cited. Quotes link to the original talks.</p>
 </section>
@@ -265,19 +265,46 @@ writeFileSync(join(DIST, "about", "index.html"), page({
   <p>Mistakes are possible. If you spot one, <a href="${course.repo}/issues">open an issue</a> with the lesson and timestamp. The source code for the engine, the lessons and the build is all on <a href="${course.repo}">GitHub</a>.</p></div>`,
 }));
 
+// ---------- notes (articles built from lesson quotes) ----------
+const notes = existsSync(join(ROOT, "course/notes")) ? readdirSync(join(ROOT, "course/notes")).filter((f) => f.endsWith(".json")).map((f) => JSON.parse(readFileSync(join(ROOT, "course/notes", f), "utf8"))) : [];
+function quoteSource(l, q) {
+  const refs = l.author.sources || [];
+  let ref = q.t != null ? refs.find((r) => r.t === q.t) : null;
+  if (!ref && q.src) ref = refs.find((r) => { const c = catalog[sourceInfo(r).id]; return c && c.title && c.title.toLowerCase().includes(q.src.split("·")[0].trim().toLowerCase().slice(0, 18)); });
+  if (!ref) ref = refs.find((r) => { const c = catalog[sourceInfo(r).id]; return c && (c.speakers || []).some((sp) => sp.name && q.who && sp.name.includes(q.who.split(" ")[0])); });
+  return ref ? sourceInfo(ref) : null;
+}
+for (const n of notes) {
+  const items = n.items.map((it) => {
+    const l = lessons.find((x) => x.id === it.lesson); const q = l.author.scenes[it.scene].params;
+    return { ...it, l, q, src: quoteSource(l, q) };
+  });
+  const body = `<article class="wrap prose note"><p class="eyebrow">Field notes · from ${talkCount + articleCount} talks and essays</p><h1>${esc(n.title)}</h1><p class="lede">${esc(n.intro)}</p>
+  <ol class="agree">${items.map((it, i) => `<li id="${i + 1}"><h2>${esc(it.h)}</h2><p>${esc(it.p)}</p><blockquote><p>“${esc(md2txt(it.q.text))}”</p><footer>${esc(it.q.who)}${it.q.role && !(it.src && it.src.title.toLowerCase().includes(it.q.role.toLowerCase())) ? `, ${esc(it.q.role)}` : ""}${it.src ? ` · <a href="${esc(it.src.url)}" rel="noopener">${esc(it.src.title)}</a>` : ""}</footer></blockquote><p class="watch"><a href="${url(it.l)}">▶ Lesson ${it.l.number}: ${esc(it.l.author.title)} · ${fmtMin(it.l.timed.total)}</a></p></li>`).join("")}</ol>
+  <div class="note-cta"><p>Each point is a short animated lesson with a quiz and a prompt to try with your own agent. The course is free, and your agent can take it too.</p><div class="cta"><a class="btn primary" href="${url(ready[0])}">Start lesson 1 →</a><a class="btn" href="/agents/">Let your agent take it</a></div></div></article>`;
+  mkdirSync(join(DIST, "notes", n.slug), { recursive: true });
+  writeFileSync(join(DIST, "notes", n.slug, "index.html"), page({ title: n.title, path: `/notes/${n.slug}/`, desc: n.desc, body, type: "article", og: existsSync(join(STATIC, "img/og", `${n.slug}.png`)) ? `${BASE}/img/og/${n.slug}.png` : null,
+    jsonld: { "@context": "https://schema.org", "@type": "Article", headline: n.title, description: n.desc, url: `${BASE}/notes/${n.slug}/`, isPartOf: { "@type": "Course", name: course.title, url: `${BASE}/` }, license: "https://creativecommons.org/licenses/by/4.0/" } }));
+  const md = [`# ${n.title}`, "", `> ${n.desc}`, "", n.intro, ""];
+  items.forEach((it, i) => md.push(`## ${i + 1}. ${it.h}`, "", it.p, "", `> “${md2txt(it.q.text)}”`, `> — ${it.q.who}${it.q.role ? `, ${it.q.role}` : ""}${it.src ? ` ([${it.src.title}](${it.src.url}))` : ""}`, "", `Lesson ${it.l.number}: [${it.l.author.title}](${BASE}${url(it.l)}) (${fmtMin(it.l.timed.total)})`, ""));
+  md.push("---", "", `From the free course [${course.title}](${BASE}/): 24 animated lessons on building real software with AI coding agents. Content CC BY 4.0.`, "");
+  writeFileSync(join(DIST, "notes", `${n.slug}.md`), md.join("\n"));
+}
+
 // ---------- 404 ----------
 writeFileSync(join(DIST, "404.html"), page({ title: "Not found", path: "/404", desc: "Page not found.", body: `<div class="wrap prose"><h1>Lost the context?</h1><p class="lede">That page doesn't exist. <a href="/">Back to the course</a>.</p></div>` }));
 
 // ---------- llms.txt, llms-full.txt, api, sitemap, robots ----------
 const llms = [`# ${course.title}`, "", `> ${course.description}`, "", "Each lesson below is a Markdown file with a summary, key takeaways, practices for coding agents, a full transcript and cited sources (talks link to exact timestamps). Content is CC BY 4.0.", "", "## Lessons", ""];
 course.modules.forEach((m, mi) => { llms.push(`### Module ${mi + 1}: ${m.title}`, ""); lessons.filter((l) => l.moduleIndex === mi && l.ready).forEach((l) => llms.push(`- [Lesson ${l.number}: ${l.author.title}](${BASE}/lessons/${l.slug}.md): ${l.author.summary}`)); llms.push(""); });
+if (notes.length) { llms.push("## Notes", ""); notes.forEach((n) => llms.push(`- [${n.title}](${BASE}/notes/${n.slug}.md): ${n.desc}`)); llms.push(""); }
 llms.push("## For agents", "", `- [Install as an agent skill](${BASE}/agents/): \`npx skills add Haple/agentic-engineering\``, `- [Full course in one file](${BASE}/llms-full.txt)`, `- [Structured course data](${BASE}/api/course.json)`, "", "## Optional", "", `- [All sources](${BASE}/sources/): ${talkCount} talks and ${articleCount} articles`, `- [Source code](${course.repo})`, "");
 writeFileSync(join(DIST, "llms.txt"), llms.join("\n"));
 writeFileSync(join(DIST, "llms-full.txt"), `# ${course.title}\n\n> ${course.description}\n\n` + ready.map(lessonMarkdown).join("\n---\n\n"));
 mkdirSync(join(DIST, "api"), { recursive: true });
 writeFileSync(join(DIST, "api", "course.json"), JSON.stringify({ title: course.title, url: BASE, description: course.description, license: "CC-BY-4.0", modules: course.modules.map((m, mi) => ({ title: m.title, lessons: lessons.filter((l) => l.moduleIndex === mi).map((l) => l.ready ? { number: l.number, title: l.author.title, url: BASE + url(l), markdown: `${BASE}/lessons/${l.slug}.md`, minutes: Math.round(l.timed.total / 60), summary: l.author.summary, takeaways: (l.author.takeaways || []).map(md2txt), practices: (l.author.practices || []).map(md2txt) } : { number: l.number, title: l.title, status: "coming soon" }) })) }, null, 1));
 const today = new Date().toISOString().slice(0, 10);
-writeFileSync(join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${["/", "/agents/", "/sources/", "/about/", ...ready.map(url)].map((p) => `<url><loc>${BASE}${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}\n</urlset>\n`);
+writeFileSync(join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${["/", "/agents/", "/sources/", "/about/", ...notes.map((n) => `/notes/${n.slug}/`), ...ready.map(url)].map((p) => `<url><loc>${BASE}${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}\n</urlset>\n`);
 writeFileSync(join(DIST, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${BASE}/sitemap.xml\n`);
 writeFileSync(join(DIST, "_headers"), `/data/*\n  Cache-Control: public, max-age=3600\n/audio/*\n  Cache-Control: public, max-age=86400\n/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n/*.md\n  Content-Type: text/markdown; charset=utf-8\n  Access-Control-Allow-Origin: *\n/llms.txt\n  Access-Control-Allow-Origin: *\n/llms-full.txt\n  Access-Control-Allow-Origin: *\n/api/*\n  Access-Control-Allow-Origin: *\n`);
 console.log(JSON.stringify({ base: BASE, lessons_ready: ready.length, lessons_total: lessons.length, minutes: totalMin, sources: talkCount + articleCount }));

@@ -186,3 +186,17 @@ a.lrow:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink
 .pl-end-in b { font: 700 20px var(--f-display); }
 .pl-next { font: 700 16px var(--f-body); background: var(--agent); color: #fff; text-decoration: none; padding: 10px 16px; border-radius: 10px; border: 2px solid var(--ink); }
 .pl-replay { font: 600 14px var(--f-body); background: none; border: 0; cursor: pointer; color: var(--ink2); }
+
+/* notes (field-notes articles) */
+.note .eyebrow { font: 600 13px var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--agent-deep); margin: 0 0 10px; }
+.note .agree { list-style: none; counter-reset: n; padding: 0; margin: 34px 0 0; display: grid; gap: 34px; }
+.note .agree > li { counter-increment: n; margin: 0; padding-top: 26px; border-top: 1px solid var(--line); }
+.note .agree h2 { margin: 0 0 8px; font-size: clamp(22px, 3vw, 28px); letter-spacing: -.02em; text-wrap: balance; }
+.note .agree h2::before { content: counter(n, decimal-leading-zero); display: block; font: 600 14px var(--f-mono); color: var(--agent); margin-bottom: 4px; }
+.note blockquote { margin: 16px 0 10px; padding: 14px 18px; background: #FFFDF8; border: 2px solid var(--ink); border-radius: 14px; box-shadow: var(--shadow); }
+.note blockquote p { margin: 0 0 8px; font: 500 19px/1.45 var(--f-display); letter-spacing: -.01em; }
+.note blockquote footer { font-size: 14px; color: var(--ink2); }
+.note .watch { margin: 8px 0 0; font-weight: 600; }
+.note .watch a { text-decoration: none; } .note .watch a:hover { color: var(--agent-deep); }
+.note-cta { margin-top: 48px; padding: 24px; background: var(--paper2); border-radius: var(--r); }
+.note-cta p { margin: 0 0 14px; }

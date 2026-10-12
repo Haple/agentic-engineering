@@ -1,0 +1,81 @@
+{
+ "slug": "what-builders-agree-on",
+ "title": "12 things the people building coding agents agree on",
+ "desc": "Distilled from 126 talks and essays by the people who build and use coding agents like Claude Code, Codex and Cursor. Each point links to the original source and a 4-minute animated lesson.",
+ "intro": "We went through 82 talk transcripts and 44 essays from people who build coding agents or use them seriously every day. They disagree about plenty: whether to read every line, how much to plan, how many agents to run. But on these twelve points they keep saying the same thing.",
+ "items": [
+  {
+   "lesson": "01-vibe-to-agentic",
+   "scene": 6,
+   "h": "Agentic engineering keeps the quality bar",
+   "p": "Vibe coding forgets that the code exists, which is fine when the only person a bug can hurt is you. Agentic engineering is the professional version: agents write and run the code, and you still hold it to the standard of any software people depend on."
+  },
+  {
+   "lesson": "03-jagged",
+   "scene": 1,
+   "h": "Agent intelligence is jagged",
+   "p": "Models peak wherever results can be checked, which is why code is their home turf. They stumble on judgment, design and anything they can't verify, and they report success with total confidence. Delegate by how verifiable and how risky the work is."
+  },
+  {
+   "lesson": "04-context",
+   "scene": 1,
+   "h": "Context is the constraint",
+   "p": "The context window is the agent's working memory, and quality drops long before it's full. Keep sessions focused, write important state to files, and when you've corrected the same mistake twice, start a fresh session with a better prompt."
+  },
+  {
+   "lesson": "05-core-loop",
+   "scene": 6,
+   "h": "Align before the agent edits",
+   "p": "The people who build these tools rarely type a request and hit enter. They have the agent explore first, agree on a plan, then implement, often in a fresh context. The point of the plan is shared understanding."
+  },
+  {
+   "lesson": "06-specs",
+   "scene": 1,
+   "h": "The agent fills every gap you leave",
+   "p": "Anything your request doesn't say gets filled with the agent's best guess, drawn from average code on the internet. A good spec closes the gaps that matter: the goal, what done looks like, and the constraints."
+  },
+  {
+   "lesson": "08-verification",
+   "scene": 1,
+   "h": "Close the loop",
+   "p": "Ask people who ship real software with agents for their single best tip, and a surprising number give the same one: give the agent a way to check its own work, such as tests, types, a running app or a browser. Without a check, you are the verification loop. And passing tests aren't proof, so have it run the real thing."
+  },
+  {
+   "lesson": "11-memory-files",
+   "scene": 3,
+   "h": "Memory files should be short and earned",
+   "p": "CLAUDE.md and AGENTS.md work best when they hold only what the agent can't infer: commands, conventions and gotchas, grown from real mistakes. Long files get ignored."
+  },
+  {
+   "lesson": "18-harness",
+   "scene": 3,
+   "h": "Fix the system, not just the code",
+   "p": "When an agent makes a mistake, engineer it out for good: a lint rule whose error message teaches the fix, a test, a hook, a type. Hard constraints beat instructions the agent can forget."
+  },
+  {
+   "lesson": "16-parallel",
+   "scene": 5,
+   "h": "Parallel agents, serial attention",
+   "p": "You can run many agents at once if each one is isolated, for example in its own git worktree. The limit is you: pick work that won't collide, and review in batches."
+  },
+  {
+   "lesson": "21-security",
+   "scene": 1,
+   "h": "Prompt injection is not solved",
+   "p": "An agent with access to private data, exposure to untrusted content and a way to send data out can be turned against you. Prompts and filters don't fix it. Remove one leg of that trifecta with sandboxes, network allowlists and scoped credentials."
+  },
+  {
+   "lesson": "22-teams",
+   "scene": 5,
+   "h": "You own the loop",
+   "p": "Accountability doesn't move to the agent. Never send anyone something you haven't read. The teams that win change how they work instead of sprinkling AI on top, and they measure speed and quality together."
+  },
+  {
+   "lesson": "23-your-role",
+   "scene": 3,
+   "h": "What agents can't do is your job now",
+   "p": "Syntax and API recall are worth less every month. Vision, judgment, design, domain knowledge and real understanding of your system are worth far more. Keep building them on purpose."
+  }
+ ],
+ "og_title": "12 things the people building *coding agents* agree on"
+}
